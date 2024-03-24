@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+프로젝트 명 : 여행 추억 저장 사이트
 
-## Getting Started
+설명 : 자신의 여행을 기록하며 사진을 저장하고 해당 여행의 기록들을 다른 사람들에게 보여주어
+참고 및 자랑의 목적 가능
 
-First, run the development server:
+예상 기능들 :
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    1. 여행 추가 기능
+    2. 여행에서 1일차 2일차, 3일차 추가 기능
+    3. 각 각의 일차에 사진 저장 (사진은 원으로 프레임 형식으로 보여주기 가능하다면 사진을 찍은 장소 정보 저장)
+    ㄴ 각 일차의 했던 일들 플래너 형식으로 저장
+    4. 각의 일차에 호텔 정보 저장 (google Map api 사용)
+    5. 각의 일차의 위치 정보 저장 (google Map api 사용)
+    6. 각 여행의 예산 저장
+    7. 비행기 정보 표시
+    8. 위의 여행 정보들 공개 기능 또는 비공개 기능
+    9. 사람들에게 좋아요 받기 기능
+    10. 모든 사진 보여주기 기능
+    11. 여행의 댓글 기능?
+    12. 여행 일정 지도에 선으로 표시?
+    13. 다른 사람들의 여행 보기 기능
