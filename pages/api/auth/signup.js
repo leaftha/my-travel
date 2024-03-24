@@ -1,27 +1,27 @@
 import { connectDB } from "@/util/database";
 import bcrypt from "bcrypt";
 
-export default async function handler(Get, Post) {
-  if (Get.method == "POST") {
+export default async function handler(req, res) {
+  if (req.method == "POST") {
     if (
-      Get.body.name === "" ||
-      Get.body.email === "" ||
-      Get.body.password === ""
+      req.body.name === "" ||
+      req.body.email === "" ||
+      req.body.password === ""
     ) {
-      Post.status(500).json("빈칸 존재");
+      res.status(500).json("빈칸 존재");
     } else {
-      let hash = await bcrypt.hash(Get.body.password, 10);
-      Get.body.password = hash;
+      let hash = await bcrypt.hash(req.body.password, 10);
+      req.body.password = hash;
       const client = await connectDB;
       const db = client.db("travel");
       let foundEmail = await db
         .collection("user_id")
-        .findOne({ email: Get.body.email });
+        .findOne({ email: req.body.email });
       if (foundEmail === null) {
-        await db.collection("user_id").insertOne(Get.body);
-        Post.status(200).redirect(302, "/");
+        await db.collection("user_id").insertOne(req.body);
+        res.status(200).redirect(302, "/");
       } else {
-        Post.status(500).json("같은 이메일 존재");
+        res.status(500).json("같은 이메일 존재");
       }
     }
   }
