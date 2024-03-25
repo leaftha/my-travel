@@ -6,11 +6,10 @@ export default async function TravelList({ user }) {
     .collection("travelPost")
     .find({ email: user.user.email })
     .toArray();
-  console.log(result);
   return (
     <div>
       {result.map((item, idx) => (
-        <li>post</li>
+        <li>{item.title}</li>
       ))}
     </div>
   );
