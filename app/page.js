@@ -3,6 +3,7 @@ import LoginBtn from "./loginbtn";
 import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
 import NewTravel from "./newTravel";
+import TravelList from "./travelList";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
@@ -15,6 +16,7 @@ export default async function Home() {
         회원가입
       </Link>
       {session ? <NewTravel user={session} /> : ""}
+      {session ? <TravelList user={session} /> : ""}
     </div>
   );
 }
