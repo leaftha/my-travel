@@ -30,7 +30,11 @@ export default function NewTravel({ user }) {
               defaultValue={user.user.email}
             />
             <input name="title" placeholder="제목을 입력해 주세요" />
+            <input name="menber" type="number" min={1} />
+            <input name="money" type="number" min={1} />원
+            <br />
             <>추가로 googleMap Api로 여행 경로 작성 데이터 예정</>
+            <br />
             <button type="submit">작성</button>
           </form>
         </div>
