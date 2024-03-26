@@ -1,4 +1,5 @@
 import { connectDB } from "@/util/database";
+import Link from "next/link";
 
 export default async function TravelList({ user }) {
   let db = (await connectDB).db("travel");
@@ -9,7 +10,7 @@ export default async function TravelList({ user }) {
   return (
     <div>
       {result.map((item, idx) => (
-        <li>{item.title}</li>
+        <Link href={`/travel/${item._id}`}>{item.title}</Link>
       ))}
     </div>
   );
