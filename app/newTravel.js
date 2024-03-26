@@ -4,16 +4,6 @@ import { useState } from "react";
 
 export default function NewTravel({ user }) {
   let [clicked, setClicked] = useState(false);
-  async function onSubmit(e) {
-    const formData = new FormData(e.currentTarget);
-    const response = await fetch("/api/post/newTravel", {
-      method: "POST",
-      body: formData,
-    });
-    console.log(formData, response);
-
-    const data = await response.json();
-  }
   function modal() {
     setClicked(!clicked);
   }
