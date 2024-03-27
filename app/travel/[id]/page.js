@@ -11,10 +11,17 @@ export default async function Detail(props) {
   if (result.days.length != 0) {
     last_day = result.days.length;
   }
+
+  console.log(result.days);
   return (
     <div>
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
+      {result.days.length === 0 ? (
+        <h1>스케줄을 추가 하세요</h1>
+      ) : (
+        result.days.map((item) => <li>{item.day}일</li>)
+      )}
     </div>
   );
 }
