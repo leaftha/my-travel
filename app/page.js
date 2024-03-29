@@ -12,9 +12,14 @@ export default async function Home() {
     <div>
       {session ? <div>로그인</div> : <div>로그인 X</div>}
       <LoginBtn />
-      <Link className="register" href="register">
-        회원가입
-      </Link>
+      {session ? (
+        ""
+      ) : (
+        <Link className="register" href="register">
+          회원가입
+        </Link>
+      )}
+
       {session ? <NewTravel user={session} /> : ""}
       {session ? <TravelList user={session} /> : ""}
     </div>
