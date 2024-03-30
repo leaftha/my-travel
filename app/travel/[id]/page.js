@@ -1,6 +1,8 @@
 import { ObjectId } from "mongodb";
 import { connectDB } from "@/util/database.js";
+
 import AddDate from "./addDate";
+import ThisDay from "./thisDay";
 
 export default async function Detail(props) {
   let db = (await connectDB).db("travel");
@@ -20,7 +22,7 @@ export default async function Detail(props) {
       {result.days.length === 0 ? (
         <h1>스케줄을 추가 하세요</h1>
       ) : (
-        result.days.map((item) => <li>{item.day}일</li>)
+        result.days.map((item) => <ThisDay day={item} />)
       )}
     </div>
   );
