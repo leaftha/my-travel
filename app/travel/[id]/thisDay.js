@@ -8,7 +8,7 @@ export default function ThisDay({ day }) {
   return (
     <div>
       <h1>{day.day}</h1>
-      <Wrapper apiKey={process.env.NEXT_PUBLIC_API}>
+      <Wrapper apiKey={process.env.NEXT_PUBLIC_API} libraries={["places"]}>
         <Maps />
       </Wrapper>
     </div>
