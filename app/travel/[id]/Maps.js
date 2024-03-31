@@ -19,7 +19,6 @@ export default function Maps() {
     setMap(newMap);
   }, []);
 
-  console.log(placePredictions, isPlacePredictionsLoading);
   return (
     <div>
       <input
@@ -30,6 +29,17 @@ export default function Maps() {
           setPlace(e.target.value);
         }}
       />
+      {placePredictions.length != 0
+        ? placePredictions.map((item) => (
+            <h1
+              onClick={(e) => {
+                console.log(item);
+              }}
+            >
+              {item.description}
+            </h1>
+          ))
+        : ""}
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
     </div>
   );
