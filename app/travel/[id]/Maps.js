@@ -20,19 +20,16 @@ export default function Maps() {
     });
     const newMap = new google.maps.Map(ref.current, {
       center: { lat: lat, lng: lng },
-      zoom: 16,
+      zoom: 10,
     });
-    console.log(lat, lng, place);
 
     setMap(newMap);
-  }, [place]);
-  // console.log(map);
+  }, [place, lat, lng]);
   return (
     <div>
       <input
         onChange={(e) => {
           getPlacePredictions({ input: e.target.value });
-          // setChosen(e.target.value);
         }}
       />
       {placePredictions.length != 0
