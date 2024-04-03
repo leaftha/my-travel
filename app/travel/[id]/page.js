@@ -14,7 +14,6 @@ export default async function Detail(props) {
     last_day = result.days.length;
   }
 
-  console.log(result.days);
   return (
     <div>
       <h1>{result.title}</h1>
@@ -22,7 +21,7 @@ export default async function Detail(props) {
       {result.days.length === 0 ? (
         <h1>스케줄을 추가 하세요</h1>
       ) : (
-        result.days.map((item) => <ThisDay day={item} />)
+        result.days.map((item) => <ThisDay id={props.params.id} day={item} />)
       )}
     </div>
   );

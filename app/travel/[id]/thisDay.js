@@ -3,7 +3,7 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import Maps from "./Maps";
 
-export default function ThisDay({ day }) {
+export default function ThisDay({ day, id }) {
   return (
     <div>
       <h1>{day.day}</h1>
@@ -11,7 +11,7 @@ export default function ThisDay({ day }) {
         apiKey={process.env.NEXT_PUBLIC_API}
         libraries={["places", "marker"]}
       >
-        <Maps day={day} />
+        <Maps id={id} day={day} />
       </Wrapper>
     </div>
   );

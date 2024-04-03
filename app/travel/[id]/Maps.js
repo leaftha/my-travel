@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { createRoot } from "react-dom/client";
-
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
-export default function Maps({ day }) {
+export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState("ChIJrUQcQuuifDUR-IWAEQylVek");
   const [lat, setLat] = useState(37.572389);
@@ -41,6 +39,16 @@ export default function Maps({ day }) {
           getPlacePredictions({ input: e.target.value });
         }}
       />
+      <button
+        onClick={() => {
+          fetch("/api/post/addPlaceData", {
+            method: "POST",
+            body: JSON.stringify({ id: id, day: day.day, placeId: place }),
+          });
+        }}
+      >
+        선택
+      </button>
       {placePredictions.length != 0
         ? placePredictions.map((item, idx) => (
             <h1
