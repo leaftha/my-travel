@@ -4,10 +4,10 @@ import useGoogle from 'react-google-autocomplete/lib/usePlacesAutocompleteServic
 
 export default function Maps({ day, id }) {
     const [map, setMap] = useState(null);
-    const [place, setPlace] = useState('ChIJrUQcQuuifDUR-IWAEQylVek');
+    const [place, setPlace] = useState(day.placeId);
     const [name, setName] = useState(day.place);
-    const [lat, setLat] = useState(37.572389);
-    const [lng, setLng] = useState(126.9769117);
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
     const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } = useGoogle({
         apiKey: process.env.NEXT_PUBLIC_API,
     });

@@ -7,7 +7,12 @@ export default async function handler(req, res) {
             { _id: new ObjectId(req.body.id) },
             {
                 $push: {
-                    days: { day: Number(req.body.last) + 1, place: '', placeId: '', content: [] },
+                    days: {
+                        day: Number(req.body.last) + 1,
+                        place: '',
+                        placeId: 'ChIJrUQcQuuifDUR-IWAEQylVek',
+                        content: [],
+                    },
                 },
             }
         );
