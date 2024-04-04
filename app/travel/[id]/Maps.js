@@ -5,7 +5,7 @@ import useGoogle from 'react-google-autocomplete/lib/usePlacesAutocompleteServic
 export default function Maps({ day, id }) {
     const [map, setMap] = useState(null);
     const [place, setPlace] = useState('ChIJrUQcQuuifDUR-IWAEQylVek');
-    const [name, setName] = useState('');
+    const [name, setName] = useState(day.place);
     const [lat, setLat] = useState(37.572389);
     const [lng, setLng] = useState(126.9769117);
     const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } = useGoogle({
@@ -65,6 +65,7 @@ export default function Maps({ day, id }) {
             <div ref={ref} id="map" style={{ width: '400px', height: '400px' }}>
                 <div ref={refMarker}></div>
             </div>
+            {name === '' ? <h1>선택하세요</h1> : <h1>{name}</h1>}
         </div>
     );
 }
