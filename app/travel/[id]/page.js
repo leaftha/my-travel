@@ -11,7 +11,6 @@ export default async function Detail(props) {
     if (result.days.length != 0) {
         last_day = result.days.length;
     }
-    console.log(result);
 
     return (
         <div>
