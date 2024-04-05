@@ -5,7 +5,6 @@ import { useState } from 'react';
 export default function ToDId({ day, id }) {
     const [content, setContent] = useState('');
     const [contents, setContents] = useState([...day.content]);
-    console.log(contents);
     return (
         <div>
             <h1>To Did</h1>
@@ -27,7 +26,25 @@ export default function ToDId({ day, id }) {
             >
                 입력
             </button>
-            {contents.length === 0 ? <h1>했던일을 입력하세요</h1> : contents.map((item) => <h1>{item}</h1>)}
+            {contents.length === 0 ? (
+                <h1>했던일을 입력하세요</h1>
+            ) : (
+                contents.map((item, idx) => (
+                    <div key={idx}>
+                        <h1>{item}</h1>
+                        <h1
+                            onClick={() => {
+                                fetch('/api/post/deleteToDid', {
+                                    method: 'POST',
+                                    body: JSON.stringify({ contents: [...contents], idx: idx }),
+                                });
+                            }}
+                        >
+                            X
+                        </h1>
+                    </div>
+                ))
+            )}
         </div>
     );
 }
