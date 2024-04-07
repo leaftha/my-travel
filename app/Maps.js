@@ -9,10 +9,13 @@ export default function Maps({ day }) {
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
-
+      let firstId = await geocodePlaceId(day[0].placeId);
       const newMap = new google.maps.Map(ref.current, {
-        center: { lat: 0, lng: 0 },
-        zoom: 1,
+        center: {
+          lat: firstId.geometry.location.lat(),
+          lng: firstId.geometry.location.lng(),
+        },
+        zoom: 10,
         mapId: 123,
       });
 
@@ -22,10 +25,10 @@ export default function Maps({ day }) {
         const lng = result.geometry.location.lng();
         const line = { lat: lat, lng: lng };
         arr.push(line);
-
         const marker = new google.maps.marker.AdvancedMarkerElement({
           map: newMap,
           position: { lat: lat, lng: lng },
+          title: `${i.day}`,
         });
       }
 
