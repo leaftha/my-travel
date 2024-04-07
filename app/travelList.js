@@ -13,7 +13,7 @@ export default async function TravelList({ user }) {
       {result.map((item, idx) => (
         <div>
           <Link href={`/travel/${item._id}`}>{item.title}</Link>
-          <LineMaps />
+          <LineMaps day={result[0].days} />
         </div>
       ))}
     </div>
