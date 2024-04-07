@@ -1,42 +1,61 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
-import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 export default function Maps({ day }) {
   const [map, setMap] = useState(null);
-  const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
-    useGoogle({
-      apiKey: process.env.NEXT_PUBLIC_API,
-    });
   const ref = useRef();
-  useEffect(() => {
-    let arr = [];
-    for (let i of day) {
-      let lat = 0;
-      let lng = 0;
 
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ placeId: i.placeId }, (result) => {
-        lat = result[0].geometry.location.lat();
-        lng = result[0].geometry.location.lng();
-        console.log(lat, lng);
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      let arr = [];
+
+      const newMap = new google.maps.Map(ref.current, {
+        center: { lat: 0, lng: 0 },
+        zoom: 1,
+        mapId: 123,
+      });
+
+      for (let i of day) {
+        const result = await geocodePlaceId(i.placeId);
+        const lat = result.geometry.location.lat();
+        const lng = result.geometry.location.lng();
+        const line = { lat: lat, lng: lng };
+        arr.push(line);
 
         const marker = new google.maps.marker.AdvancedMarkerElement({
           map: newMap,
           position: { lat: lat, lng: lng },
         });
+      }
+
+      setMap(newMap);
+
+      const flightPath = new google.maps.Polyline({
+        path: arr,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        map: newMap,
       });
-    }
+    };
 
-    const newMap = new google.maps.Map(ref.current, {
-      center: { lat: 0, lng: 0 },
-      zoom: 1,
-      mapId: 123,
+    fetchCoordinates();
+  }, [day]);
+
+  const geocodePlaceId = (placeId) => {
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId }, (results, status) => {
+        if (status === "OK" && results[0]) {
+          resolve(results[0]);
+        } else {
+          reject(status);
+        }
+      });
     });
+  };
 
-    setMap(newMap);
-  }, []);
-  console.log(day);
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
