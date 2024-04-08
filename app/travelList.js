@@ -8,7 +8,6 @@ export default async function TravelList({ user }) {
     .collection("travelPost")
     .find({ email: user.user.email })
     .toArray();
-  console.log(result);
   return (
     <div>
       {result.map((item, idx) => (
@@ -19,6 +18,8 @@ export default async function TravelList({ user }) {
           ) : (
             <LineMaps day={result[idx].days} />
           )}
+          <h1>Money : {item.money}</h1>
+          <h1>Menber : {item.menber}</h1>
         </div>
       ))}
     </div>
