@@ -11,7 +11,7 @@ export default async function TravelList({ user }) {
   return (
     <div>
       {result.map((item, idx) => (
-        <div>
+        <div key={idx}>
           <Link href={`/travel/${item._id}`}>{item.title}</Link>
           {item.days.length === 0 ? (
             <h1>일정 입력이 필요</h1>

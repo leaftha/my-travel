@@ -23,4 +23,5 @@ export default async function handler(req, res) {
         { $set: { [`days.${ThisDay}`]: newDay } }
       );
   }
+  res.status(200).json("삭제 완료");
 }

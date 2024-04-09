@@ -12,7 +12,9 @@ export default function Maps({ day, id }) {
     useGoogle({
       apiKey: process.env.NEXT_PUBLIC_API,
     });
+
   const ref = useRef();
+
   useEffect(() => {
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ placeId: place }, (result) => {
@@ -32,6 +34,7 @@ export default function Maps({ day, id }) {
 
     setMap(newMap);
   }, [place, lat, lng]);
+
   return (
     <div>
       <input
