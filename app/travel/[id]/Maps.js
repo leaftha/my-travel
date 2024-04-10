@@ -6,8 +6,7 @@ export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day.placeId[0]);
   const [name, setName] = useState(day.place[0]);
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+
   const [content, setContent] = useState("");
   const [contents, setContents] = useState([...day.content]);
 
@@ -19,28 +18,60 @@ export default function Maps({ day, id }) {
   const ref = useRef();
 
   useEffect(() => {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ placeId: place }, (result) => {
-      setLat(result[0].geometry.location.lat());
-      setLng(result[0].geometry.location.lng());
-    });
+    const showMap = async () => {
+      const curPlace = await geocodePlaceId(place);
+      const newMap = new google.maps.Map(ref.current, {
+        center: {
+          lat: curPlace.geometry.location.lat(),
+          lng: curPlace.geometry.location.lng(),
+        },
+        zoom: 14,
+        mapId: day.day,
+      });
 
-    const newMap = new google.maps.Map(ref.current, {
-      center: { lat: lat, lng: lng },
-      zoom: 14,
-      mapId: day.day,
-    });
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map: newMap,
-      position: { lat: lat, lng: lng },
-    });
+      const marker = new google.maps.marker.AdvancedMarkerElement({
+        map: newMap,
+        position: {
+          lat: curPlace.geometry.location.lat(),
+          lng: curPlace.geometry.location.lng(),
+        },
+      });
 
-    setMap(newMap);
-  }, [place, lat, lng]);
+      for (let id of day.placeId) {
+        const markerId = await geocodePlaceId(id);
+        console.log(markerId);
 
-  function deletContent(idx) {
+        const marker = new google.maps.marker.AdvancedMarkerElement({
+          map: newMap,
+          position: {
+            lat: markerId.geometry.location.lat(),
+            lng: markerId.geometry.location.lng(),
+          },
+        });
+      }
+
+      setMap(newMap);
+    };
+    showMap();
+  }, [place]);
+
+  const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
-  }
+  };
+
+  const geocodePlaceId = (placeId) => {
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ placeId }, (results, status) => {
+        if (status === "OK" && results[0]) {
+          resolve(results[0]);
+        } else {
+          reject(status);
+        }
+      });
+    });
+  };
+
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
