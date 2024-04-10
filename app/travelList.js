@@ -13,13 +13,13 @@ export default async function TravelList({ user }) {
       {result.map((item, idx) => (
         <div key={idx}>
           <Link href={`/travel/${item._id}`}>{item.title}</Link>
+          <h1>Money : {item.money}</h1>
+          <h1>Menber : {item.menber}</h1>
           {item.days.length === 0 ? (
             <h1>일정 입력이 필요</h1>
           ) : (
             <LineMaps day={result[idx].days} />
           )}
-          <h1>Money : {item.money}</h1>
-          <h1>Menber : {item.menber}</h1>
         </div>
       ))}
     </div>

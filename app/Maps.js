@@ -4,16 +4,17 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Maps({ day }) {
   const [map, setMap] = useState(null);
+  const [place, setPlace] = useState(day[0].placeId);
   const ref = useRef();
 
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
-      let firstId = await geocodePlaceId(day[0].placeId);
+      const thisPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
-          lat: firstId.geometry.location.lat(),
-          lng: firstId.geometry.location.lng(),
+          lat: thisPlace.geometry.location.lat(),
+          lng: thisPlace.geometry.location.lng(),
         },
         zoom: 8,
         mapId: 123,
@@ -44,7 +45,7 @@ export default function Maps({ day }) {
     };
 
     fetchCoordinates();
-  }, [day]);
+  }, [day, place]);
 
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
@@ -59,9 +60,23 @@ export default function Maps({ day }) {
     });
   };
 
+  const selectPlace = async (placeId) => {
+    setPlace(placeId);
+  };
+
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
+      {day.map((item, idx) => (
+        <div
+          onClick={(e) => {
+            selectPlace(item.placeId);
+          }}
+          key={idx}
+        >
+          <h1>{item.place}</h1>
+        </div>
+      ))}
     </div>
   );
 }
