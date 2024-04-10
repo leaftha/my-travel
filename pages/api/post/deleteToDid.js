@@ -9,13 +9,37 @@ export default async function handler(req, res) {
       .collection("travelPost")
       .findOne({ _id: new ObjectId(req.body.id) });
     let newDay = obj.days[ThisDay];
-    let contents = newDay.content;
+    const contents = newDay.content;
     let newContent = [];
+    const placeId = newDay.placeId;
+    let newPlaceId = [];
+    const place = newDay.place;
+    let newPlace = [];
+
     for (let i = 0; i < contents.length; i++) {
       if (i === req.body.idx) continue;
       newContent.push(contents[i]);
     }
+
+    for (let i = 0; i < placeId.length; i++) {
+      if (i === req.body.idx) continue;
+      newPlaceId.push(placeId[i]);
+    }
+
+    for (let i = 0; i < place.length; i++) {
+      if (i === req.body.idx) continue;
+      newPlace.push(place[i]);
+    }
+    if (newPlace.length === 0) {
+      newPlace.push("");
+    }
+    if (newPlaceId.length === 0) {
+      newPlaceId.push("ChIJrUQcQuuifDUR-IWAEQylVek");
+    }
     newDay.content = newContent;
+    newDay.place = newPlace;
+    newDay.placeId = newPlaceId;
+
     await db
       .collection("travelPost")
       .updateOne(

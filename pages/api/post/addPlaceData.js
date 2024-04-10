@@ -8,14 +8,22 @@ export default async function handler(req, res) {
     let obj = await db
       .collection("travelPost")
       .findOne({ _id: new ObjectId(req.body.id) });
-    let days = obj.days[ThisDay];
-    days.placeId = req.body.placeId;
-    days.place = req.body.name;
+    console.log(obj);
+
+    let NewDays = obj.days[ThisDay];
+    if (NewDays.place[0] === "") {
+      NewDays.placeId[0] = req.body.placeId;
+      NewDays.place[0] = req.body.name;
+    } else {
+      NewDays.placeId.unshift(req.body.placeId);
+      NewDays.place.unshift(req.body.name);
+    }
+    NewDays.content.unshift(req.body.content);
     await db
       .collection("travelPost")
       .updateOne(
         { _id: new ObjectId(req.body.id) },
-        { $set: { [`days.${ThisDay}`]: days } }
+        { $set: { [`days.${ThisDay}`]: NewDays } }
       );
   }
   res.status(200).json("추가 완료");
