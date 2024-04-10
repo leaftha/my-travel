@@ -6,7 +6,6 @@ export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day.placeId[0]);
   const [name, setName] = useState(day.place[0]);
-
   const [content, setContent] = useState("");
   const [contents, setContents] = useState([...day.content]);
 
@@ -19,16 +18,18 @@ export default function Maps({ day, id }) {
 
   useEffect(() => {
     const showMap = async () => {
+      let arr = [];
       const curPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
           lat: curPlace.geometry.location.lat(),
           lng: curPlace.geometry.location.lng(),
         },
-        zoom: 14,
+        zoom: 10,
         mapId: day.day,
       });
 
+      // 선택한 곳 마커
       const marker = new google.maps.marker.AdvancedMarkerElement({
         map: newMap,
         position: {
@@ -37,19 +38,30 @@ export default function Maps({ day, id }) {
         },
       });
 
+      // 하루동안의 마커 생성
       for (let id of day.placeId) {
         const markerId = await geocodePlaceId(id);
-        console.log(markerId);
-
+        let coor = {
+          lat: markerId.geometry.location.lat(),
+          lng: markerId.geometry.location.lng(),
+        };
+        arr.push(coor);
         const marker = new google.maps.marker.AdvancedMarkerElement({
           map: newMap,
-          position: {
-            lat: markerId.geometry.location.lat(),
-            lng: markerId.geometry.location.lng(),
-          },
+          position: coor,
         });
       }
 
+      // 마커 라인 그리기
+      if (arr.length > 1) {
+        const flightPath = new google.maps.Polyline({
+          path: arr,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: newMap,
+        });
+      }
       setMap(newMap);
     };
     showMap();
