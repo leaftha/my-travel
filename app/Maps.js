@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Maps({ day }) {
   const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day[0].placeId);
+  const [place, setPlace] = useState(day[day.length - 1].placeId.at(-1));
   const ref = useRef();
-
+  console.log(day);
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
@@ -16,21 +16,24 @@ export default function Maps({ day }) {
           lat: thisPlace.geometry.location.lat(),
           lng: thisPlace.geometry.location.lng(),
         },
-        zoom: 8,
+        zoom: 7,
         mapId: 123,
       });
+      console.log(place);
 
-      for (let i of day) {
-        const result = await geocodePlaceId(i.placeId);
-        const lat = result.geometry.location.lat();
-        const lng = result.geometry.location.lng();
-        const line = { lat: lat, lng: lng };
-        arr.push(line);
-        const marker = new google.maps.marker.AdvancedMarkerElement({
-          map: newMap,
-          position: { lat: lat, lng: lng },
-          title: `${i.day}`,
-        });
+      for (let i = 0; i < day.length; i++) {
+        for (let j = 0; j < day[i].placeId.length; j++) {
+          const result = await geocodePlaceId(day[i].placeId[j]);
+          const lat = result.geometry.location.lat();
+          const lng = result.geometry.location.lng();
+          const line = { lat: lat, lng: lng };
+          arr.push(line);
+          const marker = new google.maps.marker.AdvancedMarkerElement({
+            map: newMap,
+            position: { lat: lat, lng: lng },
+            title: `${i.day}`,
+          });
+        }
       }
 
       setMap(newMap);

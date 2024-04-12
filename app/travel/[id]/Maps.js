@@ -5,7 +5,7 @@ import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteServic
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day.placeId[0]);
-  const [coors, setCoors] = useState([...day.placeId]);
+  const [coors, setCoors] = useState([]);
   //   const [markers, setMarkers] = useState([...day.placeId]);
   const [name, setName] = useState(day.place[0]);
   const [content, setContent] = useState("");
