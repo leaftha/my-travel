@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react";
 export default function Maps({ day }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day[day.length - 1].placeId.at(-1));
+  const [days, setDays] = useState([]);
+
   const ref = useRef();
   console.log(day);
   useEffect(() => {
@@ -19,10 +21,9 @@ export default function Maps({ day }) {
         zoom: 7,
         mapId: 123,
       });
-      console.log(place);
 
       for (let i = 0; i < day.length; i++) {
-        for (let j = 0; j < day[i].placeId.length; j++) {
+        for (let j = day[i].placeId.length - 1; j >= 0; j--) {
           const result = await geocodePlaceId(day[i].placeId[j]);
           const lat = result.geometry.location.lat();
           const lng = result.geometry.location.lng();
@@ -31,7 +32,7 @@ export default function Maps({ day }) {
           const marker = new google.maps.marker.AdvancedMarkerElement({
             map: newMap,
             position: { lat: lat, lng: lng },
-            title: `${i.day}`,
+            title: `${i + 1} - ${day[i].placeId.length - j}`,
           });
         }
       }
@@ -71,13 +72,18 @@ export default function Maps({ day }) {
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
       {day.map((item, idx) => (
-        <div
-          onClick={(e) => {
-            selectPlace(item.placeId);
-          }}
-          key={idx}
-        >
-          <h1>{item.place}</h1>
+        <div key={idx}>
+          <h1>{item.day}</h1>
+          {item.place.toReversed().map((places, idx2) => (
+            <p
+              onClick={() => {
+                selectPlace(item.placeId[idx2]);
+              }}
+              key={idx2}
+            >
+              {places}
+            </p>
+          ))}
         </div>
       ))}
     </div>
