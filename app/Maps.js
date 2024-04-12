@@ -8,7 +8,6 @@ export default function Maps({ day }) {
   const [days, setDays] = useState([]);
 
   const ref = useRef();
-  console.log(day);
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
@@ -81,7 +80,7 @@ export default function Maps({ day }) {
               }}
               key={idx2}
             >
-              {places}
+              {idx2 + 1}-{places}
             </p>
           ))}
         </div>
