@@ -17,7 +17,7 @@ export default function Maps({ day }) {
           lat: thisPlace.geometry.location.lat(),
           lng: thisPlace.geometry.location.lng(),
         },
-        zoom: 7,
+        zoom: 10,
         mapId: 123,
       });
 
@@ -80,7 +80,9 @@ export default function Maps({ day }) {
               }}
               key={idx2}
             >
-              {idx2 + 1}-{places}
+              {idx2 === 0 && places === ""
+                ? "일정을 입력하세요"
+                : `${idx2 + 1}-${places}`}
             </p>
           ))}
         </div>

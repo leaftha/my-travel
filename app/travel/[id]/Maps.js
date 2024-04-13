@@ -5,9 +5,10 @@ import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteServic
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day.placeId[0]);
-  const [coors, setCoors] = useState([]);
-  //   const [markers, setMarkers] = useState([...day.placeId]);
+  const [coors, setCoors] = useState([...day.placeId]);
+  // const [markers, setMarkers] = useState([...day.placeId]);
   const [name, setName] = useState(day.place[0]);
+  const [names, setNames] = useState([...day.place]);
   const [content, setContent] = useState("");
   const [contents, setContents] = useState([...day.content]);
 
@@ -20,6 +21,7 @@ export default function Maps({ day, id }) {
 
   useEffect(() => {
     const showMap = async () => {
+      console.log(names);
       let arr = [];
       const curPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
@@ -44,6 +46,7 @@ export default function Maps({ day, id }) {
 
       for (let id of coors) {
         const markerId = await geocodePlaceId(id);
+
         let coor = {
           lat: markerId.geometry.location.lat(),
           lng: markerId.geometry.location.lng(),
@@ -91,7 +94,6 @@ export default function Maps({ day, id }) {
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
-      {name === "" ? <h1>선택하세요</h1> : <h1>{name}</h1>}
       <div>
         <h1>To Did</h1>
 
@@ -136,7 +138,14 @@ export default function Maps({ day, id }) {
                 name: name,
               }),
             });
-            setCoors([place, ...coors]);
+            if (names[0] === "") {
+              setCoors([place]);
+              setNames([name]);
+            } else {
+              setCoors([place, ...coors]);
+              setNames([name, ...names]);
+            }
+
             setContents([content, ...contents]);
             setContent("");
           }}
@@ -149,7 +158,9 @@ export default function Maps({ day, id }) {
         ) : (
           contents.map((item, idx) => (
             <div key={idx}>
-              <h1>{item}</h1>
+              <h1>
+                {item} - {names[idx]}
+              </h1>
               {/* 했던일 삭제 버튼 */}
               <h1
                 onClick={() => {
