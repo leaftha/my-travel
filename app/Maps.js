@@ -21,6 +21,7 @@ export default function Maps({ day }) {
         mapId: 123,
       });
 
+      // 일정의 하루를 모드 반복
       for (let i = 0; i < day.length; i++) {
         for (let j = day[i].placeId.length - 1; j >= 0; j--) {
           const result = await geocodePlaceId(day[i].placeId[j]);
@@ -28,6 +29,7 @@ export default function Maps({ day }) {
           const lng = result.geometry.location.lng();
           const line = { lat: lat, lng: lng };
           arr.push(line);
+          // 마커 생성
           const marker = new google.maps.marker.AdvancedMarkerElement({
             map: newMap,
             position: { lat: lat, lng: lng },
@@ -38,6 +40,7 @@ export default function Maps({ day }) {
 
       setMap(newMap);
 
+      // 마커 라인 그리기
       const flightPath = new google.maps.Polyline({
         path: arr,
         strokeColor: "#FF0000",
@@ -76,7 +79,7 @@ export default function Maps({ day }) {
           {item.place.toReversed().map((places, idx2) => (
             <p
               onClick={() => {
-                selectPlace(item.placeId[idx2]);
+                selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
               }}
               key={idx2}
             >
