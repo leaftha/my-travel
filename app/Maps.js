@@ -43,7 +43,7 @@ export default function Maps({ day }) {
       // 마커 라인 그리기
       const flightPath = new google.maps.Polyline({
         path: arr,
-        strokeColor: "#FF0000",
+        strokeColor: "rgba(2,24,52)",
         strokeOpacity: 1.0,
         strokeWeight: 2,
         map: newMap,
