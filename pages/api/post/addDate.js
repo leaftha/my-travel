@@ -9,6 +9,7 @@ export default async function handler(req, res) {
         $push: {
           days: {
             day: Number(req.body.last) + 1,
+            money: 0,
             place: [""],
             placeId: ["ChIJrUQcQuuifDUR-IWAEQylVek"],
             content: [],

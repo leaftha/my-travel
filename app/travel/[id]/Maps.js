@@ -21,7 +21,6 @@ export default function Maps({ day, id }) {
 
   useEffect(() => {
     const showMap = async () => {
-      console.log(names);
       let arr = [];
       const curPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
