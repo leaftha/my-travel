@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Maps({ day }) {
   const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day[day.length - 1].placeId.at(-1));
+  const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
   const [days, setDays] = useState([]);
 
   const ref = useRef();
@@ -13,6 +13,7 @@ export default function Maps({ day }) {
     // 그냥 카메라 무빙으로 바꿀수 없는지 고민 필요
     const fetchCoordinates = async () => {
       let arr = [];
+      console.log(place, day[day.length - 1]);
       const thisPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
