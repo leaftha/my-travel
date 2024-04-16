@@ -96,7 +96,12 @@ export default function Maps({ day }) {
   };
 
   const selectPlace = async (placeId) => {
-    setPlace(placeId);
+    const clickPlace = await geocodePlaceId(placeId);
+
+    map.panTo({
+      lat: clickPlace.geometry.location.lat(),
+      lng: clickPlace.geometry.location.lng(),
+    });
   };
 
   return (
