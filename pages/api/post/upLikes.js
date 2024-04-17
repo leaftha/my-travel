@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     likesArr.push(req.body.id);
     await db
       .collection("user_id")
-      .updateOne({ email: req.body.email }, { $set: { like: likesArr } });
+      .updateOne({ email: req.body.email }, { $set: { likes: likesArr } });
     //     let NewDays = obj.days[ThisDay];
     //     if (NewDays.place[0] === "") {
     //       NewDays.placeId[0] = req.body.placeId;

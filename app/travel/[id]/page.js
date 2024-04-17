@@ -14,6 +14,9 @@ export default async function Detail(props) {
   let result = await db
     .collection("travelPost")
     .findOne({ _id: new ObjectId(props.params.id) });
+  let user = await db
+    .collection("user_id")
+    .findOne({ email: session.user.email });
   let last_day = 0;
   if (result.days.length != 0) {
     last_day = result.days.length;
@@ -22,7 +25,7 @@ export default async function Detail(props) {
   return (
     <div>
       <Link href="/">홈</Link>
-      <Likse id={props.params.id} email={session.user.email} />
+      <Likse user={user} id={props.params.id} email={session.user.email} />
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
       {result.days.length === 0 ? (
