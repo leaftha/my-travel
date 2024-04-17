@@ -9,11 +9,8 @@ export default function Maps({ day }) {
 
   const ref = useRef();
   useEffect(() => {
-    // 일정들 클릭할시 지도가 새로고침을 하는데
-    // 그냥 카메라 무빙으로 바꿀수 없는지 고민 필요
     const fetchCoordinates = async () => {
       let arr = [];
-      console.log(place, day[day.length - 1]);
       const thisPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
@@ -97,7 +94,7 @@ export default function Maps({ day }) {
 
   const selectPlace = async (placeId) => {
     const clickPlace = await geocodePlaceId(placeId);
-
+    // 새로고침 되지 않고 center 이동
     map.panTo({
       lat: clickPlace.geometry.location.lat(),
       lng: clickPlace.geometry.location.lng(),
