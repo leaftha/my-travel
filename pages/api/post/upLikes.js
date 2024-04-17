@@ -14,7 +14,14 @@ export default async function handler(req, res) {
         { _id: new ObjectId(req.body.id) },
         { $set: { like: obj.like + 1 } }
       );
-    console.log(obj);
+    let user = await db
+      .collection("user_id")
+      .findOne({ email: req.body.email });
+    let likesArr = user.likes;
+    likesArr.push(req.body.id);
+    await db
+      .collection("user_id")
+      .updateOne({ email: req.body.email }, { $set: { like: likesArr } });
     //     let NewDays = obj.days[ThisDay];
     //     if (NewDays.place[0] === "") {
     //       NewDays.placeId[0] = req.body.placeId;
