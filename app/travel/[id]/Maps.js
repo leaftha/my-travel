@@ -71,10 +71,11 @@ export default function Maps({ day, id }) {
     };
     showMap();
   }, [place, coors]);
-
+  console.log(names);
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
+    setNames(names.filter((item, index) => index != idx));
   };
 
   const geocodePlaceId = (placeId) => {
@@ -89,7 +90,6 @@ export default function Maps({ day, id }) {
       });
     });
   };
-
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
