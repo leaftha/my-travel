@@ -21,11 +21,17 @@ export default async function Detail(props) {
   if (result.days.length != 0) {
     last_day = result.days.length;
   }
+  console.log();
 
   return (
     <div>
       <Link href="/">홈</Link>
-      <Likse user={user} id={props.params.id} email={session.user.email} />
+      <Likse
+        like={result.like}
+        user={user}
+        id={props.params.id}
+        email={session.user.email}
+      />
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
       {result.days.length === 0 ? (

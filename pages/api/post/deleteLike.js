@@ -4,7 +4,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     req.body = JSON.parse(req.body);
     let db = (await connectDB).db("travel");
-    console.log(req.body);
     let obj = await db
       .collection("travelPost")
       .findOne({ _id: new ObjectId(req.body.id) });
@@ -12,13 +11,15 @@ export default async function handler(req, res) {
       .collection("travelPost")
       .updateOne(
         { _id: new ObjectId(req.body.id) },
-        { $set: { like: obj.like + 1 } }
+        { $set: { like: obj.like - 1 } }
       );
     let user = await db
       .collection("user_id")
       .findOne({ email: req.body.email });
     let likesArr = user.likes;
-    likesArr.push(req.body.id);
+
+    likesArr = likesArr.filter((item, index) => item != req.body.id);
+
     await db
       .collection("user_id")
       .updateOne({ email: req.body.email }, { $set: { likes: likesArr } });
