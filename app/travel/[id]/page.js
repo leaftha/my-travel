@@ -1,11 +1,15 @@
 import { ObjectId } from "mongodb";
 import { connectDB } from "@/util/database.js";
+import { authOptions } from "@/pages/api/auth/[...nextauth].js";
+import { getServerSession } from "next-auth";
 
 import AddDate from "./addDate";
 import ThisDay from "./thisDay";
 import Link from "next/link";
+import Likse from "./likes";
 
 export default async function Detail(props) {
+  let session = await getServerSession(authOptions);
   let db = (await connectDB).db("travel");
   let result = await db
     .collection("travelPost")
@@ -18,6 +22,7 @@ export default async function Detail(props) {
   return (
     <div>
       <Link href="/">홈</Link>
+      <Likse id={props.params.id} email={session.user.email} />
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
       {result.days.length === 0 ? (

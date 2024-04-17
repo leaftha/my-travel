@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     } else {
       let hash = await bcrypt.hash(req.body.password, 10);
       req.body.password = hash;
+      req.body.likes = [];
       const client = await connectDB;
       const db = client.db("travel");
       let foundEmail = await db

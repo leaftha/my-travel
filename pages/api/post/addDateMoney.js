@@ -12,7 +12,6 @@ export default async function handler(req, res) {
     let money = req.body.money;
 
     newDay.money = money * 1;
-    console.log(newDay);
     await db
       .collection("travelPost")
       .updateOne(
