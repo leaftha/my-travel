@@ -71,7 +71,6 @@ export default function Maps({ day, id }) {
     };
     showMap();
   }, [place, coors]);
-  console.log(names);
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
