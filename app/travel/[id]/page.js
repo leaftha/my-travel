@@ -17,6 +17,7 @@ export default async function Detail(props) {
   let user = await db
     .collection("user_id")
     .findOne({ email: session.user.email });
+  user._id = user._id.toString();
   let last_day = 0;
   if (result.days.length != 0) {
     last_day = result.days.length;
