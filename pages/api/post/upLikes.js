@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     req.body = JSON.parse(req.body);
     let db = (await connectDB).db("travel");
-    console.log(req.body);
+
     let obj = await db
       .collection("travelPost")
       .findOne({ _id: new ObjectId(req.body.id) });
