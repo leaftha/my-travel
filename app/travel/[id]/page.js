@@ -27,6 +27,7 @@ export default async function Detail(props) {
     <div>
       <Link href="/">홈</Link>
       <Likse
+        isprivate={result.private}
         like={result.like}
         user={user}
         id={props.params.id}
