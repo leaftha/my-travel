@@ -18,7 +18,7 @@ export default async function TravelList({ user }) {
           {item.days.length === 0 ? (
             <h1>일정 입력이 필요</h1>
           ) : (
-            <LineMaps day={result[idx].days} />
+            <LineMaps num={idx} day={result[idx].days} />
           )}
         </div>
       ))}

@@ -29,7 +29,7 @@ export default function Maps({ day, id }) {
           lng: curPlace.geometry.location.lng(),
         },
         zoom: 14,
-        mapId: day.day,
+        mapId: `Maps-${day.day}`,
       });
 
       // 선택한 곳 마커

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export default function Maps({ day }) {
+export default function Maps({ num, day }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
   const [days, setDays] = useState([]);
@@ -18,7 +18,7 @@ export default function Maps({ day }) {
           lng: thisPlace.geometry.location.lng(),
         },
         zoom: 10,
-        mapId: 123,
+        mapId: `listMap-${num}`,
       });
 
       // 일정의 하루를 모드 반복
