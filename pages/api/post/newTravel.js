@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       menber: req.body.menber,
       money: req.body.money,
       like: 0,
-      private: true,
+      private: false,
       days: [],
     });
 
