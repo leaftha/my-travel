@@ -16,7 +16,7 @@ export default async function List() {
           <h1>Money : {item.money}</h1>
           <h1>Menber : {item.menber}</h1>
           {item.days.length === 0 ? (
-            <h1>일정 입력이 필요</h1>
+            <h1></h1>
           ) : (
             <LineMaps num={idx} day={result[idx].days} />
           )}

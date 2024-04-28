@@ -89,7 +89,7 @@ export default function Maps({ day, id }) {
         <h1>To Did</h1>
         {/* 했던일 보여주기 */}
         {contents.length === 0 ? (
-          <h1>했던일을 입력하세요</h1>
+          <h1></h1>
         ) : (
           contents.map((item, idx) => (
             <div key={idx}>

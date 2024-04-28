@@ -114,9 +114,7 @@ export default function Maps({ num, day }) {
               }}
               key={idx2}
             >
-              {idx2 === 0 && places === ""
-                ? "일정을 입력하세요"
-                : `${idx2 + 1}-${places}`}
+              {idx2 === 0 && places === "" ? "" : `${idx2 + 1}-${places}`}
             </p>
           ))}
         </div>
