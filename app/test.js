@@ -3,6 +3,8 @@
 import { useState } from "react";
 import firestore from "../firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
+import { v4 as uuid } from "uuid";
 
 export default function Test() {
   const [value, setValue] = useState();
@@ -13,6 +15,15 @@ export default function Test() {
       value,
     });
   };
+
+  const UploadImage = () => {
+    const uploadFileName = uuid() + ".png";
+
+    if (inputimage === null) return;
+    const imageRef = ref(storage, `images/${uploadFileName}`);
+    uploadBytes(imageRef, inputimage);
+  };
+
   return (
     <div>
       <form onSubmit={(event) => event.preventDefault()}>
