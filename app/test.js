@@ -13,7 +13,6 @@ export default function Test() {
       value,
     });
   };
-  console.log(value);
   return (
     <div>
       <form onSubmit={(event) => event.preventDefault()}>
