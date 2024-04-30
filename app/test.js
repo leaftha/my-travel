@@ -4,31 +4,34 @@ import { useState } from "react";
 import firestore from "../firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
+import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
 
 export default function Test() {
-  const [value, setValue] = useState();
+  const [inputimage, setInputImage] = useState();
 
-  const onClickUpLoadButton = async () => {
-    //    addDoc(collection(db       , "컬렉션이름") , { 추가할 데이터 }
-    await addDoc(collection(firestore, `temp`), {
-      value,
-    });
-  };
+  const onClickUploadB = async () =>
+    // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
+    {
+      const uploadFileName = uuid() + ".png";
+      console.log(uploadFileName);
 
-  const UploadImage = () => {
-    const uploadFileName = uuid() + ".png";
-
-    if (inputimage === null) return;
-    const imageRef = ref(storage, `images/${uploadFileName}`);
-    uploadBytes(imageRef, inputimage);
-  };
+      if (inputimage === null) return;
+      const imageRef = ref(storage, `images/${uploadFileName}`);
+      uploadBytes(imageRef, inputimage);
+    };
 
   return (
     <div>
       <form onSubmit={(event) => event.preventDefault()}>
-        <input onChange={(event) => setValue(event.target.value)} />
-        <button onClick={onClickUpLoadButton}>전송</button>
+        <input
+          type="file"
+          onChange={(event) => {
+            setInputImage(event.target.files[0]);
+          }}
+        />
+
+        <button onClick={onClickUploadB}> 업로드 </button>
       </form>
     </div>
   );
