@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import firestore from "../firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+
 import { ref, uploadBytes } from "firebase/storage";
 import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
