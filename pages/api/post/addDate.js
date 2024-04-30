@@ -13,6 +13,7 @@ export default async function handler(req, res) {
             place: [""],
             placeId: ["ChIJrUQcQuuifDUR-IWAEQylVek"],
             content: [],
+            daysImg: [],
           },
         },
       }

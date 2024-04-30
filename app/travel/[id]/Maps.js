@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import ImgUploader from "./imgUploader";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
@@ -159,6 +160,9 @@ export default function Maps({ day, id }) {
               <h1>
                 {item} - {names[idx]}
               </h1>
+              {/* 이미지 업로드 기능 */}
+              <ImgUploader />
+
               {/* 했던일 삭제 버튼 */}
               <h1
                 onClick={() => {

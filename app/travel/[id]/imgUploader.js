@@ -6,7 +6,7 @@ import { ref, uploadBytes } from "firebase/storage";
 import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
 
-export default function Test() {
+export default function ImgUploader() {
   const [inputimage, setInputImage] = useState();
 
   const onClickUploadB = async () =>
