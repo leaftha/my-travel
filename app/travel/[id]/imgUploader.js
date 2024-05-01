@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ref, uploadBytes } from "firebase/storage";
 import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
+import Img from "./img";
 
 export default function ImgUploader({ idx, day, id }) {
   const [inputimage, setInputImage] = useState([]);
-
+  const [imgList, setImgList] = useState([...day.daysImg[idx]]);
   const onClickUploadB = async () =>
     // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
     {
@@ -29,7 +30,6 @@ export default function ImgUploader({ idx, day, id }) {
         });
       }
     };
-
   return (
     <div>
       <form onSubmit={(event) => event.preventDefault()}>
@@ -41,9 +41,11 @@ export default function ImgUploader({ idx, day, id }) {
             setInputImage([...e.target.files]);
           }}
         />
-
         <button onClick={onClickUploadB}>업로드</button>
       </form>
+      {imgList.map((name, idx) => (
+        <Img key={idx} img={name} />
+      ))}
     </div>
   );
 }
