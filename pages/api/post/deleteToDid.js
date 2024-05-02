@@ -36,10 +36,16 @@ export default async function handler(req, res) {
     if (newPlaceId.length === 0) {
       newPlaceId.push("ChIJrUQcQuuifDUR-IWAEQylVek");
     }
+
+    let newImgs = newDay.daysImg;
     newDay.content = newContent;
     newDay.place = newPlace;
     newDay.placeId = newPlaceId;
+    newImgs = newImgs.filter((item, index) => {
+      index != req.body.idx;
+    });
 
+    newDay.daysImg = newImgs;
     await db
       .collection("travelPost")
       .updateOne(

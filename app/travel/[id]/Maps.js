@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import ImgUploader from "./imgUploader";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import storage from "@/firebase/storage";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
@@ -18,13 +20,13 @@ export default function Maps({ day, id }) {
       apiKey: process.env.NEXT_PUBLIC_API,
     });
 
-  const ref = useRef();
+  const Mapref = useRef();
 
   useEffect(() => {
     const showMap = async () => {
       let arr = [];
       const curPlace = await geocodePlaceId(place);
-      const newMap = new google.maps.Map(ref.current, {
+      const newMap = new google.maps.Map(Mapref.current, {
         center: {
           lat: curPlace.geometry.location.lat(),
           lng: curPlace.geometry.location.lng(),
@@ -76,6 +78,16 @@ export default function Maps({ day, id }) {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
     setNames(names.filter((item, index) => index != idx));
+    for (let img of day.daysImg[idx]) {
+      const desertRef = ref(storage, `images/${img}`);
+      deleteObject(desertRef)
+        .then(() => {
+          console.log("delete success");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   const geocodePlaceId = (placeId) => {
@@ -90,9 +102,14 @@ export default function Maps({ day, id }) {
       });
     });
   };
+
   return (
     <div>
-      <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
+      <div
+        ref={Mapref}
+        id="map"
+        style={{ width: "400px", height: "400px" }}
+      ></div>
       <div>
         <h1>To Did</h1>
 

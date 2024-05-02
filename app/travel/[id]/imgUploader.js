@@ -9,7 +9,7 @@ import Img from "./img";
 
 export default function ImgUploader({ idx, day, id }) {
   const [inputimage, setInputImage] = useState([]);
-  const [imgList, setImgList] = useState([...day.daysImg[idx]]);
+  const [imgList, setImgList] = useState([...day.daysImg[idx]] || []);
   const onClickUploadB = async () =>
     // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
     {

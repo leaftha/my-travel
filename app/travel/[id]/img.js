@@ -7,6 +7,7 @@ import storage from "@/firebase/storage";
 
 export default function Img({ img }) {
   const [imgurl, setImgurl] = useState();
+
   useEffect(() => {
     const func = async () => {
       if (img !== undefined) {
