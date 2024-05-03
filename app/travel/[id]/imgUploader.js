@@ -5,13 +5,10 @@ import { useEffect, useState } from "react";
 import { ref, uploadBytes } from "firebase/storage";
 import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
-import Img from "./img";
 
-export default function ImgUploader({ idx, day, id }) {
+export default function ImgUploader({ fuc, idx, day, id }) {
   const [inputimage, setInputImage] = useState([]);
-  const [imgList, setImgList] = useState(
-    day.daysImg.length === 0 ? [] : [...day.daysImg[idx]]
-  );
+
   const onClickUploadB = async () =>
     // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
     {
@@ -19,7 +16,9 @@ export default function ImgUploader({ idx, day, id }) {
         const uploadFileName = idx + uuid() + ".png";
         if (img === null) return;
         const imageRef = ref(storage, `images/${uploadFileName}`);
-        uploadBytes(imageRef, img);
+        uploadBytes(imageRef, img).then((image) => {
+          fuc(uploadFileName, idx);
+        });
 
         await fetch("/api/post/addImg", {
           method: "POST",
@@ -43,10 +42,6 @@ export default function ImgUploader({ idx, day, id }) {
         }}
       />
       <button onClick={onClickUploadB}>업로드</button>
-
-      {imgList.map((name, idx) => (
-        <Img key={idx} img={name} />
-      ))}
     </div>
   );
 }

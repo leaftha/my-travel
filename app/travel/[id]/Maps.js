@@ -4,6 +4,7 @@ import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteServic
 import ImgUploader from "./imgUploader";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import storage from "@/firebase/storage";
+import Img from "./img";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
@@ -14,7 +15,7 @@ export default function Maps({ day, id }) {
   const [names, setNames] = useState([...day.place]);
   const [content, setContent] = useState("");
   const [contents, setContents] = useState([...day.content]);
-
+  const [imgList, setImgList] = useState([...day.daysImg]);
   const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
     useGoogle({
       apiKey: process.env.NEXT_PUBLIC_API,
@@ -73,12 +74,14 @@ export default function Maps({ day, id }) {
       setMap(newMap);
     };
     showMap();
-  }, [place, coors]);
+  }, [place, coors, imgList]);
+
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
     setNames(names.filter((item, index) => index != idx));
-    for (let img of day.daysImg[idx]) {
+
+    for (let img of imgList[idx]) {
       const desertRef = ref(storage, `images/${img}`);
       deleteObject(desertRef)
         .then(() => {
@@ -88,6 +91,14 @@ export default function Maps({ day, id }) {
           console.error(error);
         });
     }
+
+    setImgList(imgList.filter((item, index) => index != idx));
+  };
+
+  const getImg = (name, idx) => {
+    let newArr = [...imgList];
+    newArr[idx].push(name);
+    setImgList([...newArr]);
   };
 
   const geocodePlaceId = (placeId) => {
@@ -102,7 +113,7 @@ export default function Maps({ day, id }) {
       });
     });
   };
-
+  console.log(imgList);
   return (
     <div>
       <div
@@ -161,7 +172,7 @@ export default function Maps({ day, id }) {
               setCoors([place, ...coors]);
               setNames([name, ...names]);
             }
-
+            setImgList([...imgList, []]);
             setContents([content, ...contents]);
             setContent("");
           }}
@@ -178,8 +189,10 @@ export default function Maps({ day, id }) {
                 {item} - {names[idx]}
               </h1>
               {/* 이미지 업로드 기능 */}
-              <ImgUploader day={day} idx={idx} id={id} />
-
+              <ImgUploader fuc={getImg} day={day} idx={idx} id={id} />
+              {imgList[idx].map((name, idx) => (
+                <Img key={idx} img={name} />
+              ))}
               {/* 했던일 삭제 버튼 */}
               <h1
                 onClick={() => {
@@ -197,6 +210,8 @@ export default function Maps({ day, id }) {
               >
                 X
               </h1>
+
+              {/* 이미지 리스트 보여주기 */}
             </div>
           ))
         )}

@@ -19,11 +19,10 @@ export default function Img({ img }) {
     };
     func();
   }, []);
-  console.log(imgurl);
 
   return (
     <div>
-      {imgurl && (
+      {imgurl ? (
         <Image
           unoptimized={true}
           alt="text"
@@ -31,6 +30,8 @@ export default function Img({ img }) {
           height={150}
           src={imgurl}
         />
+      ) : (
+        <h1>uploading...</h1>
       )}
     </div>
   );
