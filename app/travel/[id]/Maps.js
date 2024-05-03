@@ -81,6 +81,7 @@ export default function Maps({ day, id }) {
     setCoors(coors.filter((item, index) => index != idx));
     setNames(names.filter((item, index) => index != idx));
 
+    // firebase에서 이미지 삭제
     for (let img of imgList[idx]) {
       const desertRef = ref(storage, `images/${img}`);
       deleteObject(desertRef)
@@ -92,15 +93,18 @@ export default function Maps({ day, id }) {
         });
     }
 
+    // 현재 이미지 배열 내의 이미지 삭제
     setImgList(imgList.filter((item, index) => index != idx));
   };
 
+  // 이미지 url 반환 받기
   const getImg = (name, idx) => {
     let newArr = [...imgList];
     newArr[idx].push(name);
     setImgList([...newArr]);
   };
 
+  // 주소 받기
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
@@ -113,7 +117,6 @@ export default function Maps({ day, id }) {
       });
     });
   };
-  console.log(imgList);
   return (
     <div>
       <div
@@ -190,9 +193,12 @@ export default function Maps({ day, id }) {
               </h1>
               {/* 이미지 업로드 기능 */}
               <ImgUploader fuc={getImg} day={day} idx={idx} id={id} />
+
+              {/* 이미지 리스트 보여주기 */}
               {imgList[idx].map((name, idx) => (
                 <Img key={idx} img={name} />
               ))}
+
               {/* 했던일 삭제 버튼 */}
               <h1
                 onClick={() => {
@@ -210,8 +216,6 @@ export default function Maps({ day, id }) {
               >
                 X
               </h1>
-
-              {/* 이미지 리스트 보여주기 */}
             </div>
           ))
         )}

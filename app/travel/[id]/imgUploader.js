@@ -17,6 +17,7 @@ export default function ImgUploader({ fuc, idx, day, id }) {
         if (img === null) return;
         const imageRef = ref(storage, `images/${uploadFileName}`);
         uploadBytes(imageRef, img).then((image) => {
+          // 이미지 업로드 후 이미지 url 상위 컴포넌트에 보내기
           fuc(uploadFileName, idx);
         });
 

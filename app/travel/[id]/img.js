@@ -11,6 +11,7 @@ export default function Img({ img }) {
   useEffect(() => {
     const func = async () => {
       if (img !== undefined) {
+        // 이미지 다운 받기
         const reference = ref(storage, `images/${img}`);
         await getDownloadURL(reference).then((x) => {
           setImgurl(x);
