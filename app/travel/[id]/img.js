@@ -19,15 +19,19 @@ export default function Img({ img }) {
     };
     func();
   }, []);
+  console.log(imgurl);
+
   return (
     <div>
-      <Image
-        unoptimized={true}
-        alt="text"
-        width={300}
-        height={150}
-        src={imgurl}
-      />
+      {imgurl && (
+        <Image
+          unoptimized={true}
+          alt="text"
+          width={300}
+          height={150}
+          src={imgurl}
+        />
+      )}
     </div>
   );
 }

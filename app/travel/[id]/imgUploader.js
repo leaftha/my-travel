@@ -9,7 +9,9 @@ import Img from "./img";
 
 export default function ImgUploader({ idx, day, id }) {
   const [inputimage, setInputImage] = useState([]);
-  const [imgList, setImgList] = useState([...day.daysImg[idx]] || []);
+  const [imgList, setImgList] = useState(
+    day.daysImg.length === 0 ? [] : [...day.daysImg[idx]]
+  );
   const onClickUploadB = async () =>
     // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
     {
@@ -32,17 +34,16 @@ export default function ImgUploader({ idx, day, id }) {
     };
   return (
     <div>
-      <form onSubmit={(event) => event.preventDefault()}>
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={(e) => {
-            setInputImage([...e.target.files]);
-          }}
-        />
-        <button onClick={onClickUploadB}>업로드</button>
-      </form>
+      <input
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={(e) => {
+          setInputImage([...e.target.files]);
+        }}
+      />
+      <button onClick={onClickUploadB}>업로드</button>
+
       {imgList.map((name, idx) => (
         <Img key={idx} img={name} />
       ))}
