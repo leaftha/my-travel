@@ -41,9 +41,9 @@ export default async function handler(req, res) {
     newDay.content = newContent;
     newDay.place = newPlace;
     newDay.placeId = newPlaceId;
-    newImgs = newImgs.filter((item, index) => {
-      index != req.body.idx;
-    });
+    console.log(newImgs, req.body.idx);
+
+    newImgs.splice(req.body.idx, 1);
 
     newDay.daysImg = newImgs;
     await db
