@@ -12,7 +12,6 @@ export default async function handler(req, res) {
     let NewDays = obj.days[ThisDay];
 
     NewDays.daysImg[req.body.idx].push(req.body.name);
-    console.log(NewDays);
 
     await db
       .collection("travelPost")
