@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import Img from "./img";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
@@ -9,6 +10,7 @@ export default function Maps({ day, id }) {
   // const [markers, setMarkers] = useState([...day.placeId]);
   const [names, setNames] = useState([...day.place]);
   const [contents, setContents] = useState([...day.content]);
+  const [imgList, setImgList] = useState([...day.daysImg]);
 
   const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
     useGoogle({
@@ -82,23 +84,27 @@ export default function Maps({ day, id }) {
       });
     });
   };
+
+  console.log(day);
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
       <div>
         <h1>To Did</h1>
         {/* 했던일 보여주기 */}
-        {contents.length === 0 ? (
-          <h1></h1>
-        ) : (
-          contents.map((item, idx) => (
-            <div key={idx}>
-              <h1>
-                {item} - {names[idx]}
-              </h1>
-            </div>
-          ))
-        )}
+        {contents.length === 0
+          ? ""
+          : contents.map((item, idx) => (
+              <div key={idx}>
+                <h1>
+                  {item} - {names[idx]}
+                </h1>
+
+                {imgList[idx].map((name, idx) => (
+                  <Img key={idx} img={name} />
+                ))}
+              </div>
+            ))}
       </div>
     </div>
   );
