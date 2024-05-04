@@ -80,6 +80,7 @@ export default function Maps({ day, id }) {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
     setNames(names.filter((item, index) => index != idx));
+
     // firebase에서 이미지 삭제
     for (let img of imgList[idx]) {
       const desertRef = ref(storage, `images/${img}`);
@@ -91,8 +92,11 @@ export default function Maps({ day, id }) {
           console.error(error);
         });
     }
+
     // 현재 이미지 배열 내의 이미지 삭제
-    setImgList(imgList.splice(idx, 1));
+    const newImgList = [...imgList];
+    newImgList.splice(idx, 1);
+    setImgList(newImgList);
   };
 
   // 이미지 url 반환 받기
