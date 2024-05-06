@@ -19,7 +19,7 @@ export default function Img({ img }) {
       }
     };
     func();
-  }, []);
+  }, [img]);
 
   return (
     <div>

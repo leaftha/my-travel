@@ -197,8 +197,8 @@ export default function Maps({ day, id }) {
               <ImgUploader fuc={getImg} day={day} idx={idx} id={id} />
 
               {/* 이미지 리스트 보여주기 */}
-              {imgList[idx].map((name, idx) => (
-                <Img key={idx} img={name} />
+              {imgList[idx].map((name, index) => (
+                <Img key={index} img={name} />
               ))}
 
               {/* 했던일 삭제 버튼 */}
