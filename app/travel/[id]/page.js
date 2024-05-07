@@ -25,6 +25,9 @@ export default async function Detail(props) {
   if (result.days.length != 0) {
     last_day = result.days.length;
   }
+
+  // 하루 일과 삭제 기능 필요
+
   return (
     <div>
       <form action="/api/post/deleteTravel" method="POST">
