@@ -27,6 +27,10 @@ export default async function Detail(props) {
   }
   return (
     <div>
+      <form action="/api/post/deleteTravel" method="POST">
+        <input name="id" defaultValue={props.params.id} readOnly={true} />
+        <button>삭제</button>
+      </form>
       <Link href="/">홈</Link>
       <Likse
         isprivate={result.private}
