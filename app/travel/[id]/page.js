@@ -7,6 +7,7 @@ import AddDate from "./addDate";
 import ThisDay from "./thisDay";
 import Link from "next/link";
 import Likse from "./likes";
+import ImgModal from "./imgModal";
 
 export default async function Detail(props) {
   let session = await getServerSession(authOptions);
@@ -27,7 +28,13 @@ export default async function Detail(props) {
   }
 
   // 하루 일과 삭제 기능 필요
-
+  let Imgs = [];
+  for (let day of result.days) {
+    let newArray = day.daysImg.reduce(function (prev, next) {
+      return prev.concat(next);
+    });
+    Imgs.push(...newArray);
+  }
   return (
     <div>
       <form action="/api/post/deleteTravel" method="POST">
@@ -43,6 +50,7 @@ export default async function Detail(props) {
       />
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
+      <ImgModal img={Imgs} />
       {result.days.length === 0 ? (
         <h1>스케줄을 추가 하세요</h1>
       ) : (
