@@ -27,14 +27,16 @@ export default async function Detail(props) {
     last_day = result.days.length;
   }
 
-  // 하루 일과 삭제 기능 필요
   let Imgs = [];
   for (let day of result.days) {
-    let newArray = day.daysImg.reduce(function (prev, next) {
-      return prev.concat(next);
-    });
-    Imgs.push(...newArray);
+    if (day.daysImg.length > 0) {
+      let newArray = day.daysImg.reduce(function (prev, next) {
+        return prev.concat(next);
+      });
+      Imgs.push(...newArray);
+    }
   }
+
   return (
     <div>
       <form action="/api/post/deleteTravel" method="POST">
@@ -55,7 +57,14 @@ export default async function Detail(props) {
         <h1>스케줄을 추가 하세요</h1>
       ) : (
         result.days.map((item, idx) => (
-          <ThisDay key={idx} id={props.params.id} day={item} />
+          <div>
+            <form action="/api/post/deleteDate" method="POST">
+              <input name="id" defaultValue={props.params.id} readOnly={true} />
+              <input name="idx" defaultValue={idx} readOnly={true} />
+              <button>삭제</button>
+            </form>
+            <ThisDay key={idx} id={props.params.id} day={item} />
+          </div>
         ))
       )}
     </div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 export default function ImgModal({ img }) {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
   return (
     <div>
       {modal || <Modal img={img} />}
