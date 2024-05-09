@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth';
 import ThisDay from './thisDay';
 import Link from 'next/link';
 import Likse from './likes';
+import ImgModal from './imgModal';
 
 export default async function Detail(props) {
     let session = await getServerSession(authOptions);
@@ -21,9 +22,20 @@ export default async function Detail(props) {
         user._id = user._id.toString();
     }
 
+    let Imgs = [];
+    for (let day of result.days) {
+        if (day.daysImg.length > 0) {
+            let newArray = day.daysImg.reduce(function (prev, next) {
+                return prev.concat(next);
+            });
+            Imgs.push(...newArray);
+        }
+    }
+
     return (
         <div>
             <Link href="/travelList">리스트</Link>
+            <ImgModal img={Imgs} />
 
             {/* 좋아요 기능과 갯수 */}
             <Likse like={result.like} user={user} id={props.params.id} />
