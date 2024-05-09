@@ -22,6 +22,7 @@ export default async function Detail(props) {
         user._id = user._id.toString();
     }
 
+    // 모든 일자 이미지 검색
     let Imgs = [];
     for (let day of result.days) {
         if (day.daysImg.length > 0) {
