@@ -11,6 +11,9 @@ import ImgModal from "./imgModal";
 
 export default async function Detail(props) {
   let session = await getServerSession(authOptions);
+  if (session === null) {
+    return NotAuth();
+  }
   // 게시물 db
   let db = (await connectDB).db("travel");
   let result = await db
