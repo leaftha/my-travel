@@ -7,20 +7,31 @@ import Link from "next/link";
 export default async function Home() {
   let session = await getServerSession(authOptions);
   let db = (await connectDB).db("travel");
-  let result = await db
+
+  // 유저 정보
+  let user = await db
     .collection("user_id")
     .findOne({ email: session.user.email });
 
+  // 종아요한 포스터 정보
+  let likes = [];
+  for (let id of user.likes) {
+    let travel = await db
+      .collection("travelPost")
+      .findOne({ _id: new ObjectId(id) });
+    likes.push(travel);
+  }
+
   return (
     <div>
-      <h1>{result.name}</h1>
-      <h1>{result.email}</h1>
+      <h1>{user.name}</h1>
+      <h1>{user.email}</h1>
 
       <ul>
-        {result.likes.map((id, idx) => (
-          <li>
-            <Link href={`/travelDetail/${id}`}>{id}</Link>
-          </li>
+        {likes.map((travel, idx) => (
+          <div>
+            <Link href={`/travelDetail/${travel._id}`}>{travel.title}</Link>
+          </div>
         ))}
       </ul>
     </div>
