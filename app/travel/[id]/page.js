@@ -11,6 +11,8 @@ import ImgModal from "./imgModal";
 
 export default async function Detail(props) {
   let session = await getServerSession(authOptions);
+
+  // 로그인 예외 처리
   if (session === null) {
     return NotAuth();
   }
