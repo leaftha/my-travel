@@ -41,7 +41,6 @@ export default async function handler(req, res) {
     newDay.content = newContent;
     newDay.place = newPlace;
     newDay.placeId = newPlaceId;
-    console.log(newImgs, req.body.idx);
 
     newImgs.splice(req.body.idx, 1);
 
