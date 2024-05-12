@@ -13,7 +13,7 @@ export default async function Home() {
     .collection("user_id")
     .findOne({ email: session.user.email });
 
-  // 종아요한 포스터 정보
+  // 종아요한 포스트 정보
   let likes = [];
   for (let id of user.likes) {
     let travel = await db
@@ -26,6 +26,10 @@ export default async function Home() {
     <div>
       <h1>{user.name}</h1>
       <h1>{user.email}</h1>
+
+      <form>
+        <button>회원 탈퇴</button>
+      </form>
 
       <ul>
         {likes.map((travel, idx) => (
