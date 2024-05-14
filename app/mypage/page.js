@@ -2,9 +2,9 @@ import { ObjectId } from "mongodb";
 import { connectDB } from "@/util/database.js";
 import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
 
 import Link from "next/link";
+import UserDelete from "./userDelete";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
@@ -28,12 +28,7 @@ export default async function Home() {
     <div>
       <h1>{user.name}</h1>
       <h1>{user.email}</h1>
-
-      <form action="/api/post/deleteUser" method="POST">
-        <input name="email" defaultValue={user.email} readOnly={true} />
-        <button>회원 탈퇴</button>
-      </form>
-
+      <UserDelete email={user.email} />
       <ul>
         {likes.map((travel, idx) => (
           <div>
