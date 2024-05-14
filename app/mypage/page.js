@@ -2,6 +2,8 @@ import { ObjectId } from "mongodb";
 import { connectDB } from "@/util/database.js";
 import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
+import { signOut } from "next-auth/react";
+
 import Link from "next/link";
 
 export default async function Home() {
@@ -27,7 +29,8 @@ export default async function Home() {
       <h1>{user.name}</h1>
       <h1>{user.email}</h1>
 
-      <form>
+      <form action="/api/post/deleteUser" method="POST">
+        <input name="email" defaultValue={user.email} readOnly={true} />
         <button>회원 탈퇴</button>
       </form>
 
