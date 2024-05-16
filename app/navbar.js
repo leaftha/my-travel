@@ -12,6 +12,11 @@ export default async function Navbar() {
     <nav className={style.navbar}>
       <h1 className={style.title}>Trip</h1>
       <div className={style.logined}>
+        {session && (
+          <Link className={style.setting} href={`/mypage`}>
+            설정
+          </Link>
+        )}
         <LoginBtn session={session} />
         {session ? (
           ""
@@ -20,7 +25,6 @@ export default async function Navbar() {
             회원가입
           </Link>
         )}
-        {session && <Link href={`/mypage`}>설정</Link>}
       </div>
     </nav>
   );

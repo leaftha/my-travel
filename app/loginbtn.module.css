@@ -1,0 +1,14 @@
+.btnDiv {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn {
+  background: none;
+  line-height: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
