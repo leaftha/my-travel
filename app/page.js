@@ -12,8 +12,6 @@ export default async function Home() {
   return (
     <div>
       <Navbar />
-      {session ? <div>로그인</div> : <div>로그인 X</div>}
-
       <Link href="/travelList">여행 리스트</Link>
       {session ? <NewTravel user={session} /> : ""}
       {session ? <TravelList user={session} /> : ""}
