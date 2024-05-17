@@ -15,8 +15,13 @@ export default function NewTravel({ user }) {
             </button>
 
             {clicked ? (
-                <div>
-                    <form action="/api/post/newTravel" method="POST">
+                <div className={style.modal} onClick={modal}>
+                    <form
+                        className={style.form}
+                        onClick={(e) => e.stopPropagation()}
+                        action="/api/post/newTravel"
+                        method="POST"
+                    >
                         <input name="email" readOnly={true} defaultValue={user.user.email} />
                         <input name="title" placeholder="제목을 입력해 주세요" />
                         <input name="menber" type="number" min={1} />
