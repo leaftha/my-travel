@@ -10,9 +10,13 @@ export default async function Home() {
     let session = await getServerSession(authOptions);
 
     return (
-        <div>
-            <Link href="/travelList">여행 리스트</Link>
-            {session ? <NewTravel user={session} /> : ''}
+        <div className={style.body}>
+            <div className={style.btns}>
+                <Link className={style.link} href="/travelList">
+                    여행 리스트
+                </Link>
+                {session ? <NewTravel user={session} /> : ''}
+            </div>
             {session ? <TravelList user={session} /> : ''}
         </div>
     );
