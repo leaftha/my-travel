@@ -1,0 +1,9 @@
+.main {
+  display: flex;
+}
+
+.current {
+  margin: 0 10px;
+  font-size: 15px;
+  line-height: 20px;
+}

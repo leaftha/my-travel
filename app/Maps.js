@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import style from "./Map.module.css";
 
 export default function Maps({ num, day }) {
   const [map, setMap] = useState(null);
@@ -102,10 +103,10 @@ export default function Maps({ num, day }) {
   };
 
   return (
-    <div>
+    <div className={style.main}>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
       {day.map((item, idx) => (
-        <div key={idx}>
+        <div className={style.current} key={idx}>
           <h1>{item.day}</h1>
           {item.place.toReversed().map((places, idx2) => (
             <p
