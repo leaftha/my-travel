@@ -10,7 +10,9 @@ export default async function Navbar() {
 
   return (
     <nav className={style.navbar}>
-      <h1 className={style.title}>Trip</h1>
+      <Link className={style.title} href="/">
+        Trip
+      </Link>
       <div className={style.logined}>
         {session && (
           <Link className={style.setting} href={`/mypage`}>

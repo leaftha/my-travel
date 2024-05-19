@@ -46,9 +46,6 @@ export default async function Detail(props) {
   return (
     <div className={style.main}>
       <div className={style.menu}>
-        <Link className={style.home} href="/">
-          홈
-        </Link>
         <form action="/api/post/deleteTravel" method="POST">
           <input
             className={style.none}
