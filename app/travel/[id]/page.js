@@ -8,6 +8,7 @@ import ThisDay from "./thisDay";
 import Link from "next/link";
 import Likse from "./likes";
 import ImgModal from "./imgModal";
+import style from "./page.module.css";
 
 export default async function Detail(props) {
   let session = await getServerSession(authOptions);
@@ -43,18 +44,27 @@ export default async function Detail(props) {
   }
 
   return (
-    <div>
-      <form action="/api/post/deleteTravel" method="POST">
-        <input name="id" defaultValue={props.params.id} readOnly={true} />
-        <button>삭제</button>
-      </form>
-      <Link href="/">홈</Link>
-      <Likse
-        isprivate={result.private}
-        like={result.like}
-        id={props.params.id}
-        email={session.user.email}
-      />
+    <div className={style.main}>
+      <div className={style.menu}>
+        <Link className={style.home} href="/">
+          홈
+        </Link>
+        <form action="/api/post/deleteTravel" method="POST">
+          <input
+            className={style.none}
+            name="id"
+            defaultValue={props.params.id}
+            readOnly={true}
+          />
+          <button className={style.btn}>여행 삭제</button>
+        </form>
+        <Likse
+          isprivate={result.private}
+          like={result.like}
+          id={props.params.id}
+          email={session.user.email}
+        />
+      </div>
       <h1>{result.title}</h1>
       <AddDate last={last_day} id={props.params.id} />
       <ImgModal img={Imgs} />
@@ -64,9 +74,19 @@ export default async function Detail(props) {
         result.days.map((item, idx) => (
           <div>
             <form action="/api/post/deleteDate" method="POST">
-              <input name="id" defaultValue={props.params.id} readOnly={true} />
-              <input name="idx" defaultValue={idx} readOnly={true} />
-              <button>삭제</button>
+              <input
+                className={style.none}
+                name="id"
+                defaultValue={props.params.id}
+                readOnly={true}
+              />
+              <input
+                className={style.none}
+                name="idx"
+                defaultValue={idx}
+                readOnly={true}
+              />
+              <button className={style.btn}>하루 삭제</button>
             </form>
             <ThisDay key={idx} id={props.params.id} day={item} />
           </div>
