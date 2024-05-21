@@ -105,23 +105,25 @@ export default function Maps({ num, day }) {
   return (
     <div className={style.main}>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
-      {day.map((item, idx) => (
-        <div className={style.current} key={idx}>
-          <h1>{item.day}</h1>
-          {item.place.toReversed().map((places, idx2) => (
-            <p
-              onClick={() => {
-                selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
-              }}
-              key={idx2}
-            >
-              {idx2 === 0 && places === ""
-                ? "일정을 입력하세요"
-                : `${idx2 + 1}-${places}`}
-            </p>
-          ))}
-        </div>
-      ))}
+      <div className={style.list}>
+        {day.map((item, idx) => (
+          <div className={style.current} key={idx}>
+            <h1>{item.day}</h1>
+            {item.place.toReversed().map((places, idx2) => (
+              <p
+                onClick={() => {
+                  selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
+                }}
+                key={idx2}
+              >
+                {idx2 === 0 && places === ""
+                  ? "일정을 입력하세요"
+                  : `${idx2 + 1}-${places}`}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
