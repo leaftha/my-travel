@@ -58,14 +58,16 @@ export default async function Detail(props) {
       </div>
       <div className={style.content}>
         <h1 className={style.title}>{result.title}</h1>
-        <Likse
-          isprivate={result.private}
-          like={result.like}
-          id={props.params.id}
-          email={session.user.email}
-        />
-        <AddDate last={last_day} id={props.params.id} />
-        <ImgModal img={Imgs} />
+        <div>
+          <Likse
+            isprivate={result.private}
+            like={result.like}
+            id={props.params.id}
+            email={session.user.email}
+          />
+          <AddDate last={last_day} id={props.params.id} />
+          <ImgModal img={Imgs} />
+        </div>
         {result.days.length === 0 ? (
           <h1>스케줄을 추가 하세요</h1>
         ) : (

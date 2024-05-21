@@ -1,0 +1,11 @@
+.num {
+  font-size: 20px;
+}
+
+.btn {
+  font-size: 20px;
+  background: none;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
