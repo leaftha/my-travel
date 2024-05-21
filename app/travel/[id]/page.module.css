@@ -39,6 +39,9 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
 }
 
 .btn {
@@ -47,6 +50,7 @@
   padding: 10px;
   border: 1px solid black;
   cursor: pointer;
+  margin: 0 20px;
 }
 
 .btns {
