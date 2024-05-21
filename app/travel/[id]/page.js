@@ -55,40 +55,42 @@ export default async function Detail(props) {
           />
           <button className={style.btn}>여행 삭제</button>
         </form>
+      </div>
+      <div className={style.content}>
+        <h1 className={style.title}>{result.title}</h1>
         <Likse
           isprivate={result.private}
           like={result.like}
           id={props.params.id}
           email={session.user.email}
         />
+        <AddDate last={last_day} id={props.params.id} />
+        <ImgModal img={Imgs} />
+        {result.days.length === 0 ? (
+          <h1>스케줄을 추가 하세요</h1>
+        ) : (
+          result.days.map((item, idx) => (
+            <div className={style.body}>
+              <form action="/api/post/deleteDate" method="POST">
+                <input
+                  className={style.none}
+                  name="id"
+                  defaultValue={props.params.id}
+                  readOnly={true}
+                />
+                <input
+                  className={style.none}
+                  name="idx"
+                  defaultValue={idx}
+                  readOnly={true}
+                />
+                <button className={style.btn}>하루 삭제</button>
+              </form>
+              <ThisDay key={idx} id={props.params.id} day={item} />
+            </div>
+          ))
+        )}
       </div>
-      <h1>{result.title}</h1>
-      <AddDate last={last_day} id={props.params.id} />
-      <ImgModal img={Imgs} />
-      {result.days.length === 0 ? (
-        <h1>스케줄을 추가 하세요</h1>
-      ) : (
-        result.days.map((item, idx) => (
-          <div>
-            <form action="/api/post/deleteDate" method="POST">
-              <input
-                className={style.none}
-                name="id"
-                defaultValue={props.params.id}
-                readOnly={true}
-              />
-              <input
-                className={style.none}
-                name="idx"
-                defaultValue={idx}
-                readOnly={true}
-              />
-              <button className={style.btn}>하루 삭제</button>
-            </form>
-            <ThisDay key={idx} id={props.params.id} day={item} />
-          </div>
-        ))
-      )}
     </div>
   );
 }
