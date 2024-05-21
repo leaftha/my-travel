@@ -48,3 +48,11 @@
   border: 1px solid black;
   cursor: pointer;
 }
+
+.btns {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  margin: 10px 0;
+}

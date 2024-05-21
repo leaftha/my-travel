@@ -58,7 +58,7 @@ export default async function Detail(props) {
       </div>
       <div className={style.content}>
         <h1 className={style.title}>{result.title}</h1>
-        <div>
+        <div className={style.btns}>
           <Likse
             isprivate={result.private}
             like={result.like}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Modal from "./Modal";
+import style from "./imgModal.module.css";
 
 export default function ImgModal({ img }) {
   const [modal, setModal] = useState(true);
@@ -9,6 +10,7 @@ export default function ImgModal({ img }) {
     <div>
       {modal || <Modal img={img} />}
       <button
+        className={style.btn}
         onClick={() => {
           setModal(!modal);
         }}
