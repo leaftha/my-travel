@@ -5,6 +5,7 @@ import ImgUploader from "./imgUploader";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import storage from "@/firebase/storage";
 import Img from "./img";
+import style from "./Map.module.css";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
@@ -120,70 +121,74 @@ export default function Maps({ day, id }) {
     });
   };
   return (
-    <div>
+    <div className={style.main}>
       <div
         ref={Mapref}
         id="map"
-        style={{ width: "400px", height: "400px" }}
+        style={{ width: "500px", height: "500px" }}
       ></div>
-      <div>
-        <h1>To Did</h1>
-
-        {/* 주소 입력 창 */}
-        <input
-          onChange={(e) => {
-            getPlacePredictions({ input: e.target.value });
-          }}
-        />
-        {/* 주소 자동 완성  */}
-        {placePredictions.length != 0
-          ? placePredictions.map((item, idx) => (
-              <h1
-                key={idx}
-                onClick={(e) => {
-                  setPlace(item.place_id);
-                  setName(item.description);
-                }}
-              >
-                {item.description}
-              </h1>
-            ))
-          : ""}
-        <hr></hr>
-        {/* 했던 일 입력 창 */}
-        <input
-          value={content}
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-        />
-        {/* 주소 and 했던일 추가 버튼 */}
-        <button
-          onClick={() => {
-            fetch("/api/post/addPlaceData", {
-              method: "POST",
-              body: JSON.stringify({
-                id: id,
-                day: day.day,
-                content: content,
-                placeId: place,
-                name: name,
-              }),
-            });
-            if (names[0] === "") {
-              setCoors([place]);
-              setNames([name]);
-            } else {
-              setCoors([place, ...coors]);
-              setNames([name, ...names]);
-            }
-            setImgList([...imgList, []]);
-            setContents([content, ...contents]);
-            setContent("");
-          }}
-        >
-          입력
-        </button>
+      <div className={style.lists}>
+        <div className={style.inputs}>
+          <h1 className={style.title}>To Did</h1>
+          {/* 주소 입력 창 */}
+          <label>주소 입력</label>
+          <input
+            onChange={(e) => {
+              getPlacePredictions({ input: e.target.value });
+            }}
+          />
+          {/* 주소 자동 완성  */}
+          {placePredictions.length != 0
+            ? placePredictions.map((item, idx) => (
+                <h1
+                  key={idx}
+                  onClick={(e) => {
+                    setPlace(item.place_id);
+                    setName(item.description);
+                  }}
+                >
+                  {item.description}
+                </h1>
+              ))
+            : ""}
+          {/* 했던 일 입력 창 */}
+          <label>내용 입력</label>
+          <input
+            className={style.todidInput}
+            value={content}
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+          />
+          {/* 주소 and 했던일 추가 버튼 */}
+          <button
+            className={style.btn}
+            onClick={() => {
+              fetch("/api/post/addPlaceData", {
+                method: "POST",
+                body: JSON.stringify({
+                  id: id,
+                  day: day.day,
+                  content: content,
+                  placeId: place,
+                  name: name,
+                }),
+              });
+              if (names[0] === "") {
+                setCoors([place]);
+                setNames([name]);
+              } else {
+                setCoors([place, ...coors]);
+                setNames([name, ...names]);
+              }
+              setImgList([...imgList, []]);
+              setContents([content, ...contents]);
+              setContent("");
+            }}
+          >
+            입력
+          </button>
+        </div>
         {/* 했던일 보여주기 */}
         {contents.length === 0 ? (
           <h1>했던일을 입력하세요</h1>
