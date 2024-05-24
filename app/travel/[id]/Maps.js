@@ -194,10 +194,31 @@ export default function Maps({ day, id }) {
           <h1>했던일을 입력하세요</h1>
         ) : (
           contents.map((item, idx) => (
-            <div key={idx}>
-              <h1>
-                {item} - {names[idx]}
-              </h1>
+            <div className={style.content} key={idx}>
+              {/* 했던일 삭제 버튼 */}
+              <div className={style.delete}>
+                <button
+                  className={style.delteBtn}
+                  onClick={() => {
+                    fetch("/api/post/deleteToDid", {
+                      method: "POST",
+                      body: JSON.stringify({
+                        id: id,
+                        day: day.day,
+                        contents: [...contents],
+                        idx: idx,
+                      }),
+                    });
+                    deletContent(idx);
+                  }}
+                >
+                  X
+                </button>
+              </div>
+              <div className={style.contentMain}>
+                <h1>{names[idx]}</h1>
+                <h1>{item}</h1>
+              </div>
               {/* 이미지 업로드 기능 */}
               <ImgUploader fuc={getImg} day={day} idx={idx} id={id} />
 
@@ -205,24 +226,6 @@ export default function Maps({ day, id }) {
               {imgList[idx].map((name, index) => (
                 <Img key={index} img={name} />
               ))}
-
-              {/* 했던일 삭제 버튼 */}
-              <h1
-                onClick={() => {
-                  fetch("/api/post/deleteToDid", {
-                    method: "POST",
-                    body: JSON.stringify({
-                      id: id,
-                      day: day.day,
-                      contents: [...contents],
-                      idx: idx,
-                    }),
-                  });
-                  deletContent(idx);
-                }}
-              >
-                X
-              </h1>
             </div>
           ))
         )}
