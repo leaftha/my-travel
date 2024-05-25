@@ -9,6 +9,7 @@
 .lists {
   height: 500px;
   overflow-y: scroll;
+  width: 60%;
   margin: 0 20px;
 }
 

@@ -4,10 +4,12 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import Maps from "./Maps";
 import { useState } from "react";
 
+import style from "./thisDay.module.css";
+
 export default function ThisDay({ day, id }) {
   const [money, setMoney] = useState(day.money);
   return (
-    <div>
+    <div className={style.main}>
       <h1>{day.day}</h1>
 
       <label>지출</label>
@@ -18,6 +20,7 @@ export default function ThisDay({ day, id }) {
         }}
       />
       <button
+        className={style.btn}
         onClick={() => {
           fetch("/api/post/addDateMoney", {
             method: "POST",
@@ -31,7 +34,7 @@ export default function ThisDay({ day, id }) {
       >
         입력
       </button>
-      <h1>{money}</h1>
+      <h1>{money} 원</h1>
 
       <Wrapper
         apiKey={process.env.NEXT_PUBLIC_API}
