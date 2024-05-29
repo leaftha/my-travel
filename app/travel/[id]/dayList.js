@@ -5,7 +5,10 @@ import ThisDay from "./thisDay";
 import style from "./dayList.module.css";
 
 export default function DayList({ days, id, item }) {
+  // 현재 여행 날짜 state
   const [currentDay, setCurrentDay] = useState(0);
+
+  // 마지막 날짜
   let last_day = 0;
   if (days.days.length != 0) {
     last_day = days.days.length;
