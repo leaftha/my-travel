@@ -10,8 +10,6 @@ export default function ThisDay({ day, id }) {
   const [money, setMoney] = useState(day.money);
   return (
     <div className={style.main}>
-      <h1>{day.day}</h1>
-
       <label>지출</label>
       <input
         type="number"

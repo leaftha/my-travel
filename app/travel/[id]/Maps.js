@@ -153,7 +153,7 @@ export default function Maps({ day, id }) {
             : ""}
           {/* 했던 일 입력 창 */}
           <label>내용 입력</label>
-          <input
+          <textarea
             className={style.todidInput}
             value={content}
             onChange={(e) => {
