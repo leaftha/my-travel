@@ -10,10 +10,9 @@ export default function Likse({ like, email, id, isprivate }) {
     isPrivate ? "비공개" : "공개"
   );
   //현 게시물의 좋아요 갯수
-  const [likeNum, setlikeNum] = useState(like);
   return (
     <div className={style.main}>
-      <h1 className={style.num}>좋아요 : {likeNum}</h1>
+      <h1 className={style.num}>좋아요 : {like}</h1>
       <button
         className={style.btn}
         onClick={() => {

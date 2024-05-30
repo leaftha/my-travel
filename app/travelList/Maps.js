@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 export default function Maps({ num, day }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
-  const [days, setDays] = useState([]);
 
   const ref = useRef();
   useEffect(() => {

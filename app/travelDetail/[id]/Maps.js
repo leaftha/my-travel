@@ -8,9 +8,6 @@ export default function Maps({ day, id }) {
   const [place, setPlace] = useState(day.placeId[0]);
   const [coors, setCoors] = useState([...day.placeId]);
   // const [markers, setMarkers] = useState([...day.placeId]);
-  const [names, setNames] = useState([...day.place]);
-  const [contents, setContents] = useState([...day.content]);
-  const [imgList, setImgList] = useState([...day.daysImg]);
 
   const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
     useGoogle({
@@ -85,22 +82,21 @@ export default function Maps({ day, id }) {
     });
   };
 
-  console.log(day);
   return (
     <div>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
       <div>
         <h1>To Did</h1>
         {/* 했던일 보여주기 */}
-        {contents.length === 0
+        {day.content.length === 0
           ? ""
-          : contents.map((item, idx) => (
+          : day.content.map((item, idx) => (
               <div key={idx}>
                 <h1>
-                  {item} - {names[idx]}
+                  {item} - {day.place[idx]}
                 </h1>
 
-                {imgList[idx].map((name, idx) => (
+                {day.daysImg[idx].map((name, idx) => (
                   <Img key={idx} img={name} />
                 ))}
               </div>
