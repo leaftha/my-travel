@@ -76,7 +76,6 @@ export default function Maps({ day, id }) {
     };
     showMap();
   }, [place, coors, imgList]);
-
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
@@ -160,6 +159,8 @@ export default function Maps({ day, id }) {
               setContent(e.target.value);
             }}
           />
+          {/* 이미지 업로드 기능 */}
+          <ImgUploader fuc={getImg} day={day} idx={contents.length} id={id} />
           {/* 주소 and 했던일 추가 버튼 */}
           <button
             className={style.btn}
@@ -219,8 +220,6 @@ export default function Maps({ day, id }) {
                 <h1>{names[idx]}</h1>
                 <h1>{item}</h1>
               </div>
-              {/* 이미지 업로드 기능 */}
-              <ImgUploader fuc={getImg} day={day} idx={idx} id={id} />
 
               {/* 이미지 리스트 보여주기 */}
               {imgList[idx].map((name, index) => (
