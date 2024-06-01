@@ -1,16 +1,17 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  margin: 10px;
 }
 
 .Imginput {
   text-align: center;
-  padding: 50px;
   font-weight: bold;
+  padding: 10px;
+  width: 100%;
   font-size: 20px;
   border: 1px solid black;
+}
+
+.imgs {
+  display: flex;
 }
 
 .none {
