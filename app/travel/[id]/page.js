@@ -39,17 +39,6 @@ export default async function Detail(props) {
 
   return (
     <div className={style.main}>
-      <div className={style.menu}>
-        <form action="/api/post/deleteTravel" method="POST">
-          <input
-            className={style.none}
-            name="id"
-            defaultValue={props.params.id}
-            readOnly={true}
-          />
-          <button className={style.btn}>여행 삭제</button>
-        </form>
-      </div>
       <div className={style.content}>
         <h1 className={style.title}>{result.title}</h1>
         <div className={style.btns}>
@@ -60,6 +49,17 @@ export default async function Detail(props) {
             email={session.user.email}
           />
           <ImgModal img={Imgs} />
+          <div className={style.menu}>
+            <form action="/api/post/deleteTravel" method="POST">
+              <input
+                className={style.none}
+                name="id"
+                defaultValue={props.params.id}
+                readOnly={true}
+              />
+              <button className={style.btn}>여행 삭제</button>
+            </form>
+          </div>
         </div>
         <DayList days={result} id={props.params.id} />
       </div>

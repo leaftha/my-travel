@@ -19,6 +19,7 @@ export default function DayList({ days, id, item }) {
         {days.days.length &&
           days.days.map((item, idx) => (
             <button
+              className={style.btn}
               onClick={() => {
                 setCurrentDay(idx);
               }}
@@ -40,7 +41,7 @@ export default function DayList({ days, id, item }) {
             defaultValue={last_day}
             readOnly={true}
           />
-          <button>하루 추가</button>
+          <button className={style.btn}>하루 추가</button>
         </form>
       </div>
       {days.days.length === 0 ? (

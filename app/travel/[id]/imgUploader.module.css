@@ -1,4 +1,6 @@
 .main {
+  display: flex;
+  width: 100%;
 }
 
 .Imginput {
@@ -9,10 +11,11 @@
   font-size: 20px;
   border: 1px solid black;
 }
-
+/* 
 .imgs {
   display: flex;
-}
+  width: 100%;
+} */
 
 .none {
   display: none;

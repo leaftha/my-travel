@@ -76,6 +76,7 @@ export default function Maps({ day, id }) {
     };
     showMap();
   }, [place, coors, imgList]);
+
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
     setCoors(coors.filter((item, index) => index != idx));
@@ -122,6 +123,7 @@ export default function Maps({ day, id }) {
   return (
     <div className={style.main}>
       <div
+        className={style.map}
         ref={Mapref}
         id="map"
         style={{ width: "500px", height: "500px" }}
@@ -162,33 +164,35 @@ export default function Maps({ day, id }) {
           {/* 이미지 업로드 기능 */}
           <ImgUploader fuc={getImg} day={day} idx={contents.length} id={id} />
           {/* 주소 and 했던일 추가 버튼 */}
-          <button
-            className={style.btn}
-            onClick={() => {
-              fetch("/api/post/addPlaceData", {
-                method: "POST",
-                body: JSON.stringify({
-                  id: id,
-                  day: day.day,
-                  content: content,
-                  placeId: place,
-                  name: name,
-                }),
-              });
-              if (names[0] === "") {
-                setCoors([place]);
-                setNames([name]);
-              } else {
-                setCoors([place, ...coors]);
-                setNames([name, ...names]);
-              }
-              setImgList([...imgList, []]);
-              setContents([content, ...contents]);
-              setContent("");
-            }}
-          >
-            입력
-          </button>
+          <div className={style.btns}>
+            <button
+              className={style.Inputbtn}
+              onClick={() => {
+                fetch("/api/post/addPlaceData", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    id: id,
+                    day: day.day,
+                    content: content,
+                    placeId: place,
+                    name: name,
+                  }),
+                });
+                if (names[0] === "") {
+                  setCoors([place]);
+                  setNames([name]);
+                } else {
+                  setCoors([place, ...coors]);
+                  setNames([name, ...names]);
+                }
+                setImgList([...imgList, []]);
+                setContents([content, ...contents]);
+                setContent("");
+              }}
+            >
+              입력
+            </button>
+          </div>
         </div>
         {/* 했던일 보여주기 */}
         {contents.length === 0 ? (

@@ -1,16 +1,25 @@
 .main {
   display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .none {
   display: none;
 }
 
+.map {
+  /* width: 50%; */
+}
+
 .lists {
   height: 500px;
   overflow-y: scroll;
-  width: 60%;
+  width: 70%;
   margin: 0 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -59,7 +68,14 @@
   font-size: 20px;
 }
 
-.btn {
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.Inputbtn {
+  margin: 20px 0;
   font-size: 20px;
   background: none;
   padding: 10px;
