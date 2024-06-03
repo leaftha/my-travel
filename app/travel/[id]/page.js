@@ -37,6 +37,7 @@ export default async function Detail(props) {
     }
   }
 
+  result._id = result._id.toString()
   return (
     <div className={style.main}>
       <div className={style.content}>

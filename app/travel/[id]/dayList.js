@@ -13,6 +13,7 @@ export default function DayList({ days, id, item }) {
   if (days.days.length != 0) {
     last_day = days.days.length;
   }
+
   return (
     <div className={style.main}>
       <div className={style.pages}>
