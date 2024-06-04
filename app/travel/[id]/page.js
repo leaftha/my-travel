@@ -37,18 +37,18 @@ export default async function Detail(props) {
     }
   }
 
-  result._id = result._id.toString()
+  result._id = result._id.toString();
   return (
     <div className={style.main}>
       <div className={style.content}>
         <h1 className={style.title}>{result.title}</h1>
+        <Likse
+          isprivate={result.private}
+          like={result.like}
+          id={props.params.id}
+          email={session.user.email}
+        />
         <div className={style.btns}>
-          <Likse
-            isprivate={result.private}
-            like={result.like}
-            id={props.params.id}
-            email={session.user.email}
-          />
           <ImgModal img={Imgs} />
           <div className={style.menu}>
             <form action="/api/post/deleteTravel" method="POST">
