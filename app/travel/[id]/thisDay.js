@@ -6,10 +6,10 @@ import { useState } from "react";
 
 import style from "./thisDay.module.css";
 
-export default function ThisDay({ day, id }) {
+export default function ThisDay({num, day, id ,current}) {
   const [money, setMoney] = useState(day.money);
   return (
-    <div className={style.main}>
+    <div className={current === num ? style.main : style.none}>
       <div className={style.moneybody}>
         <label className={style.title}>지출 : </label>
         <input
