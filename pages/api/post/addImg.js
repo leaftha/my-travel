@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       .collection("travelPost")
       .findOne({ _id: new ObjectId(req.body.id) });
     let NewDays = obj.days[ThisDay];
-
+    console.log(NewDays);
     NewDays.daysImg[req.body.idx].push(req.body.name);
 
     await db

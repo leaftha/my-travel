@@ -61,9 +61,6 @@ export default function ImgUploader({ fuc, idx, day, id }) {
             setInputImage([...e.target.files]);
           }}
         />
-        <button className={style.btn} onClick={onClickUploadB}>
-          업로드
-        </button>
       </div>
       {/* )} */}
     </div>
