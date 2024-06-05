@@ -18,7 +18,11 @@ export default async function handler(req, res) {
       NewDays.place.unshift(req.body.name);
     }
     NewDays.content.unshift(req.body.content);
-    NewDays.daysImg.unshift([]);
+
+    if (req.body.imgName.length != 0) {
+      NewDays.daysImg.push([...req.body.imgName]);
+    }
+
     await db
       .collection("travelPost")
       .updateOne(
