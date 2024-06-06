@@ -48,10 +48,10 @@ export default function DayList({ days, id, item }) {
       {days.days.length === 0 ? (
         <h1>스케줄을 추가 하세요</h1>
       ) : (
-        days.days.map((item,idx) => (
-          <div>
-          <ThisDay key={idx} num={idx} current={currentDay} id={id} day={item} />
-        </div>
+        days.days.map((item, idx) => (
+          <div key={idx}>
+            <ThisDay num={idx} current={currentDay} id={id} day={item} />
+          </div>
         ))
       )}
     </div>

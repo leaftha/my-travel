@@ -42,6 +42,8 @@ export default function ContentList({
     setImgList(newImgList);
   };
 
+  console.log(imgList);
+
   return (
     <>
       {contents.length === 0 ? (
@@ -75,9 +77,9 @@ export default function ContentList({
             </div>
 
             {/* 이미지 리스트 보여주기 */}
-            {/* {imgList[idx].map((name, index) => (
+            {imgList[idx].map((name, index) => (
               <Img key={index} img={name} />
-            ))} */}
+            ))}
           </div>
         ))
       )}

@@ -1,9 +1,9 @@
 "use client";
 
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import ImgUploader from "./imgUploader";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import storage from "@/firebase/storage";
 import { v4 as uuid } from "uuid";
 
@@ -34,27 +34,62 @@ export default function Inputs({
     });
 
   // 이미지 url 반환 받기
-  const getImg = (name, idx) => {
+  const getImg = (name) => {
     let newArr = [...imgList];
-    newArr.push([...name]);
-    setImgList([...newArr]);
+    newArr.push(name);
+    setImgList(newArr);
   };
 
-  const onClickUploadB = async () =>
-    // 버튼 클릭시 스토리지에 이미지 업로드 및 파이어스토어에 데이터 등록
-    {
-      for (let img of inputimage) {
-        const uploadFileName = contents.length + uuid() + ".png";
-        setImgNames([...imgNames, uploadFileName]);
-        if (img === null) return;
-        const imageRef = ref(storage, `images/${uploadFileName}`);
-        uploadBytes(imageRef, img).then((image) => {
-          // 이미지 업로드 후 이미지 url 상위 컴포넌트에 보내기
-          getImg(uploadFileName, contents.length);
-        });
-      }
-    };
-  console.log(day.day, contents.length);
+  // 이미지 firebase에 올리기
+  const onClickUploadB = async () => {
+    const uploadPromises = inputimage.map(async (img) => {
+      const uploadFileName = contents.length + uuid() + ".png";
+      setImgNames((prevImgNames) => [...prevImgNames, uploadFileName]);
+      const imageRef = ref(storage, `images/${uploadFileName}`);
+      await uploadBytes(imageRef, img);
+      return uploadFileName;
+    });
+
+    const uploadedImgNames = await Promise.all(uploadPromises);
+    setImgNames(uploadedImgNames);
+
+    // 이미지 업로드 후 이미지 url 상위 컴포넌트에 보내기
+    uploadedImgNames.forEach((uploadFileName) => getImg(uploadFileName));
+    return uploadedImgNames;
+  };
+
+  // conten 이미지와 내용, 주소등이 db 전달
+  const handleSubmit = async () => {
+    let uploadedImgNames = [];
+    if (inputimage.length !== 0) {
+      uploadedImgNames = await onClickUploadB();
+    }
+
+    fetch("/api/post/addPlaceData", {
+      method: "POST",
+      body: JSON.stringify({
+        id: id,
+        day: day.day,
+        content: content,
+        placeId: place,
+        idx: contents.length,
+        name: name,
+        imgName: uploadedImgNames,
+      }),
+    });
+
+    if (names[0] === "") {
+      setCoors([place]);
+      setNames([name]);
+    } else {
+      setCoors([place, ...coors]);
+      setNames([name, ...names]);
+    }
+    setImgList([...imgList, []]);
+    setContents([content, ...contents]);
+    setContent("");
+  };
+
   return (
     <>
       <div className={style.inputs}>
@@ -67,11 +102,11 @@ export default function Inputs({
           }}
         />
         {/* 주소 자동 완성  */}
-        {placePredictions.length != 0
+        {placePredictions.length !== 0
           ? placePredictions.map((item, idx) => (
               <h1
                 key={idx}
-                onClick={(e) => {
+                onClick={() => {
                   setPlace(item.place_id);
                   setName(item.description);
                 }}
@@ -93,37 +128,7 @@ export default function Inputs({
         <ImgUploader setInputImage={setInputImage} />
         {/* 주소 and 했던일 추가 버튼 */}
         <div className={style.btns}>
-          <button
-            className={style.Inputbtn}
-            onClick={() => {
-              if (inputimage.length != 0) {
-                onClickUploadB();
-              }
-              fetch("/api/post/addPlaceData", {
-                method: "POST",
-                body: JSON.stringify({
-                  id: id,
-                  day: day.day,
-                  content: content,
-                  placeId: place,
-                  idx: contents.length,
-                  name: name,
-                  imgName: imgNames,
-                }),
-              });
-
-              if (names[0] === "") {
-                setCoors([place]);
-                setNames([name]);
-              } else {
-                setCoors([place, ...coors]);
-                setNames([name, ...names]);
-              }
-              setImgList([...imgList, []]);
-              setContents([content, ...contents]);
-              setContent("");
-            }}
-          >
+          <button className={style.Inputbtn} onClick={handleSubmit}>
             입력
           </button>
         </div>
