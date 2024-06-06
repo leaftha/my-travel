@@ -5,6 +5,8 @@ import storage from "@/firebase/storage";
 import Img from "./img";
 
 import style from "./contentList.module.css";
+import { useState } from "react";
+import Modal from "./Modal";
 
 export default function ContentList({
   day,
@@ -18,6 +20,9 @@ export default function ContentList({
   imgList,
   setImgList,
 }) {
+  const [modal, setModal] = useState(false);
+  const [current, setCurrent] = useState();
+
   // 내용 삭제하기
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));
@@ -41,9 +46,6 @@ export default function ContentList({
     newImgList.splice(idx, 1);
     setImgList(newImgList);
   };
-
-  console.log(imgList);
-
   return (
     <>
       {contents.length === 0 ? (
@@ -77,12 +79,18 @@ export default function ContentList({
             </div>
 
             {/* 이미지 리스트 보여주기 */}
-            {imgList[idx].map((name, index) => (
-              <Img key={index} img={name} />
-            ))}
+            <h1
+              onClick={() => {
+                setModal(!modal);
+                setCurrent(idx);
+              }}
+            >
+              이미지 보기
+            </h1>
           </div>
         ))
       )}
+      {modal && <Modal img={imgList[current]} setModal={setModal} />}
     </>
   );
 }
