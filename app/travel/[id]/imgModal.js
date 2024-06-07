@@ -13,6 +13,7 @@ export default function ImgModal({ img }) {
         className={style.btn}
         onClick={() => {
           setModal(!modal);
+          document.body.classList.add("stop-scroll");
         }}
       >
         모든 이미지 보기

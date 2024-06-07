@@ -83,6 +83,7 @@ export default function ContentList({
               onClick={() => {
                 setModal(!modal);
                 setCurrent(idx);
+                document.body.classList.add("stop-scroll");
               }}
             >
               이미지 보기

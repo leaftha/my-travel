@@ -8,6 +8,7 @@ export default function Modal({ img, setModal }) {
         className={style.btn}
         onClick={() => {
           setModal(false);
+          document.body.classList.remove("stop-scroll");
         }}
       >
         X
