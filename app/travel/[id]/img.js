@@ -5,7 +5,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import storage from "@/firebase/storage";
 
-export default function Img({ img }) {
+export default function Img({ img,width,height }) {
   const [imgurl, setImgurl] = useState();
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function Img({ img }) {
         <Image
           unoptimized={true}
           alt="text"
-          width={300}
-          height={150}
+          width={width}
+          height={height}
           src={imgurl}
         />
       ) : (

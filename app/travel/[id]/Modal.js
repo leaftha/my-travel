@@ -1,7 +1,13 @@
+'use client'
+
 import Img from "./img";
 import style from "./Modal.module.css";
 
 export default function Modal({ img, setModal }) {
+  let imgWidth = window.innerWidth / 2 
+  let imgHeight = window.innerHeight / 2
+
+  console.log(imgWidth)
   return (
     <div className={style.main}>
       <h1
@@ -15,7 +21,7 @@ export default function Modal({ img, setModal }) {
       </h1>
       <div className={style.imgs}>
         {img.map((name, idx) => (
-          <Img key={idx} img={name} />
+          <Img key={idx} width={imgWidth} height={imgHeight} img={name} />
         ))}
       </div>
     </div>
