@@ -4,7 +4,6 @@ import style from "./Modal.module.css";
 export default function Modal({ img, setModal }) {
   return (
     <div className={style.main}>
-      <div className={style.wall}></div>
       <h1
         className={style.btn}
         onClick={() => {

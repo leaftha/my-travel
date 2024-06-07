@@ -4,7 +4,7 @@ import { useState } from "react";
 import ThisDay from "./thisDay";
 import style from "./dayList.module.css";
 
-export default function DayList({ days, id, item }) {
+export default function DayList({ days, id }) {
   // 현재 여행 날짜 state
   const [currentDay, setCurrentDay] = useState(0);
 
@@ -17,7 +17,7 @@ export default function DayList({ days, id, item }) {
   return (
     <div className={style.main}>
       <div className={style.pages}>
-        {days.days.length &&
+        {days.days.length > 0 &&
           days.days.map((item, idx) => (
             <button
               className={style.btn}
