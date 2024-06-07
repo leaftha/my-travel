@@ -17,10 +17,39 @@
   font-size: 60px;
   cursor: pointer;
   z-index: 101;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+.prev {
+  font-size: 50px;
+  margin: 0 100px;
+  cursor: pointer;
+  z-index: 101;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+.next {
+  font-size: 50px;
+  margin: 0 100px;
+  cursor: pointer;
+  z-index: 101;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
 }
 
 
 .imgs {
   z-index: 101;
+}
 
+.none {
+  display: none;
 }

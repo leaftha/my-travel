@@ -1,13 +1,15 @@
 'use client'
 
+import { useState } from "react";
 import Img from "./img";
 import style from "./Modal.module.css";
 
 export default function Modal({ img, setModal }) {
+  const [current ,setCurrent] = useState(0)
+
   let imgWidth = window.innerWidth / 2 
   let imgHeight = window.innerHeight / 2
-
-  console.log(imgWidth)
+  console.log(current)
   return (
     <div className={style.main}>
       <h1
@@ -19,11 +21,24 @@ export default function Modal({ img, setModal }) {
       >
         X
       </h1>
+      <h1 className={style.prev} onClick={() => {
+        if(current != 0) {
+          setCurrent(current-1)
+        }
+      }}>{'<'}</h1>
       <div className={style.imgs}>
         {img.map((name, idx) => (
-          <Img key={idx} width={imgWidth} height={imgHeight} img={name} />
+         <div className={idx != current && style.none}>
+           <Img key={idx} width={imgWidth} height={imgHeight} img={name} />
+         </div>
         ))}
       </div>
+      <h1 className={style.next} onClick={()=> {
+        if(current != img.length-1) {
+          setCurrent(current+1)
+        }
+      }}>{'>'}</h1>
+
     </div>
   );
 }

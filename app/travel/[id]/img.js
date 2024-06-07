@@ -5,6 +5,8 @@ import { ref, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import storage from "@/firebase/storage";
 
+import style from "./img.module.css"
+
 export default function Img({ img,width,height }) {
   const [imgurl, setImgurl] = useState();
 
@@ -22,7 +24,7 @@ export default function Img({ img,width,height }) {
   }, [img]);
 
   return (
-    <div>
+    <div className={style.img}>
       {imgurl ? (
         <Image
           unoptimized={true}
