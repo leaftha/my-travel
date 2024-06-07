@@ -75,7 +75,7 @@ export default function ContentList({
             </div>
             <div className={style.contentMain}>
               <h1>{names[idx]}</h1>
-              <h1>{item}</h1>
+              <p>{item}</p>
             </div>
 
             {/* 이미지 리스트 보여주기 */}
