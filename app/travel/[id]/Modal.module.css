@@ -17,10 +17,10 @@
   font-size: 60px;
   cursor: pointer;
   z-index: 101;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .prev {
@@ -28,10 +28,10 @@
   margin: 0 100px;
   cursor: pointer;
   z-index: 101;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .next {
@@ -39,12 +39,11 @@
   margin: 0 100px;
   cursor: pointer;
   z-index: 101;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
 
 .imgs {
   z-index: 101;
@@ -52,4 +51,8 @@
 
 .none {
   display: none;
+}
+
+.last {
+  opacity: 0.5;
 }
