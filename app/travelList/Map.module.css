@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+}
+
+.current {
+  margin: 0 10px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 400px;
+}
