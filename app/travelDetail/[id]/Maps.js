@@ -1,45 +1,33 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import Img from "./img";
+import style from "./Map.module.css";
+import ContentList from "./contentList";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day.placeId[0]);
   const [coors, setCoors] = useState([...day.placeId]);
   // const [markers, setMarkers] = useState([...day.placeId]);
+  const [names, setNames] = useState([...day.place]);
+  const [contents, setContents] = useState([...day.content]);
+  const [imgList, setImgList] = useState([...day.daysImg]);
 
-  const { placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
-    useGoogle({
-      apiKey: process.env.NEXT_PUBLIC_API,
-    });
-
-  const ref = useRef();
+  const Mapref = useRef();
 
   useEffect(() => {
     const showMap = async () => {
       let arr = [];
       const curPlace = await geocodePlaceId(place);
-      const newMap = new google.maps.Map(ref.current, {
+      const newMap = new google.maps.Map(Mapref.current, {
         center: {
           lat: curPlace.geometry.location.lat(),
           lng: curPlace.geometry.location.lng(),
         },
         zoom: 14,
-        mapId: `day.day`,
-      });
-
-      // 선택한 곳 마커
-      const marker = new google.maps.marker.AdvancedMarkerElement({
-        map: newMap,
-        position: {
-          lat: curPlace.geometry.location.lat(),
-          lng: curPlace.geometry.location.lng(),
-        },
+        mapId: `Maps-${day.day}`,
       });
 
       // 하루동안의 마커 생성
-
       for (let id of coors) {
         const markerId = await geocodePlaceId(id);
 
@@ -67,8 +55,9 @@ export default function Maps({ day, id }) {
       setMap(newMap);
     };
     showMap();
-  }, [place, coors]);
+  }, [place, coors, imgList]);
 
+  // 주소 받기
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
@@ -81,26 +70,26 @@ export default function Maps({ day, id }) {
       });
     });
   };
-
   return (
-    <div>
-      <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
-      <div>
-        <h1>To Did</h1>
-        {/* 했던일 보여주기 */}
-        {day.content.length === 0
-          ? ""
-          : day.content.map((item, idx) => (
-              <div key={idx}>
-                <h1>
-                  {item} - {day.place[idx]}
-                </h1>
+    <div className={style.main}>
+      {/* 지도 보여주기 */}
+      <div
+        className={style.map}
+        ref={Mapref}
+        id="map"
+        style={{ width: "500px", height: "500px" }}
+      ></div>
 
-                {day.daysImg[idx].map((name, idx) => (
-                  <Img key={idx} img={name} />
-                ))}
-              </div>
-            ))}
+      <div className={style.lists}>
+        {/* 했던일 보여주기 컴포넌트 */}
+        <ContentList
+          id={id}
+          day={day}
+          names={names}
+          contents={contents}
+          coors={coors}
+          imgList={imgList}
+        />
       </div>
     </div>
   );

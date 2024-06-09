@@ -1,0 +1,58 @@
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 60px;
+  cursor: pointer;
+  z-index: 101;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  font-size: 50px;
+  margin: 0 100px;
+  cursor: pointer;
+  z-index: 101;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.next {
+  font-size: 50px;
+  margin: 0 100px;
+  cursor: pointer;
+  z-index: 101;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.imgs {
+  z-index: 101;
+}
+
+.none {
+  display: none;
+}
+
+.last {
+  opacity: 0.5;
+}

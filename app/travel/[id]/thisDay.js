@@ -6,29 +6,28 @@ import { useEffect, useState } from "react";
 
 import style from "./thisDay.module.css";
 
-export default function ThisDay({num, day, id ,current}) {
+export default function ThisDay({ num, day, id, current }) {
   const [money, setMoney] = useState(day.money);
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState("");
 
-
-  useEffect(()=> {
-    let changeMoney = []
-    let newMoney = `${money}`
-    let count = 0
-    for(let i = newMoney.length-1; i >= 0; i--) {
-      changeMoney.unshift(newMoney[i])
-      if(count === 2) {
-        changeMoney.unshift(',')
-        count = 0
-      }else {
-        count++
+  useEffect(() => {
+    let changeMoney = [];
+    let newMoney = `${money}`;
+    let count = 0;
+    for (let i = newMoney.length - 1; i >= 0; i--) {
+      changeMoney.unshift(newMoney[i]);
+      if (count === 2) {
+        changeMoney.unshift(",");
+        count = 0;
+      } else {
+        count++;
       }
     }
-    if(changeMoney[0] === ",") {
-      changeMoney.shift()
+    if (changeMoney[0] === ",") {
+      changeMoney.shift();
     }
-    setValue(changeMoney.join(""))
-  },[])
+    setValue(changeMoney.join(""));
+  }, []);
   return (
     <div className={current === num ? style.main : style.none}>
       <div className={style.moneybody}>
@@ -51,22 +50,22 @@ export default function ThisDay({num, day, id ,current}) {
                 money: money,
               }),
             });
-            let changeMoney = []
-            let newMoney = `${money}`
-            let count = 0
-            for(let i = newMoney.length-1; i >= 0; i--) {
-              changeMoney.unshift(newMoney[i])
-              if(count === 2) {
-                changeMoney.unshift(',')
-                count = 0
-              }else {
-                count++
+            let changeMoney = [];
+            let newMoney = `${money}`;
+            let count = 0;
+            for (let i = newMoney.length - 1; i >= 0; i--) {
+              changeMoney.unshift(newMoney[i]);
+              if (count === 2) {
+                changeMoney.unshift(",");
+                count = 0;
+              } else {
+                count++;
               }
             }
-            if(changeMoney[0] === ",") {
-              changeMoney.shift()
+            if (changeMoney[0] === ",") {
+              changeMoney.shift();
             }
-            setValue(changeMoney.join(""))
+            setValue(changeMoney.join(""));
           }}
         >
           입력
