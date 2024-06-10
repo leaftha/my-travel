@@ -43,8 +43,10 @@ export default async function Detail(props) {
   return (
     <div className={style.main}>
       <div className={style.content}>
-        <Link href="/travelList">리스트</Link>
-        <h1 className={style.title}>{result.title}</h1>
+        <div className={style.mainTitle}>
+          <h1 className={style.title}>{result.title}</h1>
+          <Link className={style.link} href="/travelList">리스트</Link>
+        </div>
         <Likse like={result.like} user={user} id={props.params.id} />
         <div className={style.btns}>
           <ImgModal img={Imgs} />
