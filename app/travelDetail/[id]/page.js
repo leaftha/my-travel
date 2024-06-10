@@ -17,6 +17,7 @@ export default async function Detail(props) {
   let result = await db
     .collection("travelPost")
     .findOne({ _id: new ObjectId(props.params.id) });
+    result._id = result._id.toString();
 
   // db에 저장된 유저 데이터 검색
   let user = null;

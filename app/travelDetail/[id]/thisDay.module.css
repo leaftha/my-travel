@@ -11,32 +11,7 @@
   display: none;
 }
 
-.title {
-  font-size: 20px;
-}
-
-.moneybody {
-  /* text-align: center; */
-  /* display: flex;
-  flex-direction: column; */
-  margin: 10px 0;
-}
-
-.inputbox {
-  padding: 10px;
-  font-size: 20px;
-}
-
 .money {
   margin: 10px 0;
   font-size: 20px;
-}
-
-.btn {
-  font-size: 20px;
-  background: none;
-  padding: 10px;
-  /* width: 100px; */
-  border: 1px solid black;
-  cursor: pointer;
 }
