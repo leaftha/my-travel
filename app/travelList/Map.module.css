@@ -14,3 +14,9 @@
   overflow-y: scroll;
   height: 400px;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}

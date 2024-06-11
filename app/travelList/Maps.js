@@ -104,21 +104,24 @@ export default function Maps({ num, day }) {
   return (
     <div className={style.main}>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
-      {day.map((item, idx) => (
-        <div className={style.list} key={idx}>
-          <h1>{item.day}</h1>
-          {item.place.toReversed().map((places, idx2) => (
-            <p
-              onClick={() => {
-                selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
-              }}
-              key={idx2}
-            >
-              {idx2 === 0 && places === "" ? "" : `${idx2 + 1}-${places}`}
-            </p>
-          ))}
-        </div>
-      ))}
+
+      <div className={style.list}>
+        {day.map((item, idx) => (
+          <div className={style.content} key={idx}>
+            <h1>{item.day}</h1>
+            {item.place.toReversed().map((places, idx2) => (
+              <p
+                onClick={() => {
+                  selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
+                }}
+                key={idx2}
+              >
+                {idx2 === 0 && places === "" ? "" : `${idx2 + 1}-${places}`}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
