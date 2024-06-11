@@ -107,9 +107,10 @@ export default function Maps({ num, day }) {
       <div className={style.list}>
         {day.map((item, idx) => (
           <div className={style.current} key={idx}>
-            <h1>{item.day}</h1>
+            <h1 className={style.title}>{item.day}일차</h1>
             {item.place.toReversed().map((places, idx2) => (
               <p
+                className={style.content}
                 onClick={() => {
                   selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
                 }}
@@ -117,7 +118,7 @@ export default function Maps({ num, day }) {
               >
                 {idx2 === 0 && places === ""
                   ? "일정을 입력하세요"
-                  : `${idx2 + 1}-${places}`}
+                  : `${idx2 + 1} - ${places}`}
               </p>
             ))}
           </div>
