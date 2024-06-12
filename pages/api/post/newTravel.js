@@ -6,7 +6,7 @@ export default async function handler(req, res) {
       email: req.body.email,
       title: req.body.title,
       menber: req.body.menber,
-      money: req.body.money,
+      money: 0,
       like: 0,
       private: false,
       days: [],
