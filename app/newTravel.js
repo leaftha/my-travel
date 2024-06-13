@@ -4,7 +4,21 @@ import { useState } from "react";
 import style from "./newTravel.module.css";
 
 export default function NewTravel({ user }) {
-  let [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  const checking = (e) => {
+    const title = e.target.title.value;
+    const menber = e.target.menber.value;
+
+    if(title.length === 0 || menber.length === 0) {
+      alert("빈칸을 채워주십시요")
+      e.preventDefault()
+      return false
+    }
+
+    return true
+  }
+
   function modal() {
     setClicked(!clicked);
     document.body.classList.remove("stop-scroll");
@@ -27,6 +41,7 @@ export default function NewTravel({ user }) {
             <form
               className={style.form}
               onClick={(e) => e.stopPropagation()}
+              onSubmit={checking}
               action="/api/post/newTravel"
               method="POST"
             >
