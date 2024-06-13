@@ -6,6 +6,7 @@ import style from "./Map.module.css";
 export default function Maps({ num, day }) {
   const [map, setMap] = useState(null);
   const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
+  const [modal, setModal] = useState(false)
 
   const ref = useRef();
   useEffect(() => {
@@ -104,7 +105,11 @@ export default function Maps({ num, day }) {
   return (
     <div className={style.main}>
       <div ref={ref} id="map" style={{ width: "400px", height: "400px" }}></div>
-      <div className={style.list}>
+      <h1 className={style.modalBtn} onClick={() => {
+        setModal(!modal)
+      }}>{modal ? "닫기" : "열기"}</h1>
+      {modal && (
+        <div className={style.list}>
         {day.map((item, idx) => (
           <div className={style.current} key={idx}>
             <h1 className={style.title}>{item.day}일차</h1>
@@ -124,6 +129,7 @@ export default function Maps({ num, day }) {
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }

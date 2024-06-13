@@ -9,6 +9,17 @@ export default async function TravelList({ user }) {
     .collection("travelPost")
     .find({ email: user.user.email })
     .toArray();
+
+
+    let money = []
+
+    for(let day of result) {
+      let count = 0
+      for(let content of day.days) {
+        count += content.money
+      }
+      money.push(count)
+    }
   return (
     <div className={style.main}>
       {result.map((item, idx) => (
@@ -16,7 +27,7 @@ export default async function TravelList({ user }) {
           <Link className={style.title} href={`/travel/${item._id}`}>
             {item.title}
           </Link>
-          <h1 className={style.money}>Money : {item.money}</h1>
+          <h1 className={style.money}>Money : {money[idx]}</h1>
           <h1 className={style.menber}>Menber : {item.menber}</h1>
           {item.days.length === 0 ? (
             <h1 className={style.need}>일정 입력이 필요</h1>
