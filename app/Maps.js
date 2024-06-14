@@ -105,10 +105,10 @@ export default function Maps({ num, day }) {
   return (
     <div className={style.main}>
       <div ref={ref} id="map" style={{ width: "450px", height: "450px" }}></div>
-      <h1 className={style.modalBtn} onClick={() => {
+      {/* <h1 className={style.modalBtn} onClick={() => {
         setModal(!modal)
-      }}>{modal ? "닫기" : "열기"}</h1>
-      {modal && (
+      }}>{modal ? "닫기" : "열기"}</h1> */}
+      {/* {modal && ( */}
         <div className={style.list}>
         {day.map((item, idx) => (
           <div className={style.current} key={idx}>
@@ -129,7 +129,7 @@ export default function Maps({ num, day }) {
           </div>
         ))}
       </div>
-      )}
+      {/* )} */}
     </div>
   );
 }
