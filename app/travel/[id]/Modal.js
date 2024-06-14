@@ -4,7 +4,7 @@ import { useState } from "react";
 import Img from "./img";
 import style from "./Modal.module.css";
 
-export default function Modal({ img, setModal }) {
+export default function Modal({ img = [], setModal }) {
   const [current, setCurrent] = useState(0);
 
   let imgWidth = window.innerWidth / 2;
@@ -38,7 +38,7 @@ export default function Modal({ img, setModal }) {
         ))}
       </div>
       <h1
-        className={`${style.next}  ${current === img.length - 1 && style.last}`}
+        className={`${style.next}  ${(current === img.length - 1 || current === 0 )&& style.last}`}
         onClick={() => {
           if (current != img.length - 1) {
             setCurrent(current + 1);
