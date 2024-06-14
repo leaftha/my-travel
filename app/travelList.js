@@ -48,7 +48,7 @@ export default async function TravelList({ user }) {
             {item.title}
           </Link>
           <h1 className={style.money}>총 금액 : {money[idx]}원</h1>
-          <h1 className={style.menber}>인원수 : {item.menber}</h1>
+          <h1 className={style.menber}>인원수 : {item.menber}명</h1>
           {item.days.length === 0 ? (
             <h1 className={style.need}>일정 입력이 필요</h1>
           ) : (
