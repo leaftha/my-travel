@@ -50,11 +50,16 @@
   font-size: 30px;
 }
 .btn {
-  margin: 10px 0;
+  margin: 20px;
   font-size: 17px;
-  background: none;
-  padding: 10px;
-  /* width: 100px; */
-  border: 1px solid black;
+  background: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #f1f3f5;
 }
