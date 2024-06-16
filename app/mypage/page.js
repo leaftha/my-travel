@@ -35,7 +35,7 @@ export default async function Home() {
           </div>
           <UserDelete email={user.email} />
         </div>
-        <div>
+        <div className={style.likes}>
           <LikeTravel likes={likes} />
         </div>
       </div>
