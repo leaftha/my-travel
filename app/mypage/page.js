@@ -3,8 +3,9 @@ import { connectDB } from "@/util/database.js";
 import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
 
-import Link from "next/link";
 import UserDelete from "./userDelete";
+import style from "./page.module.css";
+import LikeTravel from "./likeTravel";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
@@ -25,17 +26,19 @@ export default async function Home() {
   }
 
   return (
-    <div>
-      <h1>{user.name}</h1>
-      <h1>{user.email}</h1>
-      <UserDelete email={user.email} />
-      <ul>
-        {likes.map((travel, idx) => (
+    <div className={style.main}>
+      <div className={style.body}>
+        <div className={style.navs}>
           <div>
-            <Link href={`/travelDetail/${travel._id}`}>{travel.title}</Link>
+            <h1 className={style.content}>닉네임 : {user.name}</h1>
+            <h1 className={style.content}>이메일 : {user.email}</h1>
           </div>
-        ))}
-      </ul>
+          <UserDelete email={user.email} />
+        </div>
+        <div>
+          <LikeTravel likes={likes} />
+        </div>
+      </div>
     </div>
   );
 }

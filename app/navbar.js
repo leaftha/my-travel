@@ -16,7 +16,7 @@ export default async function Navbar() {
       <div className={style.logined}>
         {session && (
           <Link className={style.setting} href={`/mypage`}>
-            설정
+            My Page
           </Link>
         )}
         <LoginBtn session={session} />

@@ -1,0 +1,20 @@
+.main {
+}
+
+.none {
+  display: none;
+}
+
+.btn {
+  font-size: 17px;
+  background: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #f1f3f5;
+}
