@@ -16,14 +16,18 @@ export default async function Home() {
     .collection("user_id")
     .findOne({ email: session.user.email });
 
-  // 종아요한 포스트 정보
+    user._id = user._id.toString();
+
+    // 종아요한 포스트 정보
   let likes = [];
   for (let id of user.likes) {
     let travel = await db
       .collection("travelPost")
       .findOne({ _id: new ObjectId(id) });
+    travel._id = travel._id.toString();
     likes.push(travel);
   }
+
 
   return (
     <div className={style.main}>
