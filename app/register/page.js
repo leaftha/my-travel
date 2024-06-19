@@ -1,9 +1,25 @@
+"use client";
+
 export default function Register() {
+  const checking = (e) => {
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.email.value;
+
+    if (name.length === 0 || email.length === 0 || password.length === 0) {
+      alert("빈칸을 채워주십시요");
+      e.preventDefault();
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <div>
-      <form method="POST" action="/api/auth/signup">
+      <form method="POST" action="/api/auth/signup" onSubmit={checking}>
         <label>이름</label>
-        <input c name="name" type="text" placeholder="이름" />
+        <input name="name" type="text" placeholder="이름" />
         <label>이메일</label>
         <input name="email" type="text" placeholder="이메일" />
         <label>비밀번호</label>
