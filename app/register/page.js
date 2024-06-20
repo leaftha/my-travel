@@ -1,5 +1,7 @@
 "use client";
 
+import style from "./page.module.css"
+
 export default function Register() {
   const checking = async (e) => {
     e.preventDefault();
@@ -45,13 +47,13 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <form onSubmit={checking}>
-        <label>이름</label>
+    <div className={style.main}>
+      <form className={style.body} onSubmit={checking}>
+        <label className={style.title}>이름</label>
         <input name="name" type="text" placeholder="이름" />
-        <label>이메일</label>
+        <label className={style.title}>이메일</label>
         <input name="email" type="text" placeholder="이메일" />
-        <label>비밀번호</label>
+        <label className={style.title}>비밀번호</label>
         <input
           name="password"
           type="password"
@@ -59,7 +61,7 @@ export default function Register() {
           maxLength={12}
           placeholder="비번"
         />
-        <button type="submit">회원가입</button>
+        <button className={style.btn} type="submit">회원가입</button>
       </form>
     </div>
   );
