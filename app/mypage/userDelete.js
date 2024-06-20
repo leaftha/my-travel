@@ -8,7 +8,7 @@ export default function UserDelete({ email }) {
     <form className={style.main} action="/api/post/deleteUser" method="POST">
       <input
         className={style.none}
-        name="email"
+        name="email"  
         defaultValue={email}
         readOnly={true}
       />
