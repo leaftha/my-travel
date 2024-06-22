@@ -1,11 +1,11 @@
 "use client";
 
-import style from "./page.module.css"
+import style from "./page.module.css";
 
 export default function Register() {
   const checking = async (e) => {
     e.preventDefault();
-    
+
     const name = e.target.name.value.trim();
     const email = e.target.email.value.trim();
     const password = e.target.password.value.trim();
@@ -23,26 +23,26 @@ export default function Register() {
     };
 
     try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.status === 200) {
-        alert('회원가입 성공!');
+        alert("회원가입 성공!");
         window.location.href = "/";
       } else if (response.status === 409) {
         const data = await response.json();
         alert(data.message);
       } else {
-        alert('오류가 발생했습니다. 다시 시도해 주세요.');
+        alert("오류가 발생했습니다. 다시 시도해 주세요.");
       }
     } catch (error) {
-      console.error('폼 제출 오류:', error);
-      alert('오류가 발생했습니다. 다시 시도해 주세요.');
+      console.error("폼 제출 오류:", error);
+      alert("오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
 
@@ -61,7 +61,9 @@ export default function Register() {
           maxLength={12}
           placeholder="비번"
         />
-        <button className={style.btn} type="submit">회원가입</button>
+        <button className={style.btn} type="submit">
+          회원가입
+        </button>
       </form>
     </div>
   );

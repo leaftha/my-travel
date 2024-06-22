@@ -3,7 +3,6 @@ import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
 import { connectDB } from "@/util/database";
 
-
 import NewTravel from "./newTravel";
 import TravelList from "./travelList";
 import style from "./page.module.css";
@@ -11,18 +10,19 @@ import style from "./page.module.css";
 export default async function Home() {
   let session = await getServerSession(authOptions);
 
-  let db = (await connectDB).db("travel");
-  let result = await db
-    .collection("travelPost")
-    .find({ email: session.user.email })
-    .toArray();
+  if (session) {
+    let db = (await connectDB).db("travel");
+    let result = await db
+      .collection("travelPost")
+      .find({ email: session.user.email })
+      .toArray();
 
-    for(let day of result) {
-      let count = 0
-      day._id = day._id.toString()
+    for (let day of result) {
+      let count = 0;
+      day._id = day._id.toString();
 
-      for(let content of day.days) {
-        count += content.money
+      for (let content of day.days) {
+        count += content.money;
       }
 
       let changeMoney = [];
@@ -41,9 +41,9 @@ export default async function Home() {
         changeMoney.shift();
       }
       changeMoney.join("");
-      day.money= changeMoney
+      day.money = changeMoney;
     }
-
+  }
   return (
     <div className={style.body}>
       <div className={style.btns}>
