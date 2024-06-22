@@ -12,6 +12,7 @@ export default async function Home() {
   let result;
   if (session) {
     let db = (await connectDB).db("travel");
+
     result = await db
       .collection("travelPost")
       .find({ email: session.user.email })
