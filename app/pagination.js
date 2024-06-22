@@ -26,7 +26,7 @@ export default function Pagination({ trip, setCurrentPage }) {
               setCurrent(current - 1);
             }
           }}
-          className={style.btn}
+          className={`${style.btn} ${current === 0 && style.none}`}
         >
           {"<"}
         </li>
@@ -47,7 +47,9 @@ export default function Pagination({ trip, setCurrentPage }) {
               setCurrent(current + 1);
             }
           }}
-          className={style.btn}
+          className={`${style.btn} ${
+            current === Math.floor(maxLength.length / 5) && style.none
+          }`}
         >
           {">"}
         </li>

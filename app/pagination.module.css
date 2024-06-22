@@ -18,8 +18,15 @@
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .btn:hover {
   background: #f1f3f5;
+}
+
+.none {
+  display: none;
 }
