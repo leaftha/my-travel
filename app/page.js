@@ -9,10 +9,10 @@ import style from "./page.module.css";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
-
+  let result;
   if (session) {
     let db = (await connectDB).db("travel");
-    let result = await db
+    result = await db
       .collection("travelPost")
       .find({ email: session.user.email })
       .toArray();
