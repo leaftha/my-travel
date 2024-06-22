@@ -1,8 +1,8 @@
 .body {
-  display: flex;
+  /* display: flex; */
   margin: 20px;
   width: 100%;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .btns {

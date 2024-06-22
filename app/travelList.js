@@ -32,7 +32,7 @@ export default function TravelList({ travel }) {
           </div>
         ))}
       </div>
-        <Pagination trip={travel} setCurrentPage={setCurrentPage} />
+      <Pagination trip={travel} setCurrentPage={setCurrentPage} />
     </>
   );
 }
