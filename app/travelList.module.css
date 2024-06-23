@@ -1,7 +1,7 @@
 .main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  grid-template-rows: repeat(auto-fill, minmax(40%, auto));
   height: 100%;
   width: 100%;
   grid-gap: 20px;
@@ -9,7 +9,6 @@
 
 .item {
   background-color: white;
-  /* height: 100%; */
   border: 1px solid #dee2e6;
   border-radius: 2%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
