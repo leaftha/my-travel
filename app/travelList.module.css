@@ -50,3 +50,9 @@
   margin: 10px 0;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .main {
+    grid-template-columns: repeat(auto-fill, minmax(50%, auto));
+    grid-template-rows: repeat(auto-fill, minmax(10%, auto));
+  }
+}

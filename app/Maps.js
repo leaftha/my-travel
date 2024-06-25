@@ -104,7 +104,7 @@ export default function Maps({ num, day }) {
 
   return (
     <div className={style.main}>
-      <div ref={ref} id="map" style={{ width: "450px", height: "450px" }}></div>
+      <div ref={ref} id="map" className={style.map}></div>
       {/* <h1 className={style.modalBtn} onClick={() => {
         setModal(!modal)
       }}>{modal ? "닫기" : "열기"}</h1> */}

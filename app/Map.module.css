@@ -33,3 +33,15 @@
   margin: 10px;
   cursor: pointer;
 }
+
+.map {
+  width: 450px;
+  height: 450px; 
+}
+
+@media (max-width: 768px) {
+  .map {
+    width: 200px;
+    height: 200px; 
+  }
+}
