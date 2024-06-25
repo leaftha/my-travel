@@ -12,6 +12,7 @@ export default function Maps({ day, id }) {
   const [names, setNames] = useState([...day.place]);
   const [contents, setContents] = useState([...day.content]);
   const [imgList, setImgList] = useState([...day.daysImg]);
+  const [width, setWidth] = useState(window.innerWidth)
 
   const Mapref = useRef();
 
@@ -66,6 +67,10 @@ export default function Maps({ day, id }) {
       setMap(newMap);
     };
     showMap();
+    
+    if(width > 768) {
+      setWidth(width/2)
+    }
   }, [place, coors, imgList]);
 
   // 주소 받기
@@ -81,6 +86,7 @@ export default function Maps({ day, id }) {
       });
     });
   };
+
   return (
     <div className={style.main}>
       {/* 지도 보여주기 */}
@@ -88,7 +94,7 @@ export default function Maps({ day, id }) {
         className={style.map}
         ref={Mapref}
         id="map"
-        style={{ width: "500px", height: "500px" }}
+        style={{ width:width, height: "500px" }}
       ></div>
 
       <div className={style.lists}>

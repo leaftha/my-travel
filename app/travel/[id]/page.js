@@ -7,6 +7,7 @@ import Likse from "./likes";
 import ImgModal from "./imgModal";
 import style from "./page.module.css";
 import DayList from "./dayList";
+import NotAuth from "@/app/notauth";
 
 export default async function Detail(props) {
   let session = await getServerSession(authOptions);

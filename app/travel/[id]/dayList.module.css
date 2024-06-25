@@ -25,3 +25,11 @@
 .btn:hover {
   background: #f1f3f5;
 }
+
+
+@media (max-width: 768px) {
+ .btn {
+  font-size: 10px;
+  padding: 5px;
+ }
+}
