@@ -5,17 +5,30 @@ import LineMaps from "./lineMaps";
 import style from "./travelList.module.css";
 import Pagination from "./pagination";
 import { useEffect, useState } from "react";
+import ChangeSort from "./changeSort";
 
 export default function TravelList({ travel }) {
-  const [travelList, setTravelList] = useState([...travel.slice(0, 6)]);
+  const [changetype,setChangType] = useState(false)
+  const [changetravel, setChangetravel] = useState([...travel]);
+  const [travelList, setTravelList] = useState([...changetravel.slice(0, 6)]);
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    setTravelList([...travel.slice(currentPage * 6, (currentPage + 1) * 6)]);
-  }, [currentPage]);
+    let sortedTravel;
+    if (!changetype) {
+      sortedTravel = [...travel].reverse()
+    } else{
+      sortedTravel = [...travel];
+    }
+    setChangetravel(sortedTravel);
+
+    setTravelList([...changetravel.slice(currentPage * 6, (currentPage + 1) * 6)]);
+  }, [currentPage, changetype,travel]);
+  console.log(changetype)
 
   return (
     <>
+      <ChangeSort changetype={changetype} setChangType={setChangType}/>
       <div className={style.main}>
         {travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
@@ -27,12 +40,12 @@ export default function TravelList({ travel }) {
             {item.days.length === 0 ? (
               <h1 className={style.need}>일정 입력이 필요</h1>
             ) : (
-              <LineMaps num={idx} day={travel[idx].days} />
+              <LineMaps num={idx} day={item.days} />
             )}
           </div>
         ))}
       </div>
-      <Pagination trip={travel} setCurrentPage={setCurrentPage} />
+      <Pagination trip={changetravel} setCurrentPage={setCurrentPage} />
     </>
   );
 }
