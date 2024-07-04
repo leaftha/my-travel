@@ -46,7 +46,7 @@ export default function DayList({ days, id }) {
         </form>
       </div>
       {days.days.length === 0 ? (
-        <h1>스케줄을 추가 하세요</h1>
+        <h1 className={style.popup}>스케줄을 추가 하세요</h1>
       ) : (
         days.days.map((item, idx) => (
           <div key={idx}>

@@ -27,6 +27,16 @@
 }
 
 
+.popup {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
  .btn {
   font-size: 10px;
