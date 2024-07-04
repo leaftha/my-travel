@@ -24,6 +24,11 @@
     margin: 10px 0 ;
 }
 
+.input {
+    padding: 10px;
+    font-size: 20px;
+}
+
 .btn {
     margin: 20px 0 ;
     font-size: 17px;

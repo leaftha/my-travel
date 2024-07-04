@@ -50,11 +50,11 @@ export default function Register() {
     <div className={style.main}>
       <form className={style.body} onSubmit={checking}>
         <label className={style.title}>이름</label>
-        <input name="name" type="text" placeholder="이름" />
+        <input className={style.input} name="name" type="text" placeholder="이름" />
         <label className={style.title}>이메일</label>
-        <input name="email" type="text" placeholder="이메일" />
+        <input className={style.input} name="email" type="text" placeholder="이메일" />
         <label className={style.title}>비밀번호</label>
-        <input
+        <input className={style.input}
           name="password"
           type="password"
           minLength={6}
