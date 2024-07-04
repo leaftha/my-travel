@@ -26,9 +26,9 @@ export default function Likse({ like, email, id, isprivate }) {
           });
           setIsPrivate(!isPrivate);
           if (privateString === "비공개") {
-            sePrivateString("공개");
+            sePrivateString("비공개중");
           } else {
-            sePrivateString("비공개");
+            sePrivateString("공개중");
           }
         }}
       >
