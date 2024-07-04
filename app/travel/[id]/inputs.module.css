@@ -11,6 +11,24 @@
   font-size: 32px;
 }
 
+.addressTitle {
+  margin: 10px 0;
+}
+
+.addressInput {
+  margin: 10px 0;
+}
+
+.addressList {
+  line-height: 25px;
+  font-size: 20px;
+}
+
+.address {
+
+  cursor: pointer;
+}
+
 .inputs {
   /* width: 100%; */
   padding: 20px;

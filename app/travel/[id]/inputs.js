@@ -95,26 +95,30 @@ export default function Inputs({
       <div className={style.inputs}>
         <h1 className={style.title}>To Did</h1>
         {/* 주소 입력 창 */}
-        <label>주소 입력</label>
+        <label className={style.addressTitle}>주소 입력</label>
         <input
+          className={style.addressInput}
           onChange={(e) => {
             getPlacePredictions({ input: e.target.value });
           }}
         />
         {/* 주소 자동 완성  */}
-        {placePredictions.length !== 0
-          ? placePredictions.map((item, idx) => (
-              <h1
-                key={idx}
-                onClick={() => {
-                  setPlace(item.place_id);
-                  setName(item.description);
-                }}
-              >
-                {item.description}
-              </h1>
-            ))
-          : ""}
+       <ul className={style.addressList}>
+        {placePredictions.length == 0
+            || placePredictions.map((item, idx) => (
+                <li
+                  key={idx}
+                  className={style.address}
+                  onClick={() => {
+                    setPlace(item.place_id);
+                    setName(item.description);
+                  }}
+                >
+                  {item.description}
+                </li>
+              ))
+            }
+       </ul>
         {/* 했던 일 입력 창 */}
         <label>내용 입력</label>
         <textarea
