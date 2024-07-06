@@ -2,13 +2,11 @@ import { connectDB } from "@/util/database";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from 'next-auth/providers/google';
+import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
 
 export const authOptions = {
   providers: [
-  
-  
     CredentialsProvider({
       //1. 로그인페이지 폼 자동생성해주는 코드
       name: "credentials",
@@ -40,9 +38,10 @@ export const authOptions = {
         return user;
       },
     }),
+
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_Google_Client_ID,
-      clientSecret: process.env.NEXT_PUBLIC_Google_Client_Secret
+      clientSecret: process.env.NEXT_PUBLIC_Google_Client_Secret,
     }),
   ],
 
@@ -69,6 +68,29 @@ export const authOptions = {
     session: async ({ session, token }) => {
       session.user = token.user;
       return session;
+    },
+
+    async signIn({ user, account }) {
+      try {
+        let db = (await connectDB).db("travel");
+        let result = await db
+          .collection("user_id")
+          .find({ email: user.email })
+          .toArray();
+        if (result.length === 0) {
+          const user_info = {
+            provider: account.provider,
+            email: user.email,
+            name: user.name,
+            likes: [],
+          };
+          await db.collection("user_id").insertOne(user_info);
+        }
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
     },
   },
 
