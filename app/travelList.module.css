@@ -1,3 +1,10 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
 .main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, auto));
@@ -8,6 +15,9 @@
 }
 
 .item {
+  height: 900px;
+  margin: 0 auto;
+  width: 600px;
   background-color: white;
   border: 1px solid #dee2e6;
   border-radius: 2%;

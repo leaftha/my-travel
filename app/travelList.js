@@ -27,7 +27,7 @@ export default function TravelList({ travel }) {
   console.log(changetype)
 
   return (
-    <>
+    <div className={style.background}>
       <ChangeSort changetype={changetype} setChangType={setChangType}/>
       <div className={style.main}>
         {travelList.map((item, idx) => (
@@ -46,6 +46,6 @@ export default function TravelList({ travel }) {
         ))}
       </div>
       <Pagination trip={changetravel} setCurrentPage={setCurrentPage} />
-    </>
+    </div>
   );
 }
