@@ -8,29 +8,34 @@ import { useEffect, useState } from "react";
 import ChangeSort from "./changeSort";
 
 export default function TravelList({ travel }) {
-  const [changetype,setChangType] = useState(false)
-  const [changetravel, setChangetravel] = useState([...travel]);
-  const [travelList, setTravelList] = useState([...changetravel.slice(0, 6)]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [state, setState] = useState({
+    changetype: true,
+    changetravel: [...travel],
+    travelList: [...travel.slice(0, 6)],
+    currentPage: 0,
+  });
+
+  const setChangType = (changetype) => setState((prevState) => ({ ...prevState, changetype }));
+  const setChangetravel = (changetravel) => setState((prevState) => ({ ...prevState, changetravel }));
+  const setTravelList = (travelList) => setState((prevState) => ({ ...prevState, travelList }));
+  const setCurrentPage = (currentPage) => setState((prevState) => ({ ...prevState, currentPage }));
 
   useEffect(() => {
     let sortedTravel;
-    if (!changetype) {
-      sortedTravel = [...travel].reverse()
-    } else{
+    if (!state.changetype) {
       sortedTravel = [...travel];
+    } else {
+      sortedTravel = [...travel].reverse();
     }
     setChangetravel(sortedTravel);
-
-    setTravelList([...changetravel.slice(currentPage * 6, (currentPage + 1) * 6)]);
-  }, [currentPage, changetype,travel]);
-  console.log(changetype)
+    setTravelList([...sortedTravel.slice(state.currentPage * 6, (state.currentPage + 1) * 6)]);
+  }, [state.currentPage, state.changetype, travel]);
 
   return (
     <div className={style.background}>
-      <ChangeSort changetype={changetype} setChangType={setChangType}/>
+      <ChangeSort changetype={state.changetype} setChangType={setChangType}/>
       <div className={style.main}>
-        {travelList.map((item, idx) => (
+        {state.travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
             <Link className={style.title} href={`/travel/${item._id}`}>
               {item.title}
@@ -45,7 +50,7 @@ export default function TravelList({ travel }) {
           </div>
         ))}
       </div>
-      <Pagination trip={changetravel} setCurrentPage={setCurrentPage} />
+      <Pagination trip={state.changetravel} setCurrentPage={setCurrentPage} />
     </div>
   );
 }
