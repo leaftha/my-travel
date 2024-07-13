@@ -4,15 +4,17 @@ import { useState, useEffect, useRef } from "react";
 import style from "./Map.module.css";
 
 export default function Maps({ num, day }) {
-  const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
-  const [modal, setModal] = useState(false)
+  const [mapData, setMapData] = useState({
+    map: null,
+    place: day[day.length - 1].placeId[0],
+  });
 
   const ref = useRef();
+
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
-      const thisPlace = await geocodePlaceId(place);
+      const thisPlace = await geocodePlaceId(mapData.place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
           lat: thisPlace.geometry.location.lat(),
@@ -41,8 +43,10 @@ export default function Maps({ num, day }) {
         }
         arr.push(dayline);
       }
-
-      setMap(newMap);
+      setMapData((prev) => ({
+        ...prev,
+        map: newMap,
+      }));
 
       // 날짜 마다 의 라인 좌표
       let connectLine = [];
@@ -78,7 +82,7 @@ export default function Maps({ num, day }) {
     };
 
     fetchCoordinates();
-  }, [day, place]);
+  }, [day, mapData.place]);
 
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
@@ -96,7 +100,7 @@ export default function Maps({ num, day }) {
   const selectPlace = async (placeId) => {
     const clickPlace = await geocodePlaceId(placeId);
     // 새로고침 되지 않고 center 이동
-    map.panTo({
+    mapData.map.panTo({
       lat: clickPlace.geometry.location.lat(),
       lng: clickPlace.geometry.location.lng(),
     });
@@ -105,11 +109,7 @@ export default function Maps({ num, day }) {
   return (
     <div className={style.main}>
       <div ref={ref} id="map" className={style.map}></div>
-      {/* <h1 className={style.modalBtn} onClick={() => {
-        setModal(!modal)
-      }}>{modal ? "닫기" : "열기"}</h1> */}
-      {/* {modal && ( */}
-        <div className={style.list}>
+      <div className={style.list}>
         {day.map((item, idx) => (
           <div className={style.current} key={idx}>
             <h1 className={style.title}>{item.day}일차</h1>
@@ -129,7 +129,6 @@ export default function Maps({ num, day }) {
           </div>
         ))}
       </div>
-      {/* )} */}
     </div>
   );
 }
