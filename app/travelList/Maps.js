@@ -5,7 +5,7 @@ import style from "./Map.module.css";
 
 export default function Maps({ num, day }) {
   const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day[day.length - 1].placeId[0]);
+  const place = day[day.length - 1].placeId[0];
 
   const ref = useRef();
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function Maps({ num, day }) {
             <h1 className={style.title}>{item.day}</h1>
             {item.place.toReversed().map((places, idx2) => (
               <p
-              className={style.content}
+                className={style.content}
                 onClick={() => {
                   selectPlace(item.placeId[item.placeId.length - 1 - idx2]);
                 }}
