@@ -13,19 +13,45 @@ export default function Pagination({ trip, setCurrentPage }) {
     ...maxLength.slice(current * 5, (current + 1) * 5),
   ]);
 
+  const [pagin, setPagin] = useState({
+    maxLength: Array.from(
+      { length: Math.ceil(trip.length / 6) },
+      (_, index) => index + 1
+    ),
+    current: 0,
+    paginArr: [],
+  });
+
   useEffect(() => {
-    setPaginArr(maxLength.slice(current * 5, (current + 1) * 5));
-  }, [current, maxLength]);
+    setPagin((prev) => ({
+      ...prev,
+      paginArr: prev.maxLength.slice(current * 5, (current + 1) * 5),
+    }));
+  }, [pagin.current, pagin.maxLength]);
+
+  const prevClick = () => {
+    if (pagin.current != 0) {
+      setPagin((prev) => ({
+        ...prev,
+        current: prev.current - 1,
+      }));
+    }
+  };
+
+  const nextClick = () => {
+    if (pagin.current != Math.floor(pagin.maxLength.length / 5)) {
+      setPagin((prev) => ({
+        ...prev,
+        current: prev.current - 1,
+      }));
+    }
+  };
 
   return (
     <div className={style.main}>
       <ul className={style.list}>
         <li
-          onClick={() => {
-            if (current != 0) {
-              setCurrent(current - 1);
-            }
-          }}
+          onClick={prevClick}
           className={`${style.btn} ${current === 0 && style.none}`}
         >
           {"<"}
@@ -42,11 +68,7 @@ export default function Pagination({ trip, setCurrentPage }) {
           </li>
         ))}
         <li
-          onClick={() => {
-            if (current != Math.floor(maxLength.length / 5)) {
-              setCurrent(current + 1);
-            }
-          }}
+          onClick={nextClick}
           className={`${style.btn} ${
             current === Math.floor(maxLength.length / 5) && style.none
           }`}
