@@ -15,10 +15,14 @@ export default function TravelList({ travel }) {
     currentPage: 0,
   });
 
-  const setChangType = (changetype) => setState((prevState) => ({ ...prevState, changetype }));
-  const setChangetravel = (changetravel) => setState((prevState) => ({ ...prevState, changetravel }));
-  const setTravelList = (travelList) => setState((prevState) => ({ ...prevState, travelList }));
-  const setCurrentPage = (currentPage) => setState((prevState) => ({ ...prevState, currentPage }));
+  const setChangType = (changetype) =>
+    setState((prevState) => ({ ...prevState, changetype }));
+  const setChangetravel = (changetravel) =>
+    setState((prevState) => ({ ...prevState, changetravel }));
+  const setTravelList = (travelList) =>
+    setState((prevState) => ({ ...prevState, travelList }));
+  const setCurrentPage = (currentPage) =>
+    setState((prevState) => ({ ...prevState, currentPage }));
 
   useEffect(() => {
     let sortedTravel;
@@ -28,12 +32,14 @@ export default function TravelList({ travel }) {
       sortedTravel = [...travel].reverse();
     }
     setChangetravel(sortedTravel);
-    setTravelList([...sortedTravel.slice(state.currentPage * 6, (state.currentPage + 1) * 6)]);
+    setTravelList([
+      ...sortedTravel.slice(state.currentPage * 6, (state.currentPage + 1) * 6),
+    ]);
   }, [state.currentPage, state.changetype, travel]);
 
   return (
-    <div className={style.background}>
-      <ChangeSort changetype={state.changetype} setChangType={setChangType}/>
+    <>
+      <ChangeSort changetype={state.changetype} setChangType={setChangType} />
       <div className={style.main}>
         {state.travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
@@ -51,6 +57,6 @@ export default function TravelList({ travel }) {
         ))}
       </div>
       <Pagination trip={state.changetravel} setCurrentPage={setCurrentPage} />
-    </div>
+    </>
   );
 }

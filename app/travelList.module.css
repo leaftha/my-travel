@@ -1,22 +1,13 @@
-.background {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-}
-
 .main {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
-  grid-template-rows: repeat(auto-fill, minmax(40%, auto));
-  height: 100%;
-  width: 100%;
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px;
 }
 
 .item {
-  height: 900px;
-  margin: 0 auto;
+  /* height: 900px; */
+  margin: 5px;
   width: 600px;
   background-color: white;
   border: 1px solid #dee2e6;
