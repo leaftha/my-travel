@@ -4,17 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import style from "./Map.module.css";
 
 export default function Maps({ num, day }) {
-  const [mapData, setMapData] = useState({
-    map: null,
-    place: day[day.length - 1].placeId[0],
-  });
+  const [map, setMap] = useState(null);
+  const place = day[day.length - 1].placeId[0];
 
   const ref = useRef();
 
   useEffect(() => {
     const fetchCoordinates = async () => {
       let arr = [];
-      const thisPlace = await geocodePlaceId(mapData.place);
+      const thisPlace = await geocodePlaceId(place);
       const newMap = new google.maps.Map(ref.current, {
         center: {
           lat: thisPlace.geometry.location.lat(),
@@ -43,10 +41,7 @@ export default function Maps({ num, day }) {
         }
         arr.push(dayline);
       }
-      setMapData((prev) => ({
-        ...prev,
-        map: newMap,
-      }));
+      setMap(newMap);
 
       // 날짜 마다 의 라인 좌표
       let connectLine = [];
@@ -82,7 +77,7 @@ export default function Maps({ num, day }) {
     };
 
     fetchCoordinates();
-  }, [day, mapData.place]);
+  }, [day, place]);
 
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
@@ -100,7 +95,7 @@ export default function Maps({ num, day }) {
   const selectPlace = async (placeId) => {
     const clickPlace = await geocodePlaceId(placeId);
     // 새로고침 되지 않고 center 이동
-    mapData.map.panTo({
+    map.panTo({
       lat: clickPlace.geometry.location.lat(),
       lng: clickPlace.geometry.location.lng(),
     });
