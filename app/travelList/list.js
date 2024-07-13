@@ -9,31 +9,45 @@ import style from "./list.module.css";
 import SelectTravel from "./selectTravel";
 
 export default function List({ travel }) {
-  const [changetravel, setChangetravel] = useState([...travel]);
-  const [travelList, setTravelList] = useState([...changetravel.slice(0, 6)]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [sort, setSort] = useState("fast");
+  const [travelData, setTravelData] = useState({
+    changetravel: [...travel],
+    travelList: travel.slice(0, 6),
+    currentPage: 0,
+    sort: "fast",
+  });
+
+  const setSort = (sort) =>
+    setTravelData((prevState) => ({ ...prevState, sort }));
+  const setChangetravel = (changetravel) =>
+    setTravelData((prevState) => ({ ...prevState, changetravel }));
+  const setTravelList = (travelList) =>
+    setTravelData((prevState) => ({ ...prevState, travelList }));
+  const setCurrentPage = (currentPage) =>
+    setTravelData((prevState) => ({ ...prevState, currentPage }));
 
   useEffect(() => {
     // 정렬 기능 정렬 알고리즘은 추후 다른 알고리즘으로 교체
     let sortedTravel;
-    if (sort === "like") {
+    if (travelData.sort === "like") {
       sortedTravel = [...travel].sort((a, b) => b.like - a.like);
-    } else if (sort === "fast") {
+    } else if (travelData.sort === "fast") {
       sortedTravel = [...travel];
     }
 
     setChangetravel(sortedTravel);
     setTravelList([
-      ...sortedTravel.slice(currentPage * 6, (currentPage + 1) * 6),
+      ...sortedTravel.slice(
+        travelData.currentPage * 6,
+        (travelData.currentPage + 1) * 6
+      ),
     ]);
-  }, [currentPage, sort, travel]);
-
+  }, [travelData.currentPage, travelData.sort, travel]);
+  console.log(travelData.sort);
   return (
     <>
       <SelectTravel setSort={setSort} />
       <div className={style.main}>
-        {travelList.map((item, idx) => (
+        {travelData.travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
             <Link className={style.title} href={`/travelDetail/${item._id}`}>
               {item.title}
