@@ -5,20 +5,36 @@ import Inputs from "./inputs";
 import ContentList from "./contentList";
 
 export default function Maps({ day, id }) {
-  const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day.placeId[0]);
-  const [coors, setCoors] = useState([...day.placeId]);
-  // const [markers, setMarkers] = useState([...day.placeId]);
-  const [names, setNames] = useState([...day.place]);
-  const [contents, setContents] = useState([...day.content]);
-  const [imgList, setImgList] = useState([...day.daysImg]);
+  const [mapData, setMapData] = useState({
+    map: null,
+    place: day.placeId[0],
+    coors: [...day.placeId],
+    names: [...day.place],
+    contents: [...day.content],
+    imgList: [...day.daysImg],
+  });
+
+  const setPlace = (changePlace) =>
+    setMapData((prev) => ({ ...prev, place: changePlace }));
+
+  const setCoors = (changeCoors) =>
+    setMapData((prev) => ({ ...prev, coors: changeCoors }));
+
+  const setNames = (changeNames) =>
+    setMapData((prev) => ({ ...prev, names: changeNames }));
+
+  const setContents = (changeContents) =>
+    setMapData((prev) => ({ ...prev, contents: changeContents }));
+
+  const setImgList = (changeImgList) =>
+    setMapData((prev) => ({ ...prev, imgList: changeImgList }));
 
   const Mapref = useRef();
 
   useEffect(() => {
     const showMap = async () => {
-      let arr = [];
-      const curPlace = await geocodePlaceId(place);
+      const arr = [];
+      const curPlace = await geocodePlaceId(mapData.place);
       const newMap = new google.maps.Map(Mapref.current, {
         center: {
           lat: curPlace.geometry.location.lat(),
@@ -39,7 +55,7 @@ export default function Maps({ day, id }) {
 
       // 하루동안의 마커 생성
 
-      for (let id of coors) {
+      for (let id of mapData.coors) {
         const markerId = await geocodePlaceId(id);
 
         let coor = {
@@ -63,11 +79,14 @@ export default function Maps({ day, id }) {
           map: newMap,
         });
       }
-      setMap(newMap);
+
+      setMapData((prev) => ({
+        ...prev,
+        map: newMap,
+      }));
     };
     showMap();
-
-  }, [place, coors, imgList]);
+  }, [mapData.place, mapData.coors, mapData.imgList]);
 
   // 주소 받기
   const geocodePlaceId = (placeId) => {
@@ -82,6 +101,7 @@ export default function Maps({ day, id }) {
       });
     });
   };
+  // console.log(mapData.place);
 
   return (
     <div className={style.main}>
@@ -90,7 +110,7 @@ export default function Maps({ day, id }) {
         className={style.map}
         ref={Mapref}
         id="map"
-        style={{ width:"1000px", height: "500px" }}
+        style={{ width: "1000px", height: "500px" }}
       ></div>
 
       <div className={style.lists}>
@@ -98,28 +118,28 @@ export default function Maps({ day, id }) {
         <Inputs
           day={day}
           id={id}
-          names={names}
+          names={mapData.names}
           setNames={setNames}
-          place={place}
+          place={mapData.place}
           setPlace={setPlace}
-          contents={contents}
+          contents={mapData.contents}
           setContents={setContents}
-          coors={coors}
+          coors={mapData.coors}
           setCoors={setCoors}
-          imgList={imgList}
+          imgList={mapData.imgList}
           setImgList={setImgList}
         />
         {/* 했던일 보여주기 컴포넌트 */}
         <ContentList
           id={id}
           day={day}
-          names={names}
+          names={mapData.names}
           setNames={setNames}
-          contents={contents}
+          contents={mapData.contents}
           setContents={setContents}
-          coors={coors}
+          coors={mapData.coors}
           setCoors={setCoors}
-          imgList={imgList}
+          imgList={mapData.imgList}
           setImgList={setImgList}
         />
       </div>

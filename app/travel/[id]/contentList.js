@@ -30,15 +30,17 @@ export default function ContentList({
     setNames(names.filter((item, index) => index != idx));
 
     // firebase에서 이미지 삭제
-    for (let img of imgList[idx]) {
-      const desertRef = ref(storage, `images/${img}`);
-      deleteObject(desertRef)
-        .then(() => {
-          console.log("delete success");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    if (imgList[idx].length != 0) {
+      for (let img of imgList[idx]) {
+        const desertRef = ref(storage, `images/${img}`);
+        deleteObject(desertRef)
+          .then(() => {
+            console.log("delete success");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     }
 
     // 현재 이미지 배열 내의 이미지 삭제

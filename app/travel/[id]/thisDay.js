@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import style from "./thisDay.module.css";
 
 export default function ThisDay({ num, day, id, current }) {
-  const [money, setMoney] = useState(day.money);
-  const [value, setValue] = useState("");
+  const [money, setMoney] = useState(`${day.money}`);
 
   useEffect(() => {
     let changeMoney = [];
@@ -26,7 +25,7 @@ export default function ThisDay({ num, day, id, current }) {
     if (changeMoney[0] === ",") {
       changeMoney.shift();
     }
-    setValue(changeMoney.join(""));
+    setMoney(changeMoney.join(""));
   }, []);
   return (
     <div className={current === num ? style.main : style.none}>
@@ -65,12 +64,12 @@ export default function ThisDay({ num, day, id, current }) {
             if (changeMoney[0] === ",") {
               changeMoney.shift();
             }
-            setValue(changeMoney.join(""));
+            setMoney(changeMoney.join(""));
           }}
         >
           입력
         </button>
-        <h1 className={style.money}>{value} 원</h1>
+        <h1 className={style.money}>{money} 원</h1>
       </div>
 
       <Wrapper

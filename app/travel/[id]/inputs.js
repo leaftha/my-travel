@@ -103,22 +103,21 @@ export default function Inputs({
           }}
         />
         {/* 주소 자동 완성  */}
-       <ul className={style.addressList}>
-        {placePredictions.length == 0
-            || placePredictions.map((item, idx) => (
-                <li
-                  key={idx}
-                  className={style.address}
-                  onClick={() => {
-                    setPlace(item.place_id);
-                    setName(item.description);
-                  }}
-                >
-                  {item.description}
-                </li>
-              ))
-            }
-       </ul>
+        <ul className={style.addressList}>
+          {placePredictions.length == 0 ||
+            placePredictions.map((item, idx) => (
+              <li
+                key={idx}
+                className={style.address}
+                onClick={() => {
+                  setPlace(item.place_id);
+                  setName(item.description);
+                }}
+              >
+                {item.description}
+              </li>
+            ))}
+        </ul>
         {/* 했던 일 입력 창 */}
         <label>내용 입력</label>
         <textarea

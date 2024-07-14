@@ -6,9 +6,7 @@ import style from "./likes.module.css";
 export default function Likse({ like, email, id, isprivate }) {
   // 게시물의 비공개 여부
   const [isPrivate, setIsPrivate] = useState(isprivate);
-  const [privateString, sePrivateString] = useState(
-    isPrivate ? "비공개" : "공개"
-  );
+
   //현 게시물의 좋아요 갯수
   return (
     <div className={style.main}>
@@ -25,14 +23,9 @@ export default function Likse({ like, email, id, isprivate }) {
             }),
           });
           setIsPrivate(!isPrivate);
-          if (privateString === "비공개") {
-            sePrivateString("비공개중");
-          } else {
-            sePrivateString("공개중");
-          }
         }}
       >
-        {privateString}
+        {isPrivate ? "공개중" : "비공개중"}
       </button>
     </div>
   );

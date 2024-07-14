@@ -9,6 +9,9 @@ export default function Modal({ img = [], setModal }) {
 
   let imgWidth = window.innerWidth / 2;
   let imgHeight = window.innerHeight / 2;
+
+  console.log(current);
+
   return (
     <div className={style.main}>
       <h1
@@ -38,7 +41,7 @@ export default function Modal({ img = [], setModal }) {
         ))}
       </div>
       <h1
-        className={`${style.next}  ${(current === img.length - 1 || current === 0 )&& style.last}`}
+        className={`${style.next}  ${current === img.length - 1 && style.last}`}
         onClick={() => {
           if (current != img.length - 1) {
             setCurrent(current + 1);
