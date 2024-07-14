@@ -9,7 +9,6 @@ export default function Modal({ img, setModal }) {
 
   let imgWidth = window.innerWidth / 2;
   let imgHeight = window.innerHeight / 2;
-  console.log(current);
   return (
     <div className={style.main}>
       <h1
@@ -33,7 +32,7 @@ export default function Modal({ img, setModal }) {
       </h1>
       <div className={style.imgs}>
         {img.map((name, idx) => (
-          <div className={idx != current && style.none}>
+          <div key={idx} className={idx != current && style.none}>
             <Img key={idx} width={imgWidth} height={imgHeight} img={name} />
           </div>
         ))}

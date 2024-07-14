@@ -5,19 +5,13 @@ import ContentList from "./contentList";
 
 export default function Maps({ day, id }) {
   const [map, setMap] = useState(null);
-  const [place, setPlace] = useState(day.placeId[0]);
-  const [coors, setCoors] = useState([...day.placeId]);
-  // const [markers, setMarkers] = useState([...day.placeId]);
-  const [names, setNames] = useState([...day.place]);
-  const [contents, setContents] = useState([...day.content]);
-  const [imgList, setImgList] = useState([...day.daysImg]);
 
   const Mapref = useRef();
 
   useEffect(() => {
     const showMap = async () => {
       let arr = [];
-      const curPlace = await geocodePlaceId(place);
+      const curPlace = await geocodePlaceId(day.placeId[0]);
       const newMap = new google.maps.Map(Mapref.current, {
         center: {
           lat: curPlace.geometry.location.lat(),
@@ -28,7 +22,7 @@ export default function Maps({ day, id }) {
       });
 
       // 하루동안의 마커 생성
-      for (let id of coors) {
+      for (let id of day.placeId) {
         const markerId = await geocodePlaceId(id);
 
         let coor = {
@@ -55,7 +49,7 @@ export default function Maps({ day, id }) {
       setMap(newMap);
     };
     showMap();
-  }, [place, coors, imgList]);
+  }, []);
 
   // 주소 받기
   const geocodePlaceId = (placeId) => {
@@ -85,10 +79,10 @@ export default function Maps({ day, id }) {
         <ContentList
           id={id}
           day={day}
-          names={names}
-          contents={contents}
-          coors={coors}
-          imgList={imgList}
+          names={day.place}
+          contents={day.content}
+          coors={day.placeId}
+          imgList={day.daysImg}
         />
       </div>
     </div>

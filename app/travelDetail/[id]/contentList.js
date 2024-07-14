@@ -5,8 +5,19 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 export default function ContentList({ contents, imgList }) {
-  const [modal, setModal] = useState(false);
-  const [current, setCurrent] = useState();
+  // const [modal, setModal] = useState(false);
+  // const [current, setCurrent] = useState();
+
+  const [modalState, setModalState] = useState({
+    modal: false,
+    current: 0,
+  });
+
+  const setModal = (isModal) =>
+    setModalState((prev) => ({
+      ...prev,
+      modal: isModal,
+    }));
 
   return (
     <>
@@ -22,8 +33,11 @@ export default function ContentList({ contents, imgList }) {
             {/* 이미지 리스트 보여주기 */}
             <h1
               onClick={() => {
-                setModal(!modal);
-                setCurrent(idx);
+                setModalState((prev) => ({
+                  modal: !prev.modal,
+                  current: idx,
+                }));
+
                 document.body.classList.add("stop-scroll");
               }}
             >
@@ -32,7 +46,9 @@ export default function ContentList({ contents, imgList }) {
           </div>
         ))
       )}
-      {modal && <Modal img={imgList[current]} setModal={setModal} />}
+      {modalState.modal && (
+        <Modal img={imgList[modalState.current]} setModal={setModal} />
+      )}
     </>
   );
 }

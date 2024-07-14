@@ -2,21 +2,22 @@
 
 import { useEffect, useState } from "react";
 
-import style from "./likes.module.css"
+import style from "./likes.module.css";
 
 export default function Likse({ like, id, user }) {
-  // 유저의 좋아요한 게시물 아이디
-  const [likes, setLikes] = useState(user != null ? [...user.likes] : null);
-  //현 게시물의 좋아요 갯수
-  const [likeNum, setlikeNum] = useState(like);
+  const [likeState, setLikeState] = useState({
+    userLike: user != null ? [...user.likes] : null,
+    likeNum: like,
+  });
+
   return (
     <div className={style.main}>
-      <h1 className={style.num}>{likeNum}</h1>
+      <h1 className={style.num}>{likeState.likeNum}</h1>
       {user != null ? (
         <button
-        className={style.btn}
+          className={style.btn}
           onClick={() => {
-            if (likes.indexOf(id) === -1) {
+            if (likeState.userLike.indexOf(id) === -1) {
               // 유저가 좋아요 하지 않을 경우
               fetch("/api/post/upLikes", {
                 method: "POST",
@@ -25,8 +26,10 @@ export default function Likse({ like, id, user }) {
                   id: id,
                 }),
               });
-              setlikeNum(likeNum + 1);
-              setLikes([...likes, id]);
+              setLikeState((prev) => ({
+                userLike: [...prev.userLike, id],
+                likeNum: prev.likeNum + 1,
+              }));
             } else {
               // 유저가 좋아요 했을경우
               fetch("/api/post/deleteLike", {
@@ -36,8 +39,10 @@ export default function Likse({ like, id, user }) {
                   id: id,
                 }),
               });
-              setLikes(likes.filter((item, index) => item != id));
-              setlikeNum(likeNum - 1);
+              setLikeState((prev) => ({
+                userLike: prev.userLike.filter((item, index) => item != id),
+                likeNum: prev.likeNum - 1,
+              }));
             }
           }}
         >

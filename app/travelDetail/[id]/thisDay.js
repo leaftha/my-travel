@@ -6,11 +6,11 @@ import style from "./thisDay.module.css";
 import { useEffect, useState } from "react";
 
 export default function ThisDay({ num, day, id, current }) {
-  const [money, setMoney] = useState(day.money);
+  const [money, setMoney] = useState(`${day.money}`);
   const [value, setValue] = useState("");
   useEffect(() => {
     let changeMoney = [];
-    let newMoney = `${money}`;
+    let newMoney = money;
     let count = 0;
     for (let i = newMoney.length - 1; i >= 0; i--) {
       changeMoney.unshift(newMoney[i]);
@@ -24,11 +24,11 @@ export default function ThisDay({ num, day, id, current }) {
     if (changeMoney[0] === ",") {
       changeMoney.shift();
     }
-    setValue(changeMoney.join(""));
+    setMoney(changeMoney.join(""));
   }, []);
   return (
     <div className={current === num ? style.main : style.none}>
-      <h1 className={style.money}>{value} 원</h1>
+      <h1 className={style.money}>{money} 원</h1>
       <Wrapper
         apiKey={process.env.NEXT_PUBLIC_API}
         libraries={["places", "marker"]}
