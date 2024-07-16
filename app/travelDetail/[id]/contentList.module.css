@@ -10,3 +10,8 @@
   line-height: 50px;
   font-size: 20px;
 }
+
+.imgButton {
+  cursor: pointer;
+  margin: 10px;
+}

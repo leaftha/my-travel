@@ -2,7 +2,6 @@
 
 import { ref, deleteObject } from "firebase/storage";
 import storage from "@/firebase/storage";
-import Img from "./img";
 
 import style from "./contentList.module.css";
 import { useState } from "react";

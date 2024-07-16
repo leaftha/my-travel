@@ -4,7 +4,7 @@ import style from "./contentList.module.css";
 import { useState } from "react";
 import Modal from "./Modal";
 
-export default function ContentList({ contents, imgList }) {
+export default function ContentList({ names, contents, imgList }) {
   // const [modal, setModal] = useState(false);
   // const [current, setCurrent] = useState();
 
@@ -26,12 +26,17 @@ export default function ContentList({ contents, imgList }) {
       ) : (
         contents.map((item, idx) => (
           <div className={style.content} key={idx}>
+            <div>
+              <h1>{names[idx]}</h1>
+            </div>
             <div className={style.contentMain}>
               <p>{item}</p>
+              {console.log(contents)}
             </div>
 
             {/* 이미지 리스트 보여주기 */}
             <h1
+              className={style.imgButton}
               onClick={() => {
                 setModalState((prev) => ({
                   modal: !prev.modal,

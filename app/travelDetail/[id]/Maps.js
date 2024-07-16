@@ -64,6 +64,8 @@ export default function Maps({ day, id }) {
       });
     });
   };
+
+  console.log(day);
   return (
     <div className={style.main}>
       {/* 지도 보여주기 */}
