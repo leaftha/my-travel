@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import style from "./pagination.module.css";
 
-export default function Pagination({ trip, setCurrentPage }) {
+export default function Pagination({ trip, changeCurrentPage }) {
   const [pagin, setPagin] = useState({
     maxLength: Array.from(
       { length: Math.ceil(trip.length / 6) },
@@ -56,7 +56,7 @@ export default function Pagination({ trip, setCurrentPage }) {
             key={`${idx}페이지`}
             className={style.btn}
             onClick={() => {
-              setCurrentPage(item - 1);
+              changeCurrentPage(item - 1);
             }}
           >
             {item}

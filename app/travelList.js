@@ -4,44 +4,72 @@ import Link from "next/link";
 import LineMaps from "./lineMaps";
 import style from "./travelList.module.css";
 import Pagination from "./pagination";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import ChangeSort from "./changeSort";
 
 export default function TravelList({ travel }) {
-  const [state, setState] = useState({
+  const [travelData, dispatch] = useReducer(travelReducer, {
     changetype: true,
     changetravel: [...travel],
     travelList: [...travel.slice(0, 6)],
     currentPage: 0,
   });
 
-  const setChangType = (changetype) =>
-    setState((prevState) => ({ ...prevState, changetype }));
-  const setChangetravel = (changetravel) =>
-    setState((prevState) => ({ ...prevState, changetravel }));
-  const setTravelList = (travelList) =>
-    setState((prevState) => ({ ...prevState, travelList }));
-  const setCurrentPage = (currentPage) =>
-    setState((prevState) => ({ ...prevState, currentPage }));
+  // const setChangType = (changetype) =>
+  //   setState((prevState) => ({ ...prevState, changetype }));
+  // const setChangetravel = (changetravel) =>
+  //   setState((prevState) => ({ ...prevState, changetravel }));
+  // const setTravelList = (travelList) =>
+  //   setState((prevState) => ({ ...prevState, travelList }));
+  // const setCurrentPage = (currentPage) =>
+  //   setState((prevState) => ({ ...prevState, currentPage }));
+  const changeTravel = (type) => {
+    dispatch({
+      type: "ChangeType",
+      changetype: type,
+    });
+  };
+
+  const changeCurrentPage = (currentPage) => {
+    dispatch({
+      type: "changeCurrentPage",
+      changePage: currentPage,
+    });
+  };
 
   useEffect(() => {
     let sortedTravel;
-    if (!state.changetype) {
+    if (!travelData.changetype) {
       sortedTravel = [...travel];
     } else {
       sortedTravel = [...travel].reverse();
     }
-    setChangetravel(sortedTravel);
-    setTravelList([
-      ...sortedTravel.slice(state.currentPage * 6, (state.currentPage + 1) * 6),
-    ]);
-  }, [state.currentPage, state.changetype, travel]);
+    // setChangetravel(sortedTravel);
+    dispatch({
+      type: "ChangeTravel",
+      Changetravel: sortedTravel,
+    });
 
+    dispatch({
+      type: "ChangeTravelList",
+      ChangeList: [
+        ...sortedTravel.slice(
+          travelData.currentPage * 6,
+          (travelData.currentPage + 1) * 6
+        ),
+      ],
+    });
+  }, [travelData.currentPage, travelData.changetype, travel]);
+
+  console.log(travelData);
   return (
     <>
-      <ChangeSort changetype={state.changetype} setChangType={setChangType} />
+      <ChangeSort
+        changetype={travelData.changetype}
+        changeTravel={changeTravel}
+      />
       <div className={style.main}>
-        {state.travelList.map((item, idx) => (
+        {travelData.travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
             <Link className={style.title} href={`/travel/${item._id}`}>
               {item.title}
@@ -56,7 +84,43 @@ export default function TravelList({ travel }) {
           </div>
         ))}
       </div>
-      <Pagination trip={state.changetravel} setCurrentPage={setCurrentPage} />
+      <Pagination
+        trip={travelData.changetravel}
+        changeCurrentPage={changeCurrentPage}
+      />
     </>
   );
+}
+
+function travelReducer(travelData, action) {
+  switch (action.type) {
+    case "ChangeType": {
+      return {
+        ...travelData,
+        changetype: !travelData.changetype,
+      };
+    }
+    case "ChangeTravel": {
+      return {
+        ...travelData,
+        changetravel: action.Changetravel,
+      };
+    }
+    case "ChangeTravelList": {
+      return {
+        ...travelData,
+        travelList: action.ChangeList,
+      };
+    }
+    case "changeCurrentPage": {
+      return {
+        ...travelData,
+        currentPage: action.changePage,
+      };
+    }
+
+    default: {
+      throw Error("Unkown action Type");
+    }
+  }
 }
