@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useReducer, act } from "react";
 import style from "./Map.module.css";
 import Inputs from "./inputs";
 import ContentList from "./contentList";
 
 export default function Maps({ day, id }) {
-  const [mapData, setMapData] = useState({
+  const [mapData, dispatch] = useReducer(MapReducer, {
     map: null,
     place: day.placeId[0],
     coors: [...day.placeId],
@@ -14,20 +14,55 @@ export default function Maps({ day, id }) {
     imgList: [...day.daysImg],
   });
 
-  const setPlace = (changePlace) =>
-    setMapData((prev) => ({ ...prev, place: changePlace }));
+  // const setPlace = (changePlace) =>
+  //   setMapData((prev) => ({ ...prev, place: changePlace }));
 
-  const setCoors = (changeCoors) =>
-    setMapData((prev) => ({ ...prev, coors: changeCoors }));
+  const changePlaceHandler = (changePlace) => {
+    dispatch({
+      type: "ChangePalce",
+      place: changePlace,
+    });
+  };
 
-  const setNames = (changeNames) =>
-    setMapData((prev) => ({ ...prev, names: changeNames }));
+  // const setCoors = (changeCoors) =>
+  //   setMapData((prev) => ({ ...prev, coors: changeCoors }));
 
-  const setContents = (changeContents) =>
-    setMapData((prev) => ({ ...prev, contents: changeContents }));
+  const changeCoorsHandler = (changeCoors) => {
+    dispatch({
+      type: "ChangeCoors",
+      coors: changeCoors,
+    });
+  };
 
-  const setImgList = (changeImgList) =>
-    setMapData((prev) => ({ ...prev, imgList: changeImgList }));
+  // const setNames = (changeNames) =>
+  //   setMapData((prev) => ({ ...prev, names: changeNames }));
+
+  const changeNamesHandler = (changeNames) => {
+    dispatch({
+      type: "ChangeNames",
+      names: changeNames,
+    });
+  };
+
+  // const setContents = (changeContents) =>
+  //   setMapData((prev) => ({ ...prev, contents: changeContents }));
+
+  const changeContentsHandler = (changeContents) => {
+    dispatch({
+      type: "ChangeContents",
+      contents: changeContents,
+    });
+  };
+
+  // const setImgList = (changeImgList) =>
+  //   setMapData((prev) => ({ ...prev, imgList: changeImgList }));
+
+  const changeImgListHandler = (changeImgList) => {
+    dispatch({
+      type: "ChangeImgList",
+      imgList: changeImgList,
+    });
+  };
 
   const Mapref = useRef();
 
@@ -80,10 +115,10 @@ export default function Maps({ day, id }) {
         });
       }
 
-      setMapData((prev) => ({
-        ...prev,
+      dispatch({
+        type: "setMap",
         map: newMap,
-      }));
+      });
     };
     showMap();
   }, [mapData.place, mapData.coors, mapData.imgList]);
@@ -119,30 +154,74 @@ export default function Maps({ day, id }) {
           day={day}
           id={id}
           names={mapData.names}
-          setNames={setNames}
+          setNames={changeNamesHandler}
           place={mapData.place}
-          setPlace={setPlace}
+          setPlace={changePlaceHandler}
           contents={mapData.contents}
-          setContents={setContents}
+          setContents={changeContentsHandler}
           coors={mapData.coors}
-          setCoors={setCoors}
+          setCoors={changeCoorsHandler}
           imgList={mapData.imgList}
-          setImgList={setImgList}
+          setImgList={changeImgListHandler}
         />
         {/* 했던일 보여주기 컴포넌트 */}
         <ContentList
           id={id}
           day={day}
           names={mapData.names}
-          setNames={setNames}
+          setNames={changeNamesHandler}
           contents={mapData.contents}
-          setContents={setContents}
+          setContents={changeContentsHandler}
           coors={mapData.coors}
-          setCoors={setCoors}
+          setCoors={changeCoorsHandler}
           imgList={mapData.imgList}
-          setImgList={setImgList}
+          setImgList={changeImgListHandler}
         />
       </div>
     </div>
   );
+}
+
+function MapReducer(mapData, action) {
+  switch (action.type) {
+    case "setMap": {
+      return {
+        ...mapData,
+        map: action.map,
+      };
+    }
+    case "ChangePalce": {
+      return {
+        ...mapData,
+        place: action.place,
+      };
+    }
+    case "ChangeCoors": {
+      return {
+        ...mapData,
+        coors: action.coors,
+      };
+    }
+    case "ChangeNames": {
+      return {
+        ...mapData,
+        names: action.names,
+      };
+    }
+    case "ChangeContents": {
+      return {
+        ...mapData,
+        place: action.content,
+      };
+    }
+    case "ChangeImgList": {
+      return {
+        ...mapData,
+        imgList: action.imgList,
+      };
+    }
+    default: {
+      throw Error("Unkown action Type");
+    }
+  }
 }
