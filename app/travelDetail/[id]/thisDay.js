@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 export default function ThisDay({ num, day, id, current }) {
   const [money, setMoney] = useState(`${day.money}`);
-  const [value, setValue] = useState("");
   useEffect(() => {
     let changeMoney = [];
     let newMoney = money;

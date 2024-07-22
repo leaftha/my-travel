@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, useReducer, act } from "react";
+import { useEffect, useRef, useReducer } from "react";
 import style from "./Map.module.css";
 import Inputs from "./inputs";
 import ContentList from "./contentList";
@@ -14,18 +14,12 @@ export default function Maps({ day, id }) {
     imgList: [...day.daysImg],
   });
 
-  // const setPlace = (changePlace) =>
-  //   setMapData((prev) => ({ ...prev, place: changePlace }));
-
   const changePlaceHandler = (changePlace) => {
     dispatch({
-      type: "ChangePalce",
+      type: "ChangePlace",
       place: changePlace,
     });
   };
-
-  // const setCoors = (changeCoors) =>
-  //   setMapData((prev) => ({ ...prev, coors: changeCoors }));
 
   const changeCoorsHandler = (changeCoors) => {
     dispatch({
@@ -34,9 +28,6 @@ export default function Maps({ day, id }) {
     });
   };
 
-  // const setNames = (changeNames) =>
-  //   setMapData((prev) => ({ ...prev, names: changeNames }));
-
   const changeNamesHandler = (changeNames) => {
     dispatch({
       type: "ChangeNames",
@@ -44,18 +35,12 @@ export default function Maps({ day, id }) {
     });
   };
 
-  // const setContents = (changeContents) =>
-  //   setMapData((prev) => ({ ...prev, contents: changeContents }));
-
   const changeContentsHandler = (changeContents) => {
     dispatch({
       type: "ChangeContents",
       contents: changeContents,
     });
   };
-
-  // const setImgList = (changeImgList) =>
-  //   setMapData((prev) => ({ ...prev, imgList: changeImgList }));
 
   const changeImgListHandler = (changeImgList) => {
     dispatch({
@@ -89,16 +74,14 @@ export default function Maps({ day, id }) {
       });
 
       // 하루동안의 마커 생성
-
       for (let id of mapData.coors) {
         const markerId = await geocodePlaceId(id);
-
         let coor = {
           lat: markerId.geometry.location.lat(),
           lng: markerId.geometry.location.lng(),
         };
         arr.push(coor);
-        const marker = new google.maps.marker.AdvancedMarkerElement({
+        new google.maps.marker.AdvancedMarkerElement({
           map: newMap,
           position: coor,
         });
@@ -106,7 +89,7 @@ export default function Maps({ day, id }) {
 
       // 마커 라인 그리기
       if (arr.length > 1) {
-        const flightPath = new google.maps.Polyline({
+        new google.maps.Polyline({
           path: arr,
           strokeColor: "#FF0000",
           strokeOpacity: 1.0,
@@ -121,9 +104,8 @@ export default function Maps({ day, id }) {
       });
     };
     showMap();
-  }, [mapData.place, mapData.coors, mapData.imgList]);
+  }, [mapData.place, mapData.contents, mapData.coors, mapData.imgList]);
 
-  // 주소 받기
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
       const geocoder = new google.maps.Geocoder();
@@ -136,7 +118,6 @@ export default function Maps({ day, id }) {
       });
     });
   };
-  // console.log(mapData.place);
 
   return (
     <div className={style.main}>
@@ -190,7 +171,7 @@ function MapReducer(mapData, action) {
         map: action.map,
       };
     }
-    case "ChangePalce": {
+    case "ChangePlace": {
       return {
         ...mapData,
         place: action.place,
@@ -211,7 +192,7 @@ function MapReducer(mapData, action) {
     case "ChangeContents": {
       return {
         ...mapData,
-        place: action.content,
+        contents: action.contents,
       };
     }
     case "ChangeImgList": {
@@ -221,7 +202,7 @@ function MapReducer(mapData, action) {
       };
     }
     default: {
-      throw Error("Unkown action Type");
+      throw Error("Unknown action Type");
     }
   }
 }

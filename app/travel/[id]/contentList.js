@@ -21,7 +21,7 @@ export default function ContentList({
 }) {
   const [modal, setModal] = useState(false);
   const [current, setCurrent] = useState();
-
+  console.log(imgList);
   // 내용 삭제하기
   const deletContent = (idx) => {
     setContents(contents.filter((item, index) => index != idx));

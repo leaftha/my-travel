@@ -85,6 +85,7 @@ export default function Inputs({
       setCoors([place, ...coors]);
       setNames([name, ...names]);
     }
+
     setImgList([...imgList, []]);
     setContents([content, ...contents]);
     setContent("");
