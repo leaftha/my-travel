@@ -60,6 +60,10 @@ export default function Inputs({
 
   // conten 이미지와 내용, 주소등이 db 전달
   const handleSubmit = async () => {
+    if (content === "" || name === "") {
+      alert("빈칸을 입력해주세요");
+      return false;
+    }
     let uploadedImgNames = [];
     if (inputimage.length !== 0) {
       uploadedImgNames = await onClickUploadB();
