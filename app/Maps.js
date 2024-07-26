@@ -18,7 +18,7 @@ export default function Maps({ num, day }) {
           lat: thisPlace.geometry.location.lat(),
           lng: thisPlace.geometry.location.lng(),
         },
-        zoom: 10,
+        zoom: 14,
         mapId: `my-Map-${num}`,
       });
 

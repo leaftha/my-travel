@@ -6,28 +6,11 @@ import style from "./thisDay.module.css";
 import { useEffect, useState } from "react";
 
 export default function ThisDay({ num, day, id, current }) {
-  const [money, setMoney] = useState(`${day.money}`);
-  useEffect(() => {
-    let changeMoney = [];
-    let newMoney = money;
-    let count = 0;
-    for (let i = newMoney.length - 1; i >= 0; i--) {
-      changeMoney.unshift(newMoney[i]);
-      if (count === 2) {
-        changeMoney.unshift(",");
-        count = 0;
-      } else {
-        count++;
-      }
-    }
-    if (changeMoney[0] === ",") {
-      changeMoney.shift();
-    }
-    setMoney(changeMoney.join(""));
-  }, []);
+  const formattedMoney = day.money.toLocaleString();
+
   return (
     <div className={current === num ? style.main : style.none}>
-      <h1 className={style.money}>{money} 원</h1>
+      <h1 className={style.money}>{formattedMoney} 원</h1>
       <Wrapper
         apiKey={process.env.NEXT_PUBLIC_API}
         libraries={["places", "marker"]}

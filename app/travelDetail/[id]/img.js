@@ -9,20 +9,17 @@ import style from "./img.module.css";
 
 export default function Img({ img, width, height }) {
   const [imgurl, setImgurl] = useState();
-
-  useEffect(() => {
-    const func = async () => {
-      if (img !== undefined) {
-        // 이미지 다운 받기
-        const reference = ref(storage, `images/${img}`);
-        await getDownloadURL(reference).then((x) => {
-          setImgurl(x);
-        });
-      }
-    };
-    func();
-  }, [img]);
-
+  const func = async () => {
+    if (img !== undefined) {
+      // 이미지 다운 받기
+      const reference = ref(storage, `images/${img}`);
+      await getDownloadURL(reference).then((x) => {
+        setImgurl(x);
+      });
+    }
+  };
+  func();
+  
   return (
     <div className={style.img}>
       {imgurl ? (

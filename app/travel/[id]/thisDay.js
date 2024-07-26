@@ -9,24 +9,11 @@ import style from "./thisDay.module.css";
 export default function ThisDay({ num, day, id, current }) {
   const [money, setMoney] = useState(`${day.money}`);
 
-  useEffect(() => {
-    let changeMoney = [];
-    let newMoney = `${money}`;
-    let count = 0;
-    for (let i = newMoney.length - 1; i >= 0; i--) {
-      changeMoney.unshift(newMoney[i]);
-      if (count === 2) {
-        changeMoney.unshift(",");
-        count = 0;
-      } else {
-        count++;
-      }
-    }
-    if (changeMoney[0] === ",") {
-      changeMoney.shift();
-    }
-    setMoney(changeMoney.join(""));
-  }, []);
+  const moneyChanger = (money) => {
+    const formattedMoney = parseInt(money, 10).toLocaleString();
+    setMoney(formattedMoney);
+  }
+
   return (
     <div className={current === num ? style.main : style.none}>
       <div className={style.moneybody}>
@@ -49,22 +36,7 @@ export default function ThisDay({ num, day, id, current }) {
                 money: money,
               }),
             });
-            let changeMoney = [];
-            let newMoney = `${money}`;
-            let count = 0;
-            for (let i = newMoney.length - 1; i >= 0; i--) {
-              changeMoney.unshift(newMoney[i]);
-              if (count === 2) {
-                changeMoney.unshift(",");
-                count = 0;
-              } else {
-                count++;
-              }
-            }
-            if (changeMoney[0] === ",") {
-              changeMoney.shift();
-            }
-            setMoney(changeMoney.join(""));
+            moneyChanger(money)
           }}
         >
           입력

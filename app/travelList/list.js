@@ -41,8 +41,7 @@ export default function List({ travel }) {
         (travelData.currentPage + 1) * 6
       ),
     ]);
-  }, [travelData.currentPage, travelData.sort, travel]);
-  console.log(travelData.sort);
+  }, [travelData.currentPage, travelData.sort]);
   return (
     <>
       <SelectTravel setSort={setSort} />

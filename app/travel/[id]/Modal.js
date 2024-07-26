@@ -10,7 +10,6 @@ export default function Modal({ img = [], setModal }) {
   let imgWidth = window.innerWidth / 2;
   let imgHeight = window.innerHeight / 2;
 
-  console.log(current);
 
   return (
     <div className={style.main}>
