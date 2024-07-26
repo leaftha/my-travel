@@ -10,7 +10,7 @@ export default function LineMaps({ day }) {
         apiKey={process.env.NEXT_PUBLIC_API}
         libraries={["places", "marker"]}
       >
-        <Maps day={day} />
+        <Maps day={day}  />
       </Wrapper>
     </div>
   );

@@ -10,7 +10,7 @@ import ChangeSort from "./changeSort";
 export default function TravelList({ travel }) {
   const [travelData, dispatch] = useReducer(travelReducer, {
     changetype: true,
-    changetravel: [...travel],
+    changetravel: [...travel.reverse()],
     travelList: [...travel.slice(0, 6)],
     currentPage: 0,
   });
@@ -59,9 +59,8 @@ export default function TravelList({ travel }) {
         ),
       ],
     });
-  }, [travelData.currentPage, travelData.changetype, travel]);
+  }, [travelData.currentPage, travelData.changetype]);
 
-  console.log(travelData);
   return (
     <>
       <ChangeSort

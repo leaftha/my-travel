@@ -77,7 +77,7 @@ export default function Maps({ num, day }) {
     };
 
     fetchCoordinates();
-  }, [day, place]);
+  }, [ ]);
 
   const geocodePlaceId = (placeId) => {
     return new Promise((resolve, reject) => {
