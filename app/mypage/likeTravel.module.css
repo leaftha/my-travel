@@ -1,6 +1,6 @@
 .main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   margin: 40px 0;
   width: 100%;
 }
@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #ced4da;
+  margin: 0 20px;
   border-radius: 10px;
   /* padding: 50px; */
   width: 200px;
