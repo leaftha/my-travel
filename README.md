@@ -20,16 +20,19 @@ Next.js를 활용해 만든 여행 기록 사이트 입니다.
 
 ## ⚙️ 개발 환경
 
-개발 언어 :
+개발 언어
+
+<p>
 <img src="https://img.shields.io/badge/Javascript-F7DF1E?
           style=flat&logo=javascript&logoColor=white"/>
-
-Framwork :
+</p>
+Framwork 
+<p>
 <img src="https://img.shields.io/badge/Next.js-000000?
           style=flat&logo=nextdotjs&logoColor=white"/>
 <img src="https://img.shields.io/badge/React-61DAFB?
           style=flat&logo=react&logoColor=white"/>
-
+</p>
 Database :
 <img src="https://img.shields.io/badge/MongoDB-47A248?
           style=flat&logo=mongodb&logoColor=white"/>
