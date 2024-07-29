@@ -18,30 +18,31 @@ Next.js를 활용해 만든 여행 기록 사이트 입니다.
 
 피세찬(동서대학교.컴퓨터공학과)
 
+[![GitHub Streak](https://streak-stats.demolab.com?user=leaftha)](https://git.io/streak-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=leaftha)](https://github.com/anuraghazra/github-readme-stats)
+
 ## ⚙️ 개발 환경
 
 개발 언어
 
-<p>
-<img src="https://img.shields.io/badge/Javascript-F7DF1E?
-          style=flat&logo=javascript&logoColor=white"/>
-</p>
-Framwork 
-<p>
-<img src="https://img.shields.io/badge/Next.js-000000?
-          style=flat&logo=nextdotjs&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-61DAFB?
-          style=flat&logo=react&logoColor=white"/>
-</p>
-Database :
-<img src="https://img.shields.io/badge/MongoDB-47A248?
-          style=flat&logo=mongodb&logoColor=white"/>
+![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
 
-API:
-<img src="https://img.shields.io/badge/Firebase-DD2C00?
-          style=flat&logo=firebase&logoColor=white"/>
-<img src="https://img.shields.io/badge/Google Maps-4285F4?
-          style=flat&logo=googlemaps&logoColor=white"/>
+Framwork
+
+![nextjs](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge)
+
+![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
+Database
+
+![mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+
+API
+
+![firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+
+![map](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 ## 🔗 배포 주소
 
