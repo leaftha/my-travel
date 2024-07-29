@@ -31,7 +31,6 @@ export default function ContentList({ names, contents, imgList }) {
             </div>
             <div className={style.contentMain}>
               <p>{item}</p>
-              {console.log(contents)}
             </div>
 
             {/* 이미지 리스트 보여주기 */}
