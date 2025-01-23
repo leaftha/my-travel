@@ -6,6 +6,7 @@ import { connectDB } from "@/util/database";
 import NewTravel from "./newTravel";
 import TravelList from "./travelList";
 import style from "./page.module.css";
+import Landing from "./landing";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
@@ -47,13 +48,16 @@ export default async function Home() {
   }
   return (
     <div className={style.body}>
-      <div className={style.btns}>
-        <Link className={style.link} href="/travelList">
-          여행 리스트
-        </Link>
-        {session ? <NewTravel user={session} /> : ""}
-      </div>
-      {session ? <TravelList travel={result} /> : ""}
+      {session ? (
+        <>
+          <NewTravel user={session} />
+          <TravelList travel={result} />
+        </>
+      ) : (
+        <>
+          <Landing />
+        </>
+      )}
     </div>
   );
 }
