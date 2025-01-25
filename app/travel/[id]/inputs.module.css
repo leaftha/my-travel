@@ -17,6 +17,14 @@
 
 .addressInput {
   margin: 10px 0;
+  background: none;
+  border: none;
+  font-size: 20px;
+  border-bottom: 1px solid #111111;
+}
+
+.addressInput:focus {
+  outline: none;
 }
 
 .addressList {
@@ -25,7 +33,6 @@
 }
 
 .address {
-
   cursor: pointer;
 }
 

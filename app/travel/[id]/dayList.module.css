@@ -12,6 +12,18 @@
   display: flex;
 }
 
+.daylist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daytitle {
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
 .btn {
   font-size: 17px;
   background: #f8f9fa;
@@ -26,7 +38,6 @@
   background: #f1f3f5;
 }
 
-
 .popup {
   display: flex;
   font-size: 30px;
@@ -38,8 +49,8 @@
 }
 
 @media (max-width: 768px) {
- .btn {
-  font-size: 10px;
-  padding: 5px;
- }
+  .btn {
+    font-size: 10px;
+    padding: 5px;
+  }
 }

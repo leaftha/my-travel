@@ -12,19 +12,22 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .moneybody {
-  /* text-align: center; */
-  /* display: flex;
-  flex-direction: column; */
   margin: 10px 0;
 }
 
 .inputbox {
-  padding: 10px;
   font-size: 20px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #111111;
+}
+
+.inputbox:focus {
+  outline: none;
 }
 
 .money {
@@ -34,15 +37,10 @@
 
 .btn {
   margin: 20px;
-  font-size: 17px;
+  font-size: 20px;
   background: #f8f9fa;
   padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
+  border: none;
   cursor: pointer;
   transition: 0.2s;
-}
-
-.btn:hover {
-  background: #f1f3f5;
 }

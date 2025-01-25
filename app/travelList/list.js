@@ -26,7 +26,6 @@ export default function List({ travel }) {
     setTravelData((prevState) => ({ ...prevState, currentPage }));
 
   useEffect(() => {
-    // 정렬 기능 정렬 알고리즘은 추후 다른 알고리즘으로 교체
     let sortedTravel;
     if (travelData.sort === "like") {
       sortedTravel = [...travel].sort((a, b) => b.like - a.like);
@@ -43,9 +42,11 @@ export default function List({ travel }) {
     ]);
   }, [travelData.currentPage, travelData.sort]);
   return (
-    <>
-      <SelectTravel setSort={setSort} />
-      <div className={style.main}>
+    <div className={style.main}>
+      <div className={style.btnlist}>
+        <SelectTravel setSort={setSort} />
+      </div>
+      <div className={style.list}>
         {travelData.travelList.map((item, idx) => (
           <div className={style.item} key={idx}>
             <Link className={style.title} href={`/travelDetail/${item._id}`}>
@@ -54,7 +55,7 @@ export default function List({ travel }) {
             <h1 className={style.money}>Money : {item.money}</h1>
             <h1 className={style.menber}>Menber : {item.menber}</h1>
             {item.days.length === 0 ? (
-              <h1>아직 입력 중</h1>
+              <h1 className={style.title}>아직 입력 중입니다.</h1>
             ) : (
               <LineMaps num={idx} day={item.days} />
             )}
@@ -62,6 +63,6 @@ export default function List({ travel }) {
         ))}
       </div>
       <Pagination trip={travel} setCurrentPage={setCurrentPage} />
-    </>
+    </div>
   );
 }

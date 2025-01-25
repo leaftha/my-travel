@@ -17,18 +17,20 @@ export default function DayList({ days, id }) {
   return (
     <div className={style.main}>
       <div className={style.pages}>
-        {days.days.length > 0 &&
-          days.days.map((item, idx) => (
-            <button
-              className={style.btn}
-              onClick={() => {
-                setCurrentDay(idx);
-              }}
-              key={idx}
-            >
-              {idx + 1}일
-            </button>
-          ))}
+        <div className={style.daylist}>
+          {days.days.length > 0 &&
+            days.days.map((item, idx) => (
+              <h1
+                className={style.daytitle}
+                onClick={() => {
+                  setCurrentDay(idx);
+                }}
+                key={idx}
+              >
+                {idx + 1}일
+              </h1>
+            ))}
+        </div>
         <form action="/api/post/addDate" method="POST">
           <input
             className={style.none}

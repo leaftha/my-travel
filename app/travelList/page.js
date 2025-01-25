@@ -38,9 +38,5 @@ export default async function Detail() {
     day.money = changeMoney;
   }
 
-  return (
-    <div>
-      <List travel={result} />
-    </div>
-  );
+  return <List travel={result} />;
 }

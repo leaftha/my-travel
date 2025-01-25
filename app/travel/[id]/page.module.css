@@ -7,8 +7,8 @@
   flex-direction: row-reverse;
   /* align-items: center; */
   width: 100%;
+  padding-top: 100px;
 }
-
 
 .home {
   font-weight: bold;
@@ -62,7 +62,6 @@
 .menu {
   margin-left: auto;
 }
-
 
 @media (max-width: 768px) {
   .content {
