@@ -54,40 +54,40 @@ export default function ContentList({
         contents.map((item, idx) => (
           <div className={style.content} key={idx}>
             {/* 했던일 삭제 버튼 */}
-            <div className={style.delete}>
-              <button
-                className={style.delteBtn}
-                onClick={() => {
-                  fetch("/api/post/deleteToDid", {
-                    method: "POST",
-                    body: JSON.stringify({
-                      id: id,
-                      day: day.day,
-                      contents: [...contents],
-                      idx: idx,
-                    }),
-                  });
-                  deletContent(idx);
-                }}
-              >
-                X
-              </button>
-            </div>
             <div className={style.contentMain}>
-              <h1>{names[idx]}</h1>
+              <div className={style.titls}>
+                <h1 className={style.title}>{names[idx]}</h1>
+                <button
+                  className={style.delteBtn}
+                  onClick={() => {
+                    fetch("/api/post/deleteToDid", {
+                      method: "POST",
+                      body: JSON.stringify({
+                        id: id,
+                        day: day.day,
+                        contents: [...contents],
+                        idx: idx,
+                      }),
+                    });
+                    deletContent(idx);
+                  }}
+                >
+                  X
+                </button>
+              </div>
+              {/* 이미지 리스트 보여주기 */}
+              <h1
+                onClick={() => {
+                  setModal(!modal);
+                  setCurrent(idx);
+                  document.body.classList.add("stop-scroll");
+                }}
+                className={style.imgBtn}
+              >
+                이미지 보기
+              </h1>
               <p>{item}</p>
             </div>
-
-            {/* 이미지 리스트 보여주기 */}
-            <h1
-              onClick={() => {
-                setModal(!modal);
-                setCurrent(idx);
-                document.body.classList.add("stop-scroll");
-              }}
-            >
-              이미지 보기
-            </h1>
           </div>
         ))
       )}

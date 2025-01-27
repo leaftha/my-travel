@@ -44,7 +44,7 @@ export default function DayList({ days, id }) {
             defaultValue={last_day}
             readOnly={true}
           />
-          <button className={style.btn}>하루 추가</button>
+          <button className={style.btn}>추가</button>
         </form>
       </div>
       {days.days.length === 0 ? (

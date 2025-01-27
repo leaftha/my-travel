@@ -12,7 +12,7 @@ export default function ThisDay({ num, day, id, current }) {
   const moneyChanger = (money) => {
     const formattedMoney = parseInt(money, 10).toLocaleString();
     setMoney(formattedMoney);
-  }
+  };
 
   return (
     <div className={current === num ? style.main : style.none}>
@@ -36,12 +36,12 @@ export default function ThisDay({ num, day, id, current }) {
                 money: money,
               }),
             });
-            moneyChanger(money)
+            moneyChanger(money);
           }}
         >
           입력
         </button>
-        <h1 className={style.money}>{money} 원</h1>
+        <h1 className={style.money}>현재지출 : {money} 원</h1>
       </div>
 
       <Wrapper

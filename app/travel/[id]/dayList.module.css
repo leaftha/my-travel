@@ -25,17 +25,11 @@
 }
 
 .btn {
-  font-size: 17px;
-  background: #f8f9fa;
-  padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  border-bottom: 1px solid #111111;
   cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  background: #f1f3f5;
 }
 
 .popup {
@@ -46,11 +40,4 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .btn {
-    font-size: 10px;
-    padding: 5px;
-  }
 }

@@ -31,16 +31,13 @@
 }
 
 .money {
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: 20px;
 }
 
 .btn {
-  margin: 20px;
-  font-size: 20px;
-  background: #f8f9fa;
-  padding: 20px;
+  background: none;
   border: none;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 20px;
 }

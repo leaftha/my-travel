@@ -98,15 +98,21 @@ export default function Inputs({
   return (
     <>
       <div className={style.inputs}>
-        <h1 className={style.title}>To Did</h1>
+        <h1 className={style.title}>하루 일정</h1>
         {/* 주소 입력 창 */}
-        <label className={style.addressTitle}>주소 입력</label>
-        <input
-          className={style.addressInput}
-          onChange={(e) => {
-            getPlacePredictions({ input: e.target.value });
-          }}
-        />
+        <div className={style.inputList}>
+          <div>
+            <label className={style.addressTitle}>주소 입력 : </label>
+            <input
+              className={style.addressInput}
+              onChange={(e) => {
+                getPlacePredictions({ input: e.target.value });
+              }}
+            />
+          </div>
+          {/* 이미지 업로드 기능 */}
+          <ImgUploader setInputImage={setInputImage} />
+        </div>
         {/* 주소 자동 완성  */}
         <ul className={style.addressList}>
           {placePredictions.length == 0 ||
@@ -124,21 +130,20 @@ export default function Inputs({
             ))}
         </ul>
         {/* 했던 일 입력 창 */}
-        <label>내용 입력</label>
-        <textarea
-          className={style.todidInput}
-          value={content}
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-        />
-        {/* 이미지 업로드 기능 */}
-        <ImgUploader setInputImage={setInputImage} />
-        {/* 주소 and 했던일 추가 버튼 */}
-        <div className={style.btns}>
-          <button className={style.Inputbtn} onClick={handleSubmit}>
-            입력
-          </button>
+        <div className={style.description}>
+          <label>일정</label>
+          <div className={style.textareas}>
+            <textarea
+              className={style.todidInput}
+              value={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
+            />
+            <button className={style.Inputbtn} onClick={handleSubmit}>
+              입력
+            </button>
+          </div>
         </div>
       </div>
     </>
