@@ -1,29 +1,14 @@
 .main {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
-
 
 .lists {
-  height: 500px;
-  overflow-y: scroll;
-  width: 70%;
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-
-@media (max-width: 768px) {
-  .main {
-    flex-direction: column;
-  }
-
-  .lists {
     width: 100%;
-  }
-
- }
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,7 +1,45 @@
 .none {
-  display: none;
+    display: none;
 }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.daylist {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.daytitle {
+    font-size: 30px;
+    margin-right: 20px;
+    color: rgba(1, 1, 1, 0.5);
+    cursor: pointer;
+}
+
+.daylist form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    background: none;
+    line-height: 30px;
+    border: none;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+/* 
 .main {
   display: flex;
   flex-direction: column;
@@ -40,4 +78,4 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-}
+} */

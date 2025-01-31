@@ -1,43 +1,51 @@
 .main {
-  width: 100%;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
 }
 
 .none {
-  display: none;
+    display: none;
 }
 
 .title {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .moneybody {
-  margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 10px 0;
 }
 
 .inputbox {
-  font-size: 20px;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #111111;
+    font-size: 30px;
+    background: none;
+    border: none;
+    text-align: right;
+    border-bottom: 1px solid #111111;
 }
 
 .inputbox:focus {
-  outline: none;
+    outline: none;
 }
 
 .money {
-  margin: 20px 0;
-  font-size: 20px;
+    margin: 20px 0;
+    font-size: 20px;
 }
 
 .btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.btn:hover {
+    font-weight: bold;
 }
