@@ -47,7 +47,7 @@ export default function ContentList({
     setImgList(newImgList);
   };
   return (
-    <>
+    <div>
       {contents.length === 0 ? (
         <h1>했던일을 입력하세요</h1>
       ) : (
@@ -92,6 +92,6 @@ export default function ContentList({
         ))
       )}
       {modal && <Modal img={imgList[current]} setModal={setModal} />}
-    </>
+    </div>
   );
 }

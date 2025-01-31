@@ -96,56 +96,54 @@ export default function Inputs({
   };
 
   return (
-    <>
-      <div className={style.inputs}>
-        <h1 className={style.title}>하루 일정</h1>
-        {/* 주소 입력 창 */}
-        <div className={style.inputList}>
-          <div>
-            <label className={style.addressTitle}>주소 입력 : </label>
-            <input
-              className={style.addressInput}
-              onChange={(e) => {
-                getPlacePredictions({ input: e.target.value });
-              }}
-            />
-          </div>
-          {/* 이미지 업로드 기능 */}
-          <ImgUploader setInputImage={setInputImage} />
+    <div className={style.inputs}>
+      <h1 className={style.title}>일정 추가</h1>
+      {/* 주소 입력 창 */}
+      <div className={style.inputList}>
+        <div>
+          <label className={style.addressTitle}>주소 입력 : </label>
+          <input
+            className={style.addressInput}
+            onChange={(e) => {
+              getPlacePredictions({ input: e.target.value });
+            }}
+          />
         </div>
-        {/* 주소 자동 완성  */}
-        <ul className={style.addressList}>
-          {placePredictions.length == 0 ||
-            placePredictions.map((item, idx) => (
-              <li
-                key={idx}
-                className={style.address}
-                onClick={() => {
-                  setPlace(item.place_id);
-                  setName(item.description);
-                }}
-              >
-                {item.description}
-              </li>
-            ))}
-        </ul>
-        {/* 했던 일 입력 창 */}
-        <div className={style.description}>
-          <label>일정</label>
-          <div className={style.textareas}>
-            <textarea
-              className={style.todidInput}
-              value={content}
-              onChange={(e) => {
-                setContent(e.target.value);
+        {/* 이미지 업로드 기능 */}
+        <ImgUploader setInputImage={setInputImage} />
+      </div>
+      {/* 주소 자동 완성  */}
+      <ul className={style.addressList}>
+        {placePredictions.length == 0 ||
+          placePredictions.map((item, idx) => (
+            <li
+              key={idx}
+              className={style.address}
+              onClick={() => {
+                setPlace(item.place_id);
+                setName(item.description);
               }}
-            />
-            <button className={style.Inputbtn} onClick={handleSubmit}>
-              입력
-            </button>
-          </div>
+            >
+              {item.description}
+            </li>
+          ))}
+      </ul>
+      {/* 했던 일 입력 창 */}
+      <div className={style.description}>
+        <label>내용</label>
+        <textarea
+          className={style.todidInput}
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        />
+        <div className={style.btnbody}>
+          <button className={style.Inputbtn} onClick={handleSubmit}>
+            입력
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

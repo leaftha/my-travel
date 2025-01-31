@@ -4,7 +4,7 @@ import style from "./imgUploader.module.css";
 
 export default function ImgUploader({ setInputImage }) {
   return (
-    <div className={style.main}>
+    <div>
       <label className={style.Imginput} htmlFor="input-file">
         이미지 추가
       </label>

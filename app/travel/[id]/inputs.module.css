@@ -1,15 +1,20 @@
-.lists {
-  height: 500px;
-  overflow-y: scroll;
-  width: 70%;
-  margin: 0 20px;
+.inputs {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+  /* background-color: ; */
+}
+
+.addressList {
+  line-height: 25px;
+  font-size: 20px;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
+  margin: 20px 0;
 }
 
 .addressTitle {
@@ -28,11 +33,6 @@
   outline: none;
 }
 
-.addressList {
-  line-height: 25px;
-  font-size: 20px;
-}
-
 .address {
   cursor: pointer;
 }
@@ -42,14 +42,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-}
-
-.inputs {
-  padding: 20px;
-  display: flex;
-  align-items: flex-start;
-  justify-items: center;
-  flex-direction: column;
 }
 
 .description {
@@ -64,7 +56,7 @@
 }
 
 .todidInput {
-  width: 50%;
+  width: 100%;
   height: 100px;
   font-size: 20px;
   text-align: start;
@@ -76,10 +68,17 @@
   justify-content: space-between;
 }
 
+.btnbody {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  margin: 20px 0;
+}
+
 .Inputbtn {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   cursor: pointer;
 }
