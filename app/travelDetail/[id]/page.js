@@ -17,7 +17,7 @@ export default async function Detail(props) {
   let result = await db
     .collection("travelPost")
     .findOne({ _id: new ObjectId(props.params.id) });
-    result._id = result._id.toString();
+  result._id = result._id.toString();
 
   // db에 저장된 유저 데이터 검색
   let user = null;
@@ -45,7 +45,6 @@ export default async function Detail(props) {
       <div className={style.content}>
         <div className={style.mainTitle}>
           <h1 className={style.title}>{result.title}</h1>
-          <Link className={style.link} href="/travelList">리스트</Link>
         </div>
         <Likse like={result.like} user={user} id={props.params.id} />
         <div className={style.btns}>

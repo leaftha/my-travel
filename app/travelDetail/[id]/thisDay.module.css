@@ -11,21 +11,41 @@
   display: none;
 }
 
-.money {
+.title {
+  font-size: 30px;
+}
+
+.moneybody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin: 10px 0;
+}
+
+.inputbox {
+  font-size: 30px;
+  background: none;
+  border: none;
+  text-align: right;
+  border-bottom: 1px solid #111111;
+}
+
+.inputbox:focus {
+  outline: none;
+}
+
+.money {
+  margin: 20px 0;
   font-size: 20px;
 }
+
 .btn {
-  margin: 20px;
-  font-size: 17px;
-  background: #f8f9fa;
-  padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 30px;
 }
 
 .btn:hover {
-  background: #f1f3f5;
+  font-weight: bold;
 }

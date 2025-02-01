@@ -1,14 +1,11 @@
 .btn {
-  margin: 20px;
-  font-size: 17px;
-  background: #f8f9fa;
-  padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
   cursor: pointer;
-  transition: 0.2s;
+  padding: 0;
 }
 
 .btn:hover {
-  background: #f1f3f5;
+  font-weight: bold;
 }

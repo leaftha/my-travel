@@ -16,18 +16,19 @@ export default function DayList({ days, id }) {
 
   return (
     <div className={style.main}>
-      <div className={style.pages}>
+      <div className={style.daylist}>
         {days.days.length > 0 &&
           days.days.map((item, idx) => (
-            <button
-              className={style.btn}
+            <h1
+              className={style.daytitle}
+              style={currentDay === idx ? { color: "black" } : {}}
               onClick={() => {
                 setCurrentDay(idx);
               }}
               key={idx}
             >
               {idx + 1}일
-            </button>
+            </h1>
           ))}
       </div>
       {days.days.length === 0 ? (

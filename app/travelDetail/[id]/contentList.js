@@ -26,27 +26,26 @@ export default function ContentList({ names, contents, imgList }) {
       ) : (
         contents.map((item, idx) => (
           <div className={style.content} key={idx}>
-            <div>
-              <h1>{names[idx]}</h1>
-            </div>
             <div className={style.contentMain}>
+              <div className={style.titls}>
+                <h1 className={style.title}>{names[idx]}</h1>
+              </div>
+              {/* 이미지 리스트 보여주기 */}
+              <h1
+                className={style.imgBtn}
+                onClick={() => {
+                  setModalState((prev) => ({
+                    modal: !prev.modal,
+                    current: idx,
+                  }));
+
+                  document.body.classList.add("stop-scroll");
+                }}
+              >
+                이미지 보기
+              </h1>
               <p>{item}</p>
             </div>
-
-            {/* 이미지 리스트 보여주기 */}
-            <h1
-              className={style.imgButton}
-              onClick={() => {
-                setModalState((prev) => ({
-                  modal: !prev.modal,
-                  current: idx,
-                }));
-
-                document.body.classList.add("stop-scroll");
-              }}
-            >
-              이미지 보기
-            </h1>
           </div>
         ))
       )}
