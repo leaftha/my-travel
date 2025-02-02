@@ -22,7 +22,7 @@ export default function ContentList({ names, contents, imgList }) {
   return (
     <>
       {contents.length === 0 ? (
-        <h1>했던일을 입력하세요</h1>
+        <h1></h1>
       ) : (
         contents.map((item, idx) => (
           <div className={style.content} key={idx}>
