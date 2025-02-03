@@ -1,14 +1,15 @@
 .Imginput {
-  text-align: center;
-  padding: 10px;
-  width: 100%;
-  font-size: 20px;
-  cursor: pointer;
+    text-align: center;
+    padding: 0.625em;
+    width: 100%;
+    font-size: 1.25em;
+    cursor: pointer;
 }
 
 .Imginput:hover {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 .none {
-  display: none;
+    display: none;
 }

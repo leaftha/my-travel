@@ -71,11 +71,7 @@ export default function TravelList({ travel, session }) {
                         </Link>
                         <h1 className={style.money}>총 금액 : {item.money}원</h1>
                         <h1 className={style.menber}>인원수 : {item.menber}명</h1>
-                        {item.days.length === 0 ? (
-                            <h1 className={style.need}>일정 입력이 필요합니다.</h1>
-                        ) : (
-                            <LineMaps num={idx} day={item.days} />
-                        )}
+                        {item.days.length === 0 ? <></> : <LineMaps num={idx} day={item.days} />}
                     </div>
                 ))}
             </div>

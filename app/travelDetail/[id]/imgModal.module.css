@@ -1,11 +1,11 @@
 .btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0;
+    background: none;
+    border: none;
+    font-size: 1.25em;
+    cursor: pointer;
+    padding: 0;
 }
 
 .btn:hover {
-  font-weight: bold;
+    font-weight: bold;
 }

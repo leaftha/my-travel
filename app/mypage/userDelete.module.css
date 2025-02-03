@@ -7,9 +7,9 @@
 }
 
 .btn {
-    font-size: 17px;
+    font-size: 1.0625em;
     background: none;
-    padding: 20px;
+    padding: 1.25em;
     border: none;
     cursor: pointer;
 }

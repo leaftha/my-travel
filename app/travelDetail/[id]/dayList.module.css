@@ -1,34 +1,33 @@
 .none {
-  display: none;
+    display: none;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .daylist {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 1.25em;
 }
 
 .daytitle {
-  font-size: 30px;
-  margin-right: 20px;
-  color: rgba(1, 1, 1, 0.5);
-  cursor: pointer;
+    font-size: 1.875em;
+    margin-right: 1.25em;
+    color: rgba(1, 1, 1, 0.5);
+    cursor: pointer;
 }
 
 .btn {
-  background: none;
-  line-height: 30px;
-  border: none;
-  font-size: 30px;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-
-  cursor: pointer;
+    background: none;
+    line-height: 1.875em;
+    border: none;
+    font-size: 1.875em;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
 }

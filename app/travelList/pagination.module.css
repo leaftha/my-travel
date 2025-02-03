@@ -1,31 +1,31 @@
 .main {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .list {
-  display: flex;
+    display: flex;
 }
 
 .btn {
-  margin: 0 20px;
-  font-size: 20px;
-  background: #f8f9fa;
-  padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+    margin: 0 1.25em;
+    font-size: 1.25em;
+    background: #f8f9fa;
+    padding: 1.25em;
+    border: 1px solid #ced4da;
+    border-radius: 0.625em;
+    cursor: pointer;
+    transition: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .btn:hover {
-  background: #f1f3f5;
+    background: #f1f3f5;
 }
 
 .none {
-  display: none;
+    display: none;
 }

@@ -1,21 +1,22 @@
 .main {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.25em;
 }
+
 .num {
-  font-size: 25px;
+    font-size: 1.5625em;
 }
 
 .btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5625em;
 }
 
 .btn:hover {
-  font-weight: bold;
+    font-weight: bold;
 }

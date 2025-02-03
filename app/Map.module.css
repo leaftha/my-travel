@@ -1,42 +1,42 @@
 .main {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .current {
-  margin: 10px;
-  font-size: 15px;
-  line-height: 20px;
+    margin: 0.625em;
+    font-size: 0.9375em;
+    line-height: 1.25em;
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  height: 200px;
-  width: 100%;
-  margin: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 12.5em;
+    width: 100%;
+    margin: 1.25em;
 }
 
 .modalBtn {
-  margin: 10px 0;
-  font-size: 20px;
+    margin: 0.625em 0;
+    font-size: 1.25em;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 1.25em;
+    font-weight: bold;
 }
 
 .content {
-  margin: 10px;
-  cursor: pointer;
+    margin: 0.625em;
+    cursor: pointer;
 }
 
 .map {
-  width: 90%;
-  height: 450px;
+    width: 90%;
+    height: 28.125em;
 }
