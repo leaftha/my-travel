@@ -1,85 +1,93 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    /* height: 100vh; */
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding-top: 6.25em;
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6.25em;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
 
 .btnlist {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    margin: 1.25em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 1.25em 0;
 }
 
 .list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.625em;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.625em;
+  width: 100%;
 }
 
 .item {
-    width: calc(30% - 0.625em);
-    /* max-width: 500px; */
-    background-color: white;
-    border: 0.0625em solid #dee2e6;
-    border-radius: 0.5em;
-    box-shadow: 0 0.0625em 0.1875em rgba(0, 0, 0, 0.12), 0 0.0625em 0.125em rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    padding: 1.25em;
+  width: calc(30% - 0.625em);
+  /* max-width: 500px; */
+  background-color: white;
+  border: 0.0625em solid #dee2e6;
+  border-radius: 0.5em;
+  box-shadow: 0 0.0625em 0.1875em rgba(0, 0, 0, 0.12),
+    0 0.0625em 0.125em rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 1.25em;
 }
 
 .item:hover {
-    box-shadow: 0 0.875em 1.75em rgba(0, 0, 0, 0.25), 0 0.625em 0.625em rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0.875em 1.75em rgba(0, 0, 0, 0.25),
+    0 0.625em 0.625em rgba(0, 0, 0, 0.22);
 }
 
 .title {
-    margin-top: 1.25em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.1875em;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    text-align: center;
+  margin-top: 1.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1875em;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  text-align: center;
 }
 
 .money {
-    font-size: 1.25em;
-    margin: 1.25em;
+  font-size: 1.25em;
+  margin: 1.25em;
 }
 
 .menber {
-    font-size: 1.25em;
-    margin: 0 1.25em;
+  font-size: 1.25em;
+  margin: 0 1.25em;
 }
 
 .need {
-    font-size: 1.875em;
-    width: 100%;
-    height: 100%;
-    font-weight: bold;
-    display: flex;
-    margin: 0.625em 0;
-    justify-content: center;
-    align-items: center;
+  font-size: 1.875em;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  display: flex;
+  margin: 0.625em 0;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 767px) {
-    .item {
-        width: 95%; /* 모바일에서는 한 줄에 하나씩 */
-    }
+  .item {
+    width: 95%; /* 모바일에서는 한 줄에 하나씩 */
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .item {
-        width: calc(50% - 0.625em); /* 태블릿에서는 두 개씩 */
-    }
+  .item {
+    width: calc(50% - 0.625em); /* 태블릿에서는 두 개씩 */
+  }
 }

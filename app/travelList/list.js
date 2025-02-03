@@ -46,21 +46,23 @@ export default function List({ travel }) {
       <div className={style.btnlist}>
         <SelectTravel setSort={setSort} />
       </div>
-      <div className={style.list}>
-        {travelData.travelList.map((item, idx) => (
-          <div className={style.item} key={idx}>
-            <Link className={style.title} href={`/travelDetail/${item._id}`}>
-              {item.title}
-            </Link>
-            <h1 className={style.money}>Money : {item.money}</h1>
-            <h1 className={style.menber}>Menber : {item.menber}</h1>
-            {item.days.length === 0 ? (
-              <h1 className={style.title}>아직 입력 중입니다.</h1>
-            ) : (
-              <LineMaps num={idx} day={item.days} />
-            )}
-          </div>
-        ))}
+      <div className={style.body}>
+        <div className={style.list}>
+          {travelData.travelList.map((item, idx) => (
+            <div className={style.item} key={idx}>
+              <Link className={style.title} href={`/travelDetail/${item._id}`}>
+                {item.title}
+              </Link>
+              <h1 className={style.money}>Money : {item.money}</h1>
+              <h1 className={style.menber}>Menber : {item.menber}</h1>
+              {item.days.length === 0 ? (
+                <h1 className={style.title}>아직 입력 중입니다.</h1>
+              ) : (
+                <LineMaps num={idx} day={item.days} />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <Pagination trip={travel} setCurrentPage={setCurrentPage} />
     </div>
