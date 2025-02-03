@@ -1,21 +1,19 @@
 .none {
-  display: none;
+    display: none;
 }
 
 .main {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .btn {
-  font-size: 17px;
-  background: #f8f9fa;
-  padding: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
+    font-size: 17px;
+    background: none;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
-  background: #f1f3f5;
+    font-weight: bold;
 }
